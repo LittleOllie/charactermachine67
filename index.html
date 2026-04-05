@@ -2271,9 +2271,19 @@ function getSelectedTraits(slot) {
   return list ? list.filter(function (t) { return t.selected; }) : [];
 }
 
+function pickRandomIndex(n) {
+  if (n <= 0) return 0;
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    var buf = new Uint32Array(1);
+    crypto.getRandomValues(buf);
+    return buf[0] % n;
+  }
+  return Math.floor(Math.random() * n);
+}
+
 function pickRandomFrom(list) {
   if (!list || list.length === 0) return null;
-  return list[Math.floor(Math.random() * list.length)];
+  return list[pickRandomIndex(list.length)];
 }
 
 function getRandomIndex(max) {
@@ -2314,7 +2324,7 @@ function randomizeCharacter() {
   // ---- HAIR / HAT (mutual exclusion) ---- //
   var hairList = getSelectedTraits('hair');
   var hatList = getSelectedTraits('hat');
-  if (Math.random() < 0.5 && hairList.length > 0) {
+  if (pickRandomIndex(2) === 0 && hairList.length > 0) {
     selectTrait('hair', pickRandomFrom(hairList).image);
     selectTrait('hat', '');
   } else if (hatList.length > 0) {
@@ -2330,13 +2340,13 @@ function randomizeCharacter() {
 
   // ---- OPTIONAL TRAITS ---- //
   var accList = getSelectedTraits('accessories');
-  selectTrait('accessories', (Math.random() < 0.5 && accList.length) ? pickRandomFrom(accList).image : '');
+  selectTrait('accessories', (pickRandomIndex(2) === 0 && accList.length) ? pickRandomFrom(accList).image : '');
   var behindList = getSelectedTraits('behindback');
-  selectTrait('behindback', (Math.random() < 0.5 && behindList.length) ? pickRandomFrom(behindList).image : '');
+  selectTrait('behindback', (pickRandomIndex(2) === 0 && behindList.length) ? pickRandomFrom(behindList).image : '');
   var hoodiesList = getSelectedTraits('hoodies');
-  selectTrait('hoodies', (Math.random() < 0.5 && hoodiesList.length) ? pickRandomFrom(hoodiesList).image : '');
+  selectTrait('hoodies', (pickRandomIndex(2) === 0 && hoodiesList.length) ? pickRandomFrom(hoodiesList).image : '');
   var gooList = getSelectedTraits('goo');
-  selectTrait('goo', (Math.random() < 0.5 && gooList.length) ? pickRandomFrom(gooList).image : '');
+  selectTrait('goo', (pickRandomIndex(2) === 0 && gooList.length) ? pickRandomFrom(gooList).image : '');
 
   // ---- CLEAR HANDS ---- //
   selectTrait('hand', '');
@@ -2363,7 +2373,7 @@ function randomizeCharacter() {
   var allBalls = (TRAIT_DATA.ball || []).filter(function (t) { return !isBlankHand(t.image); });
   var allBalls2 = (TRAIT_DATA.ball2 || []).filter(function (t) { return !isBlankHand(t.image); });
   // Both Hand 1 and Hand 2 MUST match skin number exactly (e.g., skin 3 = HANDS/3.PNG or HANDS2/3.PNG)
-  var handCombo = Math.floor(Math.random() * 3);
+  var handCombo = pickRandomIndex(3);
   
   // Helper function to find hand trait matching skin index
   function findMatchingHand(pool, skinNum) {
@@ -3198,6 +3208,14 @@ return canvas;
     );
   }
 
+  function getOffscreenFingerprint() {
+    var parts = [];
+    offstage.querySelectorAll('img').forEach(function (img) {
+      parts.push(img.getAttribute('src') || '');
+    });
+    return parts.join('\x1f');
+  }
+
   function runCollection(count) {
     if (loIsFileProtocol()) {
       if (typeof alert === 'function') alert(loLocalServerHelpMessage());
@@ -3322,6 +3340,8 @@ return canvas;
     window.__loGenCollectionOffscreen = true;
     clearOffscreen();
 
+    var usedFingerprints = new Set();
+
     btn.disabled = true;
     showProgress(true);
     if (progressText) progressText.textContent = '0 / ' + count;
@@ -3333,20 +3353,12 @@ return canvas;
       octx = outCanvas.getContext('2d');
       octx.imageSmoothingEnabled = true;
       if (octx.imageSmoothingQuality !== undefined) octx.imageSmoothingQuality = 'high';
-      /* Collage backing: soft grid so tiles read as separate characters */
-      octx.fillStyle = '#d8d8d8';
+      octx.fillStyle = '#ffffff';
       octx.fillRect(0, 0, outW, outH);
     }
 
-    var tilePad = Math.max(3, Math.floor(cell * 0.045));
-    var innerDraw = cell - 2 * tilePad;
-
-    function step() {
-      if (progressText) progressText.textContent = (i + 1) + ' / ' + count;
-
-      randomizeCharacter();
-
-      waitForOffscreenImages(12000)
+    function waitDecodePaint() {
+      return waitForOffscreenImages(12000)
         .then(decodeOffscreenImages)
         .then(function () {
           return new Promise(function (r) {
@@ -3354,23 +3366,33 @@ return canvas;
               requestAnimationFrame(r);
             });
           });
-        })
+        });
+    }
+
+    function rollUntilUnique(attemptsLeft) {
+      randomizeCharacter();
+      return waitDecodePaint().then(function () {
+        var fp = getOffscreenFingerprint();
+        if (usedFingerprints.has(fp) && attemptsLeft > 1) {
+          return rollUntilUnique(attemptsLeft - 1);
+        }
+        usedFingerprints.add(fp);
+      });
+    }
+
+    function step() {
+      if (progressText) progressText.textContent = (i + 1) + ' / ' + count;
+
+      rollUntilUnique(72)
         .then(function () {
         try {
-          var cellCanvas = renderAt(innerDraw, offstage);
+          var cellCanvas = renderAt(cell, offstage);
           var col = i % cols;
           var row = Math.floor(i / cols);
-          var x0 = col * cell;
-          var y0 = row * cell;
-          octx.fillStyle = '#ffffff';
-          octx.fillRect(x0, y0, cell, cell);
-          octx.strokeStyle = '#c5c5c5';
-          octx.lineWidth = Math.max(1, Math.floor(cell / 256));
-          octx.strokeRect(x0 + 0.5, y0 + 0.5, cell - 1, cell - 1);
           octx.drawImage(
             cellCanvas,
             0, 0, cellCanvas.width, cellCanvas.height,
-            x0 + tilePad, y0 + tilePad, innerDraw, innerDraw
+            col * cell, row * cell, cell, cell
           );
         } catch (e) {
           finishError('Error building collection: ' + (e.message || e));
