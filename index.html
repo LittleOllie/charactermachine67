@@ -644,6 +644,89 @@ button:hover {
     font-size: 14px;
     margin: 0;
 }
+.load-modal-dialog input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.collection-modal-hint {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: #555;
+}
+.character-actions #generateCollectionBtn {
+    margin: 0;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    background-color: #e67e22;
+    color: #fff;
+}
+.character-actions #generateCollectionBtn:hover {
+    opacity: 0.92;
+}
+.character-actions #generateCollectionBtn:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+/* Off-screen stack for fast collection generation (does not touch main canvas).
+   Do not use opacity:0 — browsers may skip image decode so canvas drawImage stays blank. */
+#characterDisplayOffscreenWrap {
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    width: 512px;
+    height: 512px;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+}
+#characterDisplayOffscreen {
+    position: relative;
+    width: 512px;
+    height: 512px;
+    background: #fff;
+}
+#characterDisplayOffscreen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.collection-progress-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2500;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+}
+.collection-progress-overlay.show {
+    display: flex;
+}
+.collection-progress-overlay .inner {
+    background: rgba(102, 166, 255, 0.95);
+    padding: 28px 36px;
+    border-radius: 16px;
+    max-width: 90vw;
+}
 @media (max-width: 900px) {
     #creatorRow {
         flex-wrap: wrap;
@@ -790,6 +873,26 @@ button:hover {
             <img id="ball2" alt="">
             <img id="hand2" alt="">
         </div>
+        <div id="characterDisplayOffscreenWrap" aria-hidden="true">
+            <div id="characterDisplayOffscreen">
+                <img id="off_background" alt="">
+                <img id="off_backgroundblur" alt="">
+                <img id="off_behindback" alt="">
+                <img id="off_skin" alt="">
+                <img id="off_eyes" alt="">
+                <img id="off_clothing" alt="">
+                <img id="off_mouth" alt="">
+                <img id="off_hair" alt="">
+                <img id="off_accessories" alt="">
+                <img id="off_hat" alt="">
+                <img id="off_hoodies" alt="">
+                <img id="off_goo" alt="">
+                <img id="off_ball" alt="">
+                <img id="off_hand" alt="">
+                <img id="off_ball2" alt="">
+                <img id="off_hand2" alt="">
+            </div>
+        </div>
         <div class="underCharacterRow">
             <div class="character-actions">
                 <button id="saveCharacterBtn">SAVE</button>
@@ -797,6 +900,7 @@ button:hover {
                 <button id="newCharacterBtn">NEW</button>
                 <button id="exportImageBtn">EXPORT IMAGE</button>
                 <button id="exportTraitListBtn" class="export-trait-button">EXPORT TRAIT LIST</button>
+                <button type="button" id="generateCollectionBtn">GENERATE COLLECTION!</button>
             </div>
         </div>
     </div>
@@ -1769,6 +1873,26 @@ button:hover {
     </div>
 </div>
 
+<div id="collectionModal" class="load-modal" aria-hidden="true">
+  <div class="load-modal-dialog">
+    <h4>GENERATE COLLECTION</h4>
+    <p class="collection-modal-hint">How many random characters in the collage? Square grid (e.g. 100 &rarr; 10 &times; 10). Each tile is a full random character.</p>
+    <p class="collection-modal-hint" style="font-size:11px;margin-top:6px;">Downloads need this page opened with <strong>http://</strong> (e.g. localhost), not as a <strong>file</strong> — otherwise the browser shows &ldquo;operation is insecure.&rdquo;</p>
+    <input type="number" id="collectionCountInput" min="1" max="5000" value="9" />
+    <div class="modal-buttons">
+      <button type="button" id="collectionModalCancel">CANCEL</button>
+      <button type="button" id="collectionModalGo">GENERATE</button>
+    </div>
+  </div>
+</div>
+
+<div id="collectionProgress" class="collection-progress-overlay" aria-hidden="true">
+  <div class="inner">
+    <div>GENERATING COLLECTION&hellip;</div>
+    <div id="collectionProgressText" style="margin-top:12px;font-size:16px;">0 / 0</div>
+  </div>
+</div>
+
 <div id="loadModal" class="load-modal" aria-hidden="true">
   <div class="load-modal-dialog">
     <h4>LOAD A SAVED CHARACTER</h4>
@@ -1796,10 +1920,16 @@ button:hover {
    TRAIT SELECTOR + RANDOMIZER
    ========================= */
 function selectTrait(category, filename) {
-  var el = document.getElementById(category);
+  var id = category;
+  if (window.__loGenCollectionOffscreen) {
+    id = 'off_' + category;
+  }
+  var el = document.getElementById(id);
   if (!el) return;
   el.src = filename || '';
-  if (typeof updateOnCharacterList === 'function') updateOnCharacterList();
+  if (!window.__loGenCollectionOffscreen && typeof updateOnCharacterList === 'function') {
+    updateOnCharacterList();
+  }
 }
 
 function showCategory(categoryId) {
@@ -2801,6 +2931,22 @@ if (document.readyState === 'loading') {
   setTimeout(preloadAllImages, 100);
 }
 
+/* Canvas export (collage, export image) fails on file:// — browsers throw SecurityError ("operation is insecure"). */
+function loIsFileProtocol() {
+  return window.location.protocol === 'file:';
+}
+function loLocalServerHelpMessage() {
+  return 'Your browser is blocking image export because this page was opened as a file (the address bar shows file://…).\n\n' +
+    'That is normal browser security — it is not a bug in Character Creator.\n\n' +
+    'To generate collages and export images, run a tiny web server from your LOCC2-main folder, then open the site with http://\n\n' +
+    'Example (Terminal):\n' +
+    '  cd path/to/LOCC2-main\n' +
+    '  python3 -m http.server 8080\n\n' +
+    'Then in your browser go to:\n' +
+    '  http://localhost:8080\n\n' +
+    'Collages and exports work there.';
+}
+
 /* =========================
    DOWNLOAD (COLOR + B&W LINE ART)
    ========================= */
@@ -2900,16 +3046,24 @@ return canvas;
   }
 
   function downloadCanvas(canvas, filename, mimeType, quality) {
-    const a = document.createElement('a');
-    a.download = filename;
-    if (mimeType === 'image/jpeg' && quality != null) {
-      a.href = canvas.toDataURL('image/jpeg', quality);
-    } else {
-      a.href = canvas.toDataURL('image/png');
+    try {
+      const a = document.createElement('a');
+      a.download = filename;
+      if (mimeType === 'image/jpeg' && quality != null) {
+        a.href = canvas.toDataURL('image/jpeg', quality);
+      } else {
+        a.href = canvas.toDataURL('image/png');
+      }
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (e) {
+      if (e && e.name === 'SecurityError') {
+        if (typeof alert === 'function') alert(loLocalServerHelpMessage());
+      } else {
+        throw e;
+      }
     }
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
   }
 
   if (btnColor) {
@@ -2930,6 +3084,339 @@ return canvas;
       downloadCanvas(c, 'LittleOllie_Export.jpg', 'image/jpeg', 0.92);
     });
   }
+
+  window.__loRenderColorComposite = function () {
+    return renderComposite(false);
+  };
+
+  /* Small composite for collection grid (avoids 2048² per cell — faster, less memory) */
+  window.__loRenderColorCompositeAtSize = function (pixelSize, rootEl) {
+    pixelSize = Math.max(32, Math.floor(pixelSize || 256));
+    rootEl = rootEl || stage;
+    var layers = Array.from(rootEl.querySelectorAll('img')).filter(function (img) {
+      var attr = img.getAttribute('src');
+      if (attr === null || attr === '') return false;
+      if (!img.complete) return false;
+      if (img.naturalWidth < 1 && img.naturalHeight < 1) return false;
+      return true;
+    });
+    var canvas = document.createElement('canvas');
+    canvas.width = pixelSize;
+    canvas.height = pixelSize;
+    var ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    if (ctx.imageSmoothingQuality !== undefined) ctx.imageSmoothingQuality = 'high';
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, pixelSize, pixelSize);
+    layers.forEach(function (img) {
+      try {
+        ctx.drawImage(img, 0, 0, pixelSize, pixelSize);
+      } catch (e) {}
+    });
+    return canvas;
+  };
+})();
+
+/* =========================
+   GENERATE COLLECTION (GRID SHEET)
+   ========================= */
+(function initCollectionGenerator() {
+  var offstage = document.getElementById('characterDisplayOffscreen');
+  var btn = document.getElementById('generateCollectionBtn');
+  var modal = document.getElementById('collectionModal');
+  var input = document.getElementById('collectionCountInput');
+  var btnCancel = document.getElementById('collectionModalCancel');
+  var btnGo = document.getElementById('collectionModalGo');
+  var progressEl = document.getElementById('collectionProgress');
+  var progressText = document.getElementById('collectionProgressText');
+
+  if (!offstage || !btn || !modal || !input || !btnCancel || !btnGo) return;
+
+  function openModal() {
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function showProgress(show) {
+    if (!progressEl) return;
+    if (show) {
+      progressEl.classList.add('show');
+      progressEl.setAttribute('aria-hidden', 'false');
+    } else {
+      progressEl.classList.remove('show');
+      progressEl.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function collectionGridDimensions(n) {
+    var cols = Math.ceil(Math.sqrt(n));
+    var rows = Math.ceil(n / cols);
+    return { cols: cols, rows: rows };
+  }
+
+  function waitForOffscreenImages(timeoutMs) {
+    return new Promise(function (resolve) {
+      var deadline = Date.now() + (timeoutMs || 8000);
+      function stillLoading() {
+        var imgs = Array.from(offstage.querySelectorAll('img'));
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i];
+          var src = img.getAttribute('src');
+          if (!src) continue;
+          if (!img.complete) return true;
+        }
+        return false;
+      }
+      function tick() {
+        if (!stillLoading() || Date.now() > deadline) {
+          resolve();
+          return;
+        }
+        setTimeout(tick, 16);
+      }
+      tick();
+    });
+  }
+
+  function decodeOffscreenImages() {
+    var imgs = Array.from(offstage.querySelectorAll('img')).filter(function (img) {
+      var src = img.getAttribute('src');
+      return src !== null && src !== '';
+    });
+    return Promise.all(
+      imgs.map(function (img) {
+        if (img.decode) {
+          return img.decode().catch(function () {});
+        }
+        return Promise.resolve();
+      })
+    );
+  }
+
+  function runCollection(count) {
+    if (loIsFileProtocol()) {
+      if (typeof alert === 'function') alert(loLocalServerHelpMessage());
+      return;
+    }
+    var renderAt = window.__loRenderColorCompositeAtSize;
+    if (typeof renderAt !== 'function') {
+      if (typeof alert === 'function') alert('Export engine not ready. Refresh the page and try again.');
+      return;
+    }
+
+    var grid = collectionGridDimensions(count);
+    var cols = grid.cols;
+    var rows = grid.rows;
+    var maxSide = 8192;
+    var cell = Math.floor(maxSide / Math.max(cols, rows));
+    cell = Math.max(cell, 48);
+    var outW = cols * cell;
+    var outH = rows * cell;
+    if (outW > 8192 || outH > 8192) {
+      cell = Math.floor(Math.min(8192 / cols, 8192 / rows));
+      cell = Math.max(cell, 48);
+      outW = cols * cell;
+      outH = rows * cell;
+    }
+
+    var outCanvas = null;
+    var octx = null;
+    var i = 0;
+
+    function clearOffscreen() {
+      offstage.querySelectorAll('img').forEach(function (img) {
+        img.removeAttribute('src');
+      });
+    }
+
+    function syncMainDisplayFromOffscreen() {
+      window.__loGenCollectionOffscreen = false;
+      offstage.querySelectorAll('img').forEach(function (off) {
+        var id = off.id.replace(/^off_/, '');
+        if (!id) return;
+        var main = document.getElementById(id);
+        if (main) {
+          main.src = off.src || '';
+        }
+      });
+      if (typeof updateOnCharacterList === 'function') updateOnCharacterList();
+    }
+
+    function finishError(msg) {
+      window.__loGenCollectionOffscreen = false;
+      console.error(msg);
+      showProgress(false);
+      btn.disabled = false;
+      if (progressText) progressText.textContent = '0 / 0';
+      if (typeof alert === 'function' && msg) alert(msg);
+    }
+
+    function finishSuccess() {
+      var baseName = 'LittleOllie_Collection_' + count + '_' + cols + 'x' + rows;
+      var megaPixels = (outW * outH) / 1000000;
+
+      function deliver(blob, ext) {
+        syncMainDisplayFromOffscreen();
+        if (!blob || blob.size === 0) {
+          if (ext === 'png') {
+            outCanvas.toBlob(function (b2) {
+              deliver(b2, 'jpg');
+            }, 'image/jpeg', 0.88);
+            return;
+          }
+          if (typeof alert === 'function') alert('Export failed. Try a smaller count or lower resolution.');
+          showProgress(false);
+          btn.disabled = false;
+          if (progressText) progressText.textContent = '0 / 0';
+          return;
+        }
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.download = baseName + '.' + ext;
+        a.href = url;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 4000);
+        showProgress(false);
+        btn.disabled = false;
+        if (progressText) progressText.textContent = '0 / 0';
+      }
+
+      try {
+        if (megaPixels > 35) {
+          outCanvas.toBlob(function (blob) {
+            deliver(blob, 'jpg');
+          }, 'image/jpeg', 0.9);
+        } else {
+          outCanvas.toBlob(function (blob) {
+            if (!blob || blob.size === 0) {
+              outCanvas.toBlob(function (b2) {
+                deliver(b2, 'jpg');
+              }, 'image/jpeg', 0.88);
+            } else {
+              deliver(blob, 'png');
+            }
+          }, 'image/png');
+        }
+      } catch (e) {
+        syncMainDisplayFromOffscreen();
+        showProgress(false);
+        btn.disabled = false;
+        if (progressText) progressText.textContent = '0 / 0';
+        if (e && e.name === 'SecurityError' && typeof alert === 'function') {
+          alert(loLocalServerHelpMessage());
+        } else if (typeof alert === 'function') {
+          alert((e && e.message) ? e.message : String(e));
+        }
+      }
+    }
+
+    window.__loGenCollectionOffscreen = true;
+    clearOffscreen();
+
+    btn.disabled = true;
+    showProgress(true);
+    if (progressText) progressText.textContent = '0 / ' + count;
+
+    if (!outCanvas) {
+      outCanvas = document.createElement('canvas');
+      outCanvas.width = outW;
+      outCanvas.height = outH;
+      octx = outCanvas.getContext('2d');
+      octx.imageSmoothingEnabled = true;
+      if (octx.imageSmoothingQuality !== undefined) octx.imageSmoothingQuality = 'high';
+      /* Collage backing: soft grid so tiles read as separate characters */
+      octx.fillStyle = '#d8d8d8';
+      octx.fillRect(0, 0, outW, outH);
+    }
+
+    var tilePad = Math.max(3, Math.floor(cell * 0.045));
+    var innerDraw = cell - 2 * tilePad;
+
+    function step() {
+      if (progressText) progressText.textContent = (i + 1) + ' / ' + count;
+
+      randomizeCharacter();
+
+      waitForOffscreenImages(12000)
+        .then(decodeOffscreenImages)
+        .then(function () {
+          return new Promise(function (r) {
+            requestAnimationFrame(function () {
+              requestAnimationFrame(r);
+            });
+          });
+        })
+        .then(function () {
+        try {
+          var cellCanvas = renderAt(innerDraw, offstage);
+          var col = i % cols;
+          var row = Math.floor(i / cols);
+          var x0 = col * cell;
+          var y0 = row * cell;
+          octx.fillStyle = '#ffffff';
+          octx.fillRect(x0, y0, cell, cell);
+          octx.strokeStyle = '#c5c5c5';
+          octx.lineWidth = Math.max(1, Math.floor(cell / 256));
+          octx.strokeRect(x0 + 0.5, y0 + 0.5, cell - 1, cell - 1);
+          octx.drawImage(
+            cellCanvas,
+            0, 0, cellCanvas.width, cellCanvas.height,
+            x0 + tilePad, y0 + tilePad, innerDraw, innerDraw
+          );
+        } catch (e) {
+          finishError('Error building collection: ' + (e.message || e));
+          return;
+        }
+
+        i++;
+        if (i >= count) {
+          finishSuccess();
+          return;
+        }
+        setTimeout(step, 0);
+      })
+        .catch(function (err) {
+          finishError(err && err.message ? err.message : String(err));
+        });
+    }
+
+    step();
+  }
+
+  btn.addEventListener('click', function () {
+    openModal();
+  });
+
+  btnCancel.addEventListener('click', function () {
+    closeModal();
+  });
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  btnGo.addEventListener('click', function () {
+    var n = parseInt(input.value, 10);
+    if (isNaN(n) || n < 1) {
+      if (typeof alert === 'function') alert('Enter a number at least 1.');
+      return;
+    }
+    if (n > 5000) {
+      if (typeof alert === 'function') alert('Maximum is 5000 characters. Use a smaller number.');
+      return;
+    }
+    closeModal();
+    runCollection(n);
+  });
 })();
 </script>
 
