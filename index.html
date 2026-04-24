@@ -3,8 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Little Ollie Character Creator</title>
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+// Ensure gender buttons never throw "setGender not defined" if clicked before the main script finishes loading.
+// This stub records the choice and hides the gate; the main script will complete initialization.
+window.__pendingGender = window.__pendingGender || null;
+if (typeof window.setGender !== 'function') {
+  window.setGender = function (g) {
+    window.__pendingGender = g;
+    var gate = document.getElementById('genderGate');
+    if (gate) {
+      gate.style.display = 'none';
+      gate.setAttribute('aria-hidden', 'true');
+    }
+  };
+}
+// Make header toggle safe even before main script loads
+if (typeof window.toggleGender !== 'function') {
+  window.toggleGender = function () {
+    // If gender isn't chosen yet, do nothing.
+    if (!window.selectedGender && !window.__pendingGender) return;
+    var current = window.selectedGender || window.__pendingGender;
+    window.setGender(current === 'female' ? 'male' : 'female');
+  };
+}
+</script>
 <style>
 
 :root {
@@ -24,6 +51,123 @@ body {
     align-items: center;
     overflow-x: hidden;
     text-transform: uppercase;
+}
+body.gender-female {
+    /* subtle pink tint for female mode */
+    background-image: linear-gradient(to right, #ffd1e6, #66a6ff);
+}
+
+/* =========================
+   GENDER SWITCH TRANSITION
+   ========================= */
+#transitionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.5s ease;
+    z-index: 9999;
+}
+#transitionOverlay.active {
+    opacity: 1;
+    transform: scale(3) rotate(720deg);
+}
+
+/* =========================
+   GENDER GATE (FIRST SCREEN)
+   ========================= */
+.gender-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Blue (left) → Pink (right) */
+    background: linear-gradient(90deg, rgba(77, 166, 255, 0.96) 0%, rgba(255, 158, 214, 0.94) 100%);
+    font-family: 'Fredoka One', cursive;
+    padding: 24px;
+}
+.gender-gate.female { background: inherit; }
+.gender-gate .gate-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto 10px auto;
+    flex-wrap: wrap;
+}
+.gender-gate .gate-brand img {
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.12));
+}
+.gender-gate .gate-brand img.logo-lo {
+    height: 90px;
+    opacity: 0.95;
+}
+.gender-gate .gate-logo {
+    width: min(520px, 86vw);
+    height: auto;
+    display: block;
+    margin: 0 auto 12px auto;
+    object-fit: contain;
+}
+.gender-gate .panel {
+    width: min(720px, 92vw);
+    background: rgba(255,255,255,0.95);
+    border-radius: 22px;
+    padding: 28px 24px;
+    box-shadow: 0 14px 50px rgba(0,0,0,0.22);
+    text-align: center;
+}
+.gender-gate h2 {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+    color: #2c3e50;
+}
+.gender-gate .hint {
+    margin: 0 0 18px 0;
+    font-size: 13px;
+    color: #555;
+}
+.gender-gate .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+.gender-gate button {
+    border: none;
+    border-radius: 18px;
+    padding: 22px 16px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #fff;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+}
+.gender-gate button:hover { filter: brightness(1.04); }
+.gender-gate .male { background: linear-gradient(to right, #00bcd4, #3498db); }
+.gender-gate .female { background: linear-gradient(to right, #e91e63, #9b59b6); }
+@media (max-width: 520px) {
+    .gender-gate .buttons { grid-template-columns: 1fr; }
+}
+
+/* Disable trait tiles (female rules, etc.) */
+.trait-thumb-wrap.trait-disabled {
+    opacity: 0.25;
+    filter: grayscale(0.8);
+    pointer-events: none;
+}
+.trait-thumb-wrap.trait-disabled .trait-checkbox {
+    opacity: 0.5;
 }
 
 #pageHeader {
@@ -815,11 +959,33 @@ button:hover {
 </style>
 </head>
 <body>
+<div id="transitionOverlay" aria-hidden="true"></div>
 <header id="pageHeader">
     <img id="headerImage" src="websitelogo3.png" alt="Little Ollie">
     <img id="headerLOImage" src="LO.png" alt="LO">
-    <p class="tagline">Character Creator</p>
+    <p class="tagline">
+      Character Creator <span style="font-size:0.8em;opacity:0.75;">(v2)</span>
+      <button type="button" id="toggleGenderBtn" onclick="toggleGender()" style="margin-left:10px;padding:6px 12px;font-size:12px;font-weight:800;border-radius:14px;border:none;cursor:pointer;background:#2c3e50;color:#fff;font-family:'Fredoka One', cursive;text-transform:uppercase;">
+        SWITCH TO FEMALE
+      </button>
+    </p>
 </header>
+
+<div id="genderGate" class="gender-gate" aria-hidden="false">
+  <div class="panel">
+    <div class="gate-brand" aria-hidden="true">
+      <img src="websitelogo3.png" alt="" onerror="this.style.display='none'">
+      <img src="LO.png" class="logo-lo" alt="" onerror="this.style.display='none'">
+    </div>
+    <img src="header.png" alt="Little Ollie" class="gate-logo" onerror="this.style.display='none'">
+    <h2>CHOOSE A CHARACTER</h2>
+    <p class="hint">SELECT A MODE TO START CREATING.</p>
+    <div class="buttons">
+      <button type="button" class="male" id="chooseMaleBtn" onclick="setGender('male')">CREATE MALE</button>
+      <button type="button" class="female" id="chooseFemaleBtn" onclick="setGender('female')">CREATE FEMALE</button>
+    </div>
+  </div>
+</div>
 
 <div id="mainContent">
     <div id="topRow">
@@ -1221,6 +1387,17 @@ button:hover {
                 <img src="MOUTH/87.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/87.PNG')">
                 <img src="MOUTH/88.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/88.PNG')">
                 <img src="MOUTH/108.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/108.PNG')">
+                <img src="MOUTH/109.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/109.PNG')">
+                <img src="MOUTH/110.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/110.PNG')">
+                <img src="MOUTH/111.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/111.PNG')">
+                <img src="MOUTH/112.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/112.PNG')">
+                <img src="MOUTH/113.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/113.PNG')">
+                <img src="MOUTH/114.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/114.PNG')">
+                <img src="MOUTH/115.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/115.PNG')">
+                <img src="MOUTH/116.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/116.PNG')">
+                <img src="MOUTH/117.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/117.PNG')">
+                <img src="MOUTH/118.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/118.PNG')">
+                <img src="MOUTH/119.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/119.PNG')">
                 <img src="MOUTH/89.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/89.PNG')">
                 <img src="MOUTH/90.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/90.PNG')">
                 <img src="MOUTH/91.PNG" alt="Happy 1" onclick="selectTrait('mouth', 'MOUTH/91.PNG')">
@@ -1470,6 +1647,10 @@ button:hover {
 <img src="CLOTHING/139.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/139.PNG')">
 <img src="CLOTHING/140.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/140.PNG')">
 <img src="CLOTHING/141.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/141.PNG')">
+<img src="CLOTHING/143.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/143.PNG')">
+<img src="CLOTHING/144.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/144.PNG')">
+<img src="CLOTHING/145.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/145.PNG')">
+<img src="CLOTHING/146.PNG" alt="CLOTHING" onclick="selectTrait('clothing', 'CLOTHING/146.PNG')">
 
 
 
@@ -1919,6 +2100,397 @@ button:hover {
 /* =========================
    TRAIT SELECTOR + RANDOMIZER
    ========================= */
+// Safari inline onclick handlers resolve globals via window.*,
+// so expose gender state + setter explicitly on window.
+window.selectedGender = null; // "male" | "female"
+var __creatorInitialized = false;
+// Do not persist/convert traits between genders. Switching must be a clean rebuild.
+window.__loGenderCharacterState = { male: {}, female: {} };
+window.__loSuppressGenderState = false;
+window.__loGenderSwitchInProgress = false;
+
+function __loGetDisplaySlots() {
+  if (typeof displaySlotOrder !== 'undefined' && Array.isArray(displaySlotOrder) && displaySlotOrder.length) {
+    return displaySlotOrder.slice();
+  }
+  return ['background','backgroundblur','behindback','skin','eyes','clothing','mouth','hair','accessories','hat','hoodies','goo','ball','hand','ball2','hand2'];
+}
+
+function __loCaptureGenderStateFromDOM(g) {
+  if (!g) return;
+  if (!window.__loGenderCharacterState) window.__loGenderCharacterState = { male: {}, female: {} };
+  if (!window.__loGenderCharacterState[g]) window.__loGenderCharacterState[g] = {};
+  var slots = __loGetDisplaySlots();
+  slots.forEach(function (slot) {
+    var el = document.getElementById(slot);
+    if (!el) return;
+    var src = el.getAttribute('src') || '';
+    if (src) window.__loGenderCharacterState[g][slot] = src;
+    else delete window.__loGenderCharacterState[g][slot];
+  });
+}
+
+function __loApplyGenderStateToDOM(g) {
+  if (!g || !window.__loGenderCharacterState || !window.__loGenderCharacterState[g]) return;
+  var slots = __loGetDisplaySlots();
+  var state = window.__loGenderCharacterState[g];
+  // Restore all slots (missing => blank)
+  slots.forEach(function (slot) {
+    selectTrait(slot, state[slot] || '');
+  });
+}
+
+function initCharacterCreator() {
+  if (__creatorInitialized) return;
+  __creatorInitialized = true;
+
+  var preloader = document.getElementById('preloader');
+  var preloaderText = document.getElementById('preloaderText');
+  var hardHideTimer = setTimeout(function () {
+    // Safety net: never stay stuck on "PREPARING TRAITS..."
+    if (preloader) preloader.classList.add('hidden');
+  }, 12000);
+
+  try {
+    initTraitCulling();
+    initCharacterCanvasClicks();
+
+    // Start preloading after traits are initialized
+    setTimeout(function () {
+      try {
+        preloadAllImages();
+      } catch (e) {
+        console.error('preloadAllImages failed:', e);
+        if (preloader) preloader.classList.add('hidden');
+      }
+    }, 100);
+
+    applyGenderRules();
+    attachGenderAwareTraitClickGuard();
+    updateGenderToggleUI();
+  } catch (e) {
+    console.error('initCharacterCreator failed:', e);
+    if (preloaderText) preloaderText.textContent = 'FAILED TO LOAD TRAITS';
+    if (preloader) preloader.classList.add('hidden');
+    if (typeof alert === 'function') alert('Something broke while loading traits. Open DevTools Console to see the error.');
+  } finally {
+    setTimeout(function () { clearTimeout(hardHideTimer); }, 15000);
+  }
+}
+
+function updateBackgroundForGender(g) {
+  // Solid color backdrop to make the switch obvious (per spec).
+  document.body.style.backgroundImage = 'none';
+  document.body.style.backgroundColor = (g === 'male') ? '#4DA6FF' : '#FF9ED6';
+}
+
+function resetCharacterState() {
+  // Clear canvas (all layers)
+  if (typeof window.__loGenCollectionOffscreen !== 'undefined') window.__loGenCollectionOffscreen = false;
+  window.__loSuppressGenderState = true;
+  (typeof displaySlotOrder !== 'undefined' && Array.isArray(displaySlotOrder) ? displaySlotOrder :
+    ['background','backgroundblur','behindback','skin','eyes','clothing','mouth','hair','accessories','hat','hoodies','goo','ball','hand','ball2','hand2']
+  ).forEach(function (slot) { selectTrait(slot, ''); });
+  window.__loSuppressGenderState = false;
+
+  // Reset trait pools (randomizer include checkboxes) to a clean baseline.
+  try {
+    Object.keys(TRAIT_DATA || {}).forEach(function (slot) {
+      (TRAIT_DATA[slot] || []).forEach(function (t) { t.selected = true; });
+    });
+    document.querySelectorAll('.trait-thumb-wrap.trait-disabled').forEach(function (w) {
+      w.classList.remove('trait-disabled');
+    });
+    document.querySelectorAll('.trait-thumb-wrap .trait-checkbox').forEach(function (cb) {
+      cb.checked = true;
+    });
+    document.querySelectorAll('.trait-options img[data-slot]').forEach(function (img) {
+      img.dataset.selected = 'true';
+    });
+  } catch (e) {}
+
+  // Kill any remembered per-gender character state (critical rule: no reuse).
+  window.__loGenderCharacterState = { male: {}, female: {} };
+  window.__loFemaleEnforceHair = null;
+}
+
+function playSwirlTransition(callback) {
+  var overlay = document.getElementById('transitionOverlay');
+  if (!overlay) { callback(); return; }
+  overlay.classList.add('active');
+  setTimeout(function () {
+    callback();
+    overlay.classList.remove('active');
+  }, 400);
+}
+
+function loadTraitsForGender(g) {
+  // Start from a full pool, then apply gender rules which cull/disable as needed.
+  Object.keys(TRAIT_DATA || {}).forEach(function (slot) {
+    (TRAIT_DATA[slot] || []).forEach(function (t) { t.selected = true; });
+  });
+  applyGenderRules();
+  refreshTraitUI();
+  updateAllCategoryCounters();
+}
+
+function switchGender(newGender, opts) {
+  opts = opts || {};
+  if (!newGender || newGender === window.selectedGender) return;
+  if (window.__loGenderSwitchInProgress) return;
+  window.__loGenderSwitchInProgress = true;
+
+  var run = function () {
+    // HARD RESET
+    resetCharacterState();
+
+    // SET NEW GENDER
+    window.selectedGender = newGender;
+    document.body.classList.toggle('gender-female', newGender === 'female');
+    updateBackgroundForGender(newGender);
+
+    // Hide the gate (if present)
+    var gate = document.getElementById('genderGate');
+    if (gate) {
+      gate.style.display = 'none';
+      gate.setAttribute('aria-hidden', 'true');
+    }
+
+    // Ensure creator is initialized and reload pools/UI for this gender
+    initCharacterCreator();
+    updateGenderToggleUI();
+    loadTraitsForGender(newGender);
+
+    // GENERATE FRESH CHARACTER
+    if (typeof randomizeCharacter === 'function') randomizeCharacter();
+
+    window.__loGenderSwitchInProgress = false;
+  };
+
+  if (opts.noTransition) run();
+  else playSwirlTransition(run);
+}
+
+window.setGender = function setGender(g) {
+  // Called by the first popup's buttons. Still must be a clean rebuild, but no swirl.
+  switchGender(g, { noTransition: true });
+};
+
+// Ensure the page always begins from a blank canvas before any gender is chosen.
+(function loEnsureCleanStartCanvas() {
+  try { resetCharacterState(); } catch (e) {}
+})();
+
+// Make toggle work even if event listener fails
+window.toggleGender = function toggleGender() {
+  if (!window.selectedGender) return;
+  switchGender(window.selectedGender === 'female' ? 'male' : 'female');
+};
+
+function updateGenderToggleUI() {
+  var btn = document.getElementById('toggleGenderBtn');
+  if (!btn) return;
+  if (!window.selectedGender) {
+    btn.style.display = 'none';
+    return;
+  }
+  btn.style.display = 'inline-block';
+  btn.textContent = (window.selectedGender === 'female') ? 'SWITCH TO MALE' : 'SWITCH TO FEMALE';
+
+  // Also tint the gender gate background if it is ever shown again
+  var gate = document.getElementById('genderGate');
+  if (gate) gate.classList.toggle('female', window.selectedGender === 'female');
+}
+
+// Header toggle: switch to opposite gender
+(function initGenderToggleButton() {
+  var btn = document.getElementById('toggleGenderBtn');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    if (!window.selectedGender) return;
+    window.setGender(window.selectedGender === 'female' ? 'male' : 'female');
+  });
+})();
+
+// If the user clicked a gender button before this script finished loading,
+// the head stub stored it in window.__pendingGender. Apply it now.
+if (window.__pendingGender) {
+  var __g = window.__pendingGender;
+  window.__pendingGender = null;
+  window.setGender(__g);
+}
+
+function loParseIdFromPath(path) {
+  if (!path) return null;
+  var m = (path + '').match(/\/(\d+)\.PNG$/i);
+  if (!m) m = (path + '').match(/(\d+)\.PNG$/i);
+  if (!m) return null;
+  return parseInt(m[1], 10);
+}
+
+function loRange(a, b) {
+  var out = [];
+  for (var i = a; i <= b; i++) out.push(i);
+  return out;
+}
+
+function loSetFromArray(arr) {
+  var s = new Set();
+  (arr || []).forEach(function (x) { s.add(x); });
+  return s;
+}
+
+function loHasHatSelected() {
+  var hat = document.getElementById(window.__loGenCollectionOffscreen ? 'off_hat' : 'hat');
+  if (!hat) return false;
+  var src = hat.getAttribute('src') || '';
+  if (!src) return false;
+  var u = src.toUpperCase();
+  // treat AA/AAA as blank if present in hats
+  if (u.endsWith('/AA.PNG') || u.endsWith('/AAA.PNG')) return false;
+  return true;
+}
+
+function setTraitTileDisabled(img, disabled) {
+  if (!img) return;
+  var wrap = img.closest('.trait-thumb-wrap');
+  if (!wrap) return;
+  wrap.classList.toggle('trait-disabled', !!disabled);
+}
+
+function applyGenderRules() {
+  if (!__creatorInitialized) return;
+  if (window.selectedGender !== 'female') {
+    // MALE MODE: keep existing behavior, but remove female-only mouths 109–119.
+    document.querySelectorAll('.trait-thumb-wrap.trait-disabled').forEach(function (w) {
+      w.classList.remove('trait-disabled');
+    });
+
+    var maleMouthBlocked = loSetFromArray(loRange(109, 119));
+
+    if (TRAIT_DATA.mouth) {
+      TRAIT_DATA.mouth.forEach(function (t) {
+        var id = loParseIdFromPath(t.image);
+        if (id != null && maleMouthBlocked.has(id)) {
+          t.selected = false;
+        }
+      });
+    }
+
+    document.querySelectorAll('.trait-options img[data-slot="mouth"]').forEach(function (img) {
+      var id = loParseIdFromPath(img.dataset.src);
+      if (id != null && maleMouthBlocked.has(id)) {
+        setTraitTileDisabled(img, true);
+      }
+    });
+
+    updateAllCategoryCounters();
+    return;
+  }
+
+  // FEMALE RULES
+  var mouthAllowed = loSetFromArray(loRange(109, 119));
+  var hairAllowed = loSetFromArray([].concat(loRange(46, 65), loRange(76, 80)));
+  var neckHair = loSetFromArray([46, 47, 51, 52, 56, 57, 61, 62, 76, 77]);
+
+  // Mouth: only 109–119 (both randomizer + manual)
+  if (TRAIT_DATA.mouth) {
+    TRAIT_DATA.mouth.forEach(function (t) {
+      var id = loParseIdFromPath(t.image);
+      var ok = id != null && mouthAllowed.has(id);
+      t.selected = !!ok; // randomizer pool
+    });
+  }
+
+  // Clothing: keep existing, but (if those files exist in HTML) include 143–146 by default.
+  // No restriction needed here besides default selection; the extra images will be included by initTraitCulling.
+  if (TRAIT_DATA.clothing) {
+    TRAIT_DATA.clothing.forEach(function (t) { t.selected = true; });
+  }
+
+  // Hair: allow only [46–65] + [76–80], with neck hair dependency on hat.
+  function enforceHairByHat() {
+    var hasHat = loHasHatSelected();
+    var hairList = TRAIT_DATA.hair || [];
+
+    hairList.forEach(function (t) {
+      var id = loParseIdFromPath(t.image);
+      var inFemaleSet = id != null && hairAllowed.has(id);
+      var ok;
+      if (!inFemaleSet) ok = false;
+      else if (hasHat) ok = neckHair.has(id);
+      else ok = !neckHair.has(id);
+      t.selected = !!ok; // randomizer pool
+    });
+
+    // Disable/enable thumbnails accordingly (manual selection)
+    document.querySelectorAll('.trait-options img[data-slot="hair"]').forEach(function (img) {
+      var id = loParseIdFromPath(img.dataset.src);
+      var inFemaleSet = id != null && hairAllowed.has(id);
+      var ok;
+      if (!inFemaleSet) ok = false;
+      else if (hasHat) ok = neckHair.has(id);
+      else ok = !neckHair.has(id);
+      setTraitTileDisabled(img, !ok);
+    });
+
+    // If current hair on canvas is invalid, reroll hair (and keep hat state).
+    var hairEl = document.getElementById(window.__loGenCollectionOffscreen ? 'off_hair' : 'hair');
+    var currentHair = hairEl ? (hairEl.getAttribute('src') || '') : '';
+    var currentId = loParseIdFromPath(currentHair);
+    var currentOk = currentId != null && hairAllowed.has(currentId) && (hasHat ? neckHair.has(currentId) : !neckHair.has(currentId));
+    if (!currentOk) {
+      var pool = hairList.filter(function (t) { return t && t.selected && t.image; });
+      var pick = pickRandomFrom(pool);
+      selectTrait('hair', pick && pick.image ? pick.image : '');
+    }
+  }
+
+  enforceHairByHat();
+
+  // Also disable mouth thumbs outside allowed range.
+  document.querySelectorAll('.trait-options img[data-slot="mouth"]').forEach(function (img) {
+    var id = loParseIdFromPath(img.dataset.src);
+    setTraitTileDisabled(img, !(id != null && mouthAllowed.has(id)));
+  });
+
+  updateAllCategoryCounters();
+
+  // Re-run hair enforcement whenever hat changes (randomize or manual).
+  window.__loFemaleEnforceHair = enforceHairByHat;
+}
+
+function attachGenderAwareTraitClickGuard() {
+  // idempotent
+  if (window.__loGenderGuardAttached) return;
+  window.__loGenderGuardAttached = true;
+
+  var container = document.getElementById('traitPictures');
+  if (!container) return;
+
+  container.addEventListener('click', function (e) {
+    if (window.selectedGender !== 'female') return;
+    var img = e.target.closest('.trait-options img');
+    if (!img || !img.dataset.slot) return;
+
+    // If disabled by female rules, block.
+    var wrap = img.closest('.trait-thumb-wrap');
+    if (wrap && wrap.classList.contains('trait-disabled')) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    // After manual hat changes, enforce hair/hat rule.
+    if (img.dataset.slot === 'hat') {
+      // Let the normal handler run, then enforce.
+      setTimeout(function () {
+        if (typeof window.__loFemaleEnforceHair === 'function') window.__loFemaleEnforceHair();
+      }, 0);
+    }
+  }, true);
+}
+
 function selectTrait(category, filename) {
   var id = category;
   if (window.__loGenCollectionOffscreen) {
@@ -2175,7 +2747,11 @@ function initTraitCulling() {
     }
     if (e.target.closest('.trait-checkbox')) return;
     var img = e.target.closest('.trait-options img');
-    if (img && img.dataset.slot) selectTrait(img.dataset.slot, img.dataset.src);
+    if (img && img.dataset.slot) {
+      var wrap = img.closest('.trait-thumb-wrap');
+      if (wrap && wrap.classList.contains('trait-disabled')) return;
+      selectTrait(img.dataset.slot, img.dataset.src);
+    }
   });
 }
 
@@ -2290,7 +2866,7 @@ function getRandomIndex(max) {
   return Math.floor(Math.random() * max) + 1;
 }
 function getImagePath(folder, index) {
-  return `${folder}/${index}.PNG`;
+  return String(folder) + '/' + String(index) + '.PNG';
 }
 
 function randomizeCharacter() {
@@ -2324,18 +2900,34 @@ function randomizeCharacter() {
   // ---- HAIR / HAT (mutual exclusion) ---- //
   var hairList = getSelectedTraits('hair');
   var hatList = getSelectedTraits('hat');
-  if (pickRandomIndex(2) === 0 && hairList.length > 0) {
-    selectTrait('hair', pickRandomFrom(hairList).image);
-    selectTrait('hat', '');
-  } else if (hatList.length > 0) {
-    selectTrait('hat', pickRandomFrom(hatList).image);
-    selectTrait('hair', '');
-  } else if (hairList.length > 0) {
-    selectTrait('hair', pickRandomFrom(hairList).image);
-    selectTrait('hat', '');
+  if (window.selectedGender !== 'female') {
+    if (pickRandomIndex(2) === 0 && hairList.length > 0) {
+      selectTrait('hair', pickRandomFrom(hairList).image);
+      selectTrait('hat', '');
+    } else if (hatList.length > 0) {
+      selectTrait('hat', pickRandomFrom(hatList).image);
+      selectTrait('hair', '');
+    } else if (hairList.length > 0) {
+      selectTrait('hair', pickRandomFrom(hairList).image);
+      selectTrait('hat', '');
+    } else {
+      selectTrait('hair', '');
+      selectTrait('hat', '');
+    }
   } else {
-    selectTrait('hair', '');
-    selectTrait('hat', '');
+    // FEMALE: if hat is chosen, hair MUST be neck-hair subset; if no hat, neck hair must be excluded.
+    var chooseHat = (hatList.length > 0) && (pickRandomIndex(2) === 0);
+    if (chooseHat) {
+      selectTrait('hat', pickRandomFrom(hatList).image);
+      // after setting hat, hairList already reflects selected pool (enforced), so pick from it
+      if (hairList.length > 0) selectTrait('hair', pickRandomFrom(hairList).image);
+      else selectTrait('hair', '');
+    } else {
+      selectTrait('hat', '');
+      if (hairList.length > 0) selectTrait('hair', pickRandomFrom(hairList).image);
+      else selectTrait('hair', '');
+    }
+    if (typeof window.__loFemaleEnforceHair === 'function') window.__loFemaleEnforceHair();
   }
 
   // ---- OPTIONAL TRAITS ---- //
@@ -2929,16 +3521,16 @@ function preloadAllImages() {
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function () {
-    initTraitCulling();
-    initCharacterCanvasClicks();
-    // Start preloading after traits are initialized
-    setTimeout(preloadAllImages, 100);
+    var maleBtn = document.getElementById('chooseMaleBtn');
+    var femaleBtn = document.getElementById('chooseFemaleBtn');
+    if (maleBtn) maleBtn.addEventListener('click', function () { setGender('male'); });
+    if (femaleBtn) femaleBtn.addEventListener('click', function () { setGender('female'); });
   });
 } else {
-  initTraitCulling();
-  initCharacterCanvasClicks();
-  // Start preloading after traits are initialized
-  setTimeout(preloadAllImages, 100);
+  var maleBtn = document.getElementById('chooseMaleBtn');
+  var femaleBtn = document.getElementById('chooseFemaleBtn');
+  if (maleBtn) maleBtn.addEventListener('click', function () { setGender('male'); });
+  if (femaleBtn) femaleBtn.addEventListener('click', function () { setGender('female'); });
 }
 
 /* Canvas export (collage, export image) fails on file:// — browsers throw SecurityError ("operation is insecure"). */
@@ -2961,53 +3553,56 @@ function loLocalServerHelpMessage() {
    DOWNLOAD (COLOR + B&W LINE ART)
    ========================= */
 (function initDownloads(){
-  const stage = document.getElementById('characterDisplay');
-  const btnColor = document.getElementById('downloadColor');
-  const btnBW    = document.getElementById('downloadBW');
-  const btnExportImage = document.getElementById('exportImageBtn');
+  var stage = document.getElementById('characterDisplay');
+  var btnColor = document.getElementById('downloadColor');
+  var btnBW    = document.getElementById('downloadBW');
+  var btnExportImage = document.getElementById('exportImageBtn');
 
   if (!stage) return; // in case HTML not present yet
 
   function getLayers() {
     // Use DOM order = stacking order
-    return Array.from(stage.querySelectorAll('img')).filter(img => img.src && img.complete);
+    return Array.prototype.slice.call(stage.querySelectorAll('img')).filter(function (img) {
+      return img && img.src && img.complete;
+    });
   }
 
-  function renderComposite(toBW = false) {
-    const OUTPUT_SIZE = 2048; // 3072/4096 for print quality
-    const canvas = document.createElement('canvas');
+  function renderComposite(toBW) {
+    if (typeof toBW === 'undefined') toBW = false;
+    var OUTPUT_SIZE = 2048; // 3072/4096 for print quality
+    var canvas = document.createElement('canvas');
     canvas.width = OUTPUT_SIZE;
     canvas.height = OUTPUT_SIZE;
-    const ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
 
     // Always start with white page for print
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // In B&W we skip heavy backgrounds so page stays white
-    const skipInBW = new Set(['background', 'backgroundblur']);
+    var skipInBW = { background: true, backgroundblur: true };
 
     // Draw visible layers
-    getLayers().forEach(img => {
-      if (toBW && skipInBW.has(img.id)) return;
+    getLayers().forEach(function (img) {
+      if (toBW && skipInBW[img.id]) return;
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     });
 
     if (!toBW) return canvas;
 
 // ==== Preserve original black pixels; make everything else white ====
-const src = ctx.getImageData(0, 0, canvas.width, canvas.height);
-const d = src.data;
-const w = src.width, h = src.height;
+var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+var d = src.data;
+var w = src.width, h = src.height;
 
 // Tweakable knobs:
 // - BLACK_MAX: how dark a pixel must be to be considered black (higher catches dark greys)
 // - CHROMA_MAX: how “neutral” (low chroma) it must be (prevents dark colored fills becoming black)
-const BLACK_MAX  = 70;  // try 60–100 depending on how dark your ink is
-const CHROMA_MAX = 18;  // lower = stricter; try 10–25
+var BLACK_MAX  = 70;  // try 60–100 depending on how dark your ink is
+var CHROMA_MAX = 18;  // lower = stricter; try 10–25
 
-for (let i = 0; i < d.length; i += 4) {
-  const r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
+for (var i = 0; i < d.length; i += 4) {
+  var r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
 
   // Transparent -> white paper
   if (a < 10) {
@@ -3016,10 +3611,10 @@ for (let i = 0; i < d.length; i += 4) {
   }
 
   // “Near-black & neutral” test
-  const maxRGB = Math.max(r,g,b);
-  const minRGB = Math.min(r,g,b);
-  const chroma = maxRGB - minRGB;   // how colored it is
-  const isNearBlack = (maxRGB <= BLACK_MAX) && (chroma <= CHROMA_MAX);
+  var maxRGB = Math.max(r,g,b);
+  var minRGB = Math.min(r,g,b);
+  var chroma = maxRGB - minRGB;   // how colored it is
+  var isNearBlack = (maxRGB <= BLACK_MAX) && (chroma <= CHROMA_MAX);
 
   if (isNearBlack) {
     // keep outlines as solid black
@@ -3031,13 +3626,13 @@ for (let i = 0; i < d.length; i += 4) {
 }
 
 // Optional: thicken lines slightly (cheap dilation)
-const thicken = true;
+var thicken = true;
 if (thicken) {
-  const copy = new Uint8ClampedArray(d);
-  const idx = (x,y) => (y*w + x)*4;
-  for (let y = 1; y < h - 1; y++) {
-    for (let x = 1; x < w - 1; x++) {
-      const p = idx(x,y);
+  var copy = new Uint8ClampedArray(d);
+  function idx(x, y) { return (y*w + x)*4; }
+  for (var y = 1; y < h - 1; y++) {
+    for (var x = 1; x < w - 1; x++) {
+      var p = idx(x,y);
       if (copy[p] === 255) { // white
         if (
           copy[idx(x-1,y)]===0 || copy[idx(x+1,y)]===0 ||
@@ -3057,7 +3652,7 @@ return canvas;
 
   function downloadCanvas(canvas, filename, mimeType, quality) {
     try {
-      const a = document.createElement('a');
+      var a = document.createElement('a');
       a.download = filename;
       if (mimeType === 'image/jpeg' && quality != null) {
         a.href = canvas.toDataURL('image/jpeg', quality);
@@ -3077,20 +3672,20 @@ return canvas;
   }
 
   if (btnColor) {
-    btnColor.addEventListener('click', () => {
-      const c = renderComposite(false);
+    btnColor.addEventListener('click', function () {
+      var c = renderComposite(false);
       downloadCanvas(c, 'LittleOllie_Colour.png');
     });
   }
   if (btnBW) {
-    btnBW.addEventListener('click', () => {
-      const c = renderComposite(true);
+    btnBW.addEventListener('click', function () {
+      var c = renderComposite(true);
       downloadCanvas(c, 'LittleOllie_ColouringPage.png');
     });
   }
   if (btnExportImage) {
-    btnExportImage.addEventListener('click', () => {
-      const c = renderComposite(false);
+    btnExportImage.addEventListener('click', function () {
+      var c = renderComposite(false);
       downloadCanvas(c, 'LittleOllie_Export.jpg', 'image/jpeg', 0.92);
     });
   }
