@@ -257,6 +257,9 @@ body.gender-female {
     white-space: nowrap;
     min-height: 42px;
     line-height: 1.1;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 .category-button:hover {
     opacity: 0.9;
@@ -1187,6 +1190,7 @@ button:hover {
                 <img src="BACKGROUNDS/100.PNG" alt="Grey" onclick="selectTrait('background', 'BACKGROUNDS/100.PNG')">
                 <img src="BACKGROUNDS/101.PNG" alt="Grey" onclick="selectTrait('background', 'BACKGROUNDS/101.PNG')">
                 <img src="BACKGROUNDS/102.PNG" alt="Grey" onclick="selectTrait('background', 'BACKGROUNDS/102.PNG')">
+                <img src="BACKGROUNDS/103.PNG" alt="Grey" onclick="selectTrait('background', 'BACKGROUNDS/103.PNG')">
 
 
 
@@ -1707,6 +1711,7 @@ button:hover {
 <img src="GLASSES/26.PNG" alt="GLASSES" onclick="selectTrait('accessories', 'GLASSES/26.PNG')">
 <img src="GLASSES/27.PNG" alt="GLASSES" onclick="selectTrait('accessories', 'GLASSES/27.PNG')">
 <img src="GLASSES/28.PNG" alt="GLASSES" onclick="selectTrait('accessories', 'GLASSES/28.PNG')">
+<img src="GLASSES/29.PNG" alt="GLASSES" onclick="selectTrait('accessories', 'GLASSES/29.PNG')">
 
 
 
@@ -2519,7 +2524,16 @@ function selectTrait(category, filename) {
   }
   var el = document.getElementById(id);
   if (!el) return;
-  el.src = filename || '';
+  if (filename) {
+    el.style.visibility = 'visible';
+    el.src = filename;
+  } else {
+    // Setting src to "" can leave the previous bitmap visible briefly in some browsers.
+    // Hide immediately, then remove src.
+    el.style.visibility = 'hidden';
+    el.removeAttribute('src');
+    el.src = '';
+  }
   if (!window.__loGenCollectionOffscreen && typeof updateOnCharacterList === 'function') {
     updateOnCharacterList();
   }
