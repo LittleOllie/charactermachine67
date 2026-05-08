@@ -247,7 +247,7 @@ body.gender-female {
 }
 .category-button {
     margin: 0;
-    padding: 5px 8px;
+    padding: 10px 10px;
     font-size: 11px;
     border-radius: 10px;
     color: white;
@@ -255,6 +255,8 @@ body.gender-female {
     cursor: pointer;
     background-color: #3498db;
     white-space: nowrap;
+    min-height: 42px;
+    line-height: 1.1;
 }
 .category-button:hover {
     opacity: 0.9;
@@ -342,35 +344,47 @@ body.gender-female {
     opacity: 1;
 }
 #exportSelectionBtn {
-    grid-row: 6;
-    grid-column: 1 / 3;
     background-color: #16a085;
     color: #fff;
-    padding: 6px 12px;
+    padding: 10px 14px;
     font-size: 12px;
     font-weight: 700;
     margin: 0;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    min-height: 42px;
 }
 #exportSelectionBtn:hover {
     background-color: #138d75;
     opacity: 1;
 }
 #importSelectionBtn {
-    grid-row: 6;
-    grid-column: 3 / -1;
     background-color: #16a085;
     color: #fff;
-    padding: 6px 12px;
+    padding: 10px 14px;
     font-size: 12px;
     font-weight: 700;
     margin: 0;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+}
+
+#jsonSelectionBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1120px;
+    margin: 10px auto 0;
+    padding: 8px 10px;
+    box-sizing: border-box;
 }
 #importSelectionBtn:hover {
     background-color: #138d75;
@@ -916,7 +930,8 @@ button:hover {
 @media (max-width: 480px) {
     .category-button {
         font-size: 11px;
-        padding: 4px 8px;
+        padding: 10px 10px;
+        min-height: 42px;
     }
     #characterDisplay {
         width: 300px;
@@ -1001,17 +1016,12 @@ button:hover {
             <button class="category-button pair-hair" data-category-id="hairCategory" data-label="HAIR" onclick="showCategory('hairCategory')">HAIR (0)</button>
             <button class="category-button pair-hair" data-category-id="hatCategory" data-label="HEADWEAR" onclick="showCategory('hatCategory')">HEADWEAR (0)</button>
             <button class="category-button pair-behind" data-category-id="behindbackCategory" data-label="BEHIND BACK" onclick="showCategory('behindbackCategory')">BEHIND BACK (0)</button>
-            <button class="category-button pair-behind" data-category-id="gooCategory" data-label="ABOVE HEAD" onclick="showCategory('gooCategory')">ABOVE HEAD (0)</button>
+            <button class="category-button pair-behind" data-category-id="gooCategory" data-label="ACCESSORIES" onclick="showCategory('gooCategory')">ACCESSORIES (0)</button>
             <button class="category-button pair-hand1" data-category-id="handCategory" data-label="HAND 1" onclick="showCategory('handCategory')">HAND 1 (0)</button>
             <button class="category-button pair-hand1" data-category-id="ballCategory" data-label="BALLS 1" onclick="showCategory('ballCategory')">BALLS 1 (0)</button>
             <button class="category-button pair-hand2" data-category-id="hand2Category" data-label="HAND 2" onclick="showCategory('hand2Category')">HAND 2 (0)</button>
             <button class="category-button pair-hand2" data-category-id="ball2Category" data-label="BALLS 2" onclick="showCategory('ball2Category')">BALLS 2 (0)</button>
             <button id="randomButton" class="category-button randomize-button" onclick="randomizeCharacter()">RANDOMIZE</button>
-            <button id="exportSelectionBtn" onclick="exportSelectionState()">EXPORT SELECTION .JSON</button>
-            <label id="importSelectionBtn">
-                IMPORT SELECTION .JSON
-                <input type="file" accept=".json" onchange="if(this.files.length) importSelectionState(this.files[0]); this.value='';">
-            </label>
         </div>
         <div id="onCharacterList">
             <h4>WHAT&rsquo;S ON THIS CHARACTER</h4>
@@ -1890,6 +1900,7 @@ button:hover {
 <img src="GOO/6.PNG" alt="GOO" onclick="selectTrait('goo', 'GOO/6.PNG')">
 <img src="GOO/7.PNG" alt="GOO" onclick="selectTrait('goo', 'GOO/7.PNG')">
 <img src="GOO/8.PNG" alt="GOO" onclick="selectTrait('goo', 'GOO/8.PNG')">
+<img src="GOO/HEADPHONES.PNG" alt="GOO" onclick="selectTrait('goo', 'GOO/HEADPHONES.PNG')">
 
 
 
@@ -2053,6 +2064,14 @@ button:hover {
         </div>
     </div>
     </div>
+</div>
+
+<div id="jsonSelectionBar" aria-label="Selection JSON controls">
+  <button id="exportSelectionBtn" onclick="exportSelectionState()">EXPORT SELECTION .JSON</button>
+  <label id="importSelectionBtn">
+      IMPORT SELECTION .JSON
+      <input type="file" accept=".json" onchange="if(this.files.length) importSelectionState(this.files[0]); this.value='';">
+  </label>
 </div>
 
 <div id="collectionModal" class="load-modal" aria-hidden="true">
