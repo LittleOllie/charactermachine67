@@ -1074,6 +1074,7 @@ button:hover {
                 <button id="saveCharacterBtn">SAVE</button>
                 <button id="loadCharacterBtn">LOAD</button>
                 <button id="newCharacterBtn">NEW</button>
+                <button type="button" id="startNewBlankBtn" onclick="startNewBlankCharacter()">START NEW</button>
                 <button id="exportImageBtn">EXPORT IMAGE</button>
                 <button id="exportTraitListBtn" class="export-trait-button">EXPORT TRAIT LIST</button>
                 <button type="button" id="generateCollectionBtn">GENERATE COLLECTION!</button>
@@ -3457,6 +3458,13 @@ function newCharacter() {
   updateTabCounts();
   if (typeof updateOnCharacterList === 'function') updateOnCharacterList();
   if (typeof alert === 'function') alert('New character started. All traits are selected for randomizer.');
+}
+
+function startNewBlankCharacter() {
+  displaySlotOrder.forEach(function (slot) {
+    selectTrait(slot, '');
+  });
+  if (typeof updateOnCharacterList === 'function') updateOnCharacterList();
 }
 
 document.getElementById('saveCharacterBtn').addEventListener('click', saveCharacterToStorage);
