@@ -1,0 +1,4159 @@
+{
+  "goo": [
+    {
+      "image": "assets/traits/ABOVE HEAD/Headphones.PNG",
+      "traitName": "Headphones",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Face Mask.PNG",
+      "traitName": "Face Mask",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Kitsune Mask.PNG",
+      "traitName": "Kitsune Mask",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Skull Mask.PNG",
+      "traitName": "Skull Mask",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Black Crown.PNG",
+      "traitName": "Black Crown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Purple Goo.PNG",
+      "traitName": "Purple Goo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Green Goo.PNG",
+      "traitName": "Green Goo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/ABOVE HEAD/Lightbulb.PNG",
+      "traitName": "Lightbulb",
+      "selected": true
+    }
+  ],
+  "background": [
+    {
+      "image": "assets/traits/BACKGROUNDS/Royal Grape.PNG",
+      "traitName": "Royal Grape",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Rust Red.PNG",
+      "traitName": "Rust Red",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Neon Alley.PNG",
+      "traitName": "Neon Alley",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Alley Light.PNG",
+      "traitName": "Alley Light",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Lime Pop.PNG",
+      "traitName": "Lime Pop",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Sandstone.PNG",
+      "traitName": "Sandstone",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Raspberry.png",
+      "traitName": "Raspberry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cracked Neon.PNG",
+      "traitName": "Cracked Neon",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Toxic Lime.PNG",
+      "traitName": "Toxic Lime",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Pastel Arcs.PNG",
+      "traitName": "Pastel Arcs",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Rainbow Smoke.PNG",
+      "traitName": "Rainbow Smoke",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Frost Fade.PNG",
+      "traitName": "Frost Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Smoky Mauve.PNG",
+      "traitName": "Smoky Mauve",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Starry Hills.PNG",
+      "traitName": "Starry Hills",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Candy Leopard.PNG",
+      "traitName": "Candy Leopard",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Ocean Lights.PNG",
+      "traitName": "Ocean Lights",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Ghost Alley.PNG",
+      "traitName": "Ghost Alley",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Frost White.PNG",
+      "traitName": "Frost White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Buttercream.PNG",
+      "traitName": "Buttercream",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cloud Grey.PNG",
+      "traitName": "Cloud Grey",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Circuit Board.PNG",
+      "traitName": "Circuit Board",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cocoa.PNG",
+      "traitName": "Cocoa",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Starfield.PNG",
+      "traitName": "Starfield",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Solar Glow.PNG",
+      "traitName": "Solar Glow",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Golden Glow.PNG",
+      "traitName": "Golden Glow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Pale Sage.PNG",
+      "traitName": "Pale Sage",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Poolside.PNG",
+      "traitName": "Poolside",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Dark City.PNG",
+      "traitName": "Dark City",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cosmic Burst.PNG",
+      "traitName": "Cosmic Burst",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Pop Dots.PNG",
+      "traitName": "Pop Dots",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Tangerine Pop.PNG",
+      "traitName": "Tangerine Pop",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Froggo Green.PNG",
+      "traitName": "Froggo Green",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Golden Stage.PNG",
+      "traitName": "Golden Stage",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Toxic Glow.PNG",
+      "traitName": "Toxic Glow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Lavender Pop.PNG",
+      "traitName": "Lavender Pop",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Slime Camo.PNG",
+      "traitName": "Slime Camo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Heatwave.PNG",
+      "traitName": "Heatwave",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Silver Mist.PNG",
+      "traitName": "Silver Mist",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Lime Blast.png",
+      "traitName": "Lime Blast",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Peach Stone.PNG",
+      "traitName": "Peach Stone",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Toxic Dots.PNG",
+      "traitName": "Toxic Dots",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Orange Crush.PNG",
+      "traitName": "Orange Crush",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Desert Dunes.PNG",
+      "traitName": "Desert Dunes",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Evening Sky.PNG",
+      "traitName": "Evening Sky",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Candy Sky.PNG",
+      "traitName": "Candy Sky",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Ghost Light.PNG",
+      "traitName": "Ghost Light",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Turbo Stripes.PNG",
+      "traitName": "Turbo Stripes",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Golden.PNG",
+      "traitName": "Golden",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Neon Dreams.PNG",
+      "traitName": "Neon Dreams",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Disco Pop.PNG",
+      "traitName": "Disco Pop",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cartoon Clouds.PNG",
+      "traitName": "Cartoon Clouds",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Pink Lemonade.PNG",
+      "traitName": "Pink Lemonade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Aqua Wave.PNG",
+      "traitName": "Aqua Wave",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cyan Burst.png",
+      "traitName": "Cyan Burst",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Sunbeam.PNG",
+      "traitName": "Sunbeam",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Tangerine.png",
+      "traitName": "Tangerine",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Raspberry Haze.png",
+      "traitName": "Raspberry Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Emerald Green.png",
+      "traitName": "Emerald Green",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Turquoise Haze.png",
+      "traitName": "Turquoise Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Morning Sky.PNG",
+      "traitName": "Morning Sky",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/White Void.PNG",
+      "traitName": "White Void",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Tangerine Haze.png",
+      "traitName": "Tangerine Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Squiggle Pop.PNG",
+      "traitName": "Squiggle Pop",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cherry Red.png",
+      "traitName": "Cherry Red",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Coin Shower.PNG",
+      "traitName": "Coin Shower",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Frost Portal.PNG",
+      "traitName": "Frost Portal",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Moss Green.PNG",
+      "traitName": "Moss Green",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Electric Purple Haze.png",
+      "traitName": "Electric Purple Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Neon Pulse.PNG",
+      "traitName": "Neon Pulse",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Retro Sunset.PNG",
+      "traitName": "Retro Sunset",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Retro Kingdom.PNG",
+      "traitName": "Retro Kingdom",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Candy Fade.PNG",
+      "traitName": "Candy Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Mint Breeze.PNG",
+      "traitName": "Mint Breeze",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Emerald Green Haze.png",
+      "traitName": "Emerald Green Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Asphalt.PNG",
+      "traitName": "Asphalt",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Dark Matter.PNG",
+      "traitName": "Dark Matter",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Retro Flow.PNG",
+      "traitName": "Retro Flow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Ember Sky.PNG",
+      "traitName": "Ember Sky",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Night Skyline.PNG",
+      "traitName": "Night Skyline",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Golden Yellow.png",
+      "traitName": "Golden Yellow",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Royal Blue Haze.png",
+      "traitName": "Royal Blue Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Peach Burst.PNG",
+      "traitName": "Peach Burst",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Dusty Plum.PNG",
+      "traitName": "Dusty Plum",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Toxic X.PNG",
+      "traitName": "Toxic X",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Bubblegum Pink.PNG",
+      "traitName": "Bubblegum Pink",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Soft Cream.PNG",
+      "traitName": "Soft Cream",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Turquoise.png",
+      "traitName": "Turquoise",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Ufo Invasion.PNG",
+      "traitName": "Ufo Invasion",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Inferno Glow.PNG",
+      "traitName": "Inferno Glow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Blood Moon.PNG",
+      "traitName": "Blood Moon",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Dream Fade.PNG",
+      "traitName": "Dream Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Neon Fade.PNG",
+      "traitName": "Neon Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Midnight Fade.PNG",
+      "traitName": "Midnight Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Seafoam.PNG",
+      "traitName": "Seafoam",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cool Breeze.PNG",
+      "traitName": "Cool Breeze",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Electric Purple.png",
+      "traitName": "Electric Purple",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Bone White.PNG",
+      "traitName": "Bone White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Scribble Jam.PNG",
+      "traitName": "Scribble Jam",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cyan Burst Haze.png",
+      "traitName": "Cyan Burst Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Cherry Red Haze.png",
+      "traitName": "Cherry Red Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Midnight Charcoal.PNG",
+      "traitName": "Midnight Charcoal",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Lime Blast Haze.png",
+      "traitName": "Lime Blast Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Royal Blue.png",
+      "traitName": "Royal Blue",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Irish Fade.PNG",
+      "traitName": "Irish Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Calm Seas.PNG",
+      "traitName": "Calm Seas",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Rebel Camo.PNG",
+      "traitName": "Rebel Camo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Pink Zebra.PNG",
+      "traitName": "Pink Zebra",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Jungle Camo.PNG",
+      "traitName": "Jungle Camo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Rainbow Spiral.PNG",
+      "traitName": "Rainbow Spiral",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Snow Peaks.PNG",
+      "traitName": "Snow Peaks",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Animal Party.PNG",
+      "traitName": "Animal Party",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Golden Yellow Haze.png",
+      "traitName": "Golden Yellow Haze",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Sunset Clouds.PNG",
+      "traitName": "Sunset Clouds",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Pastel Bars.PNG",
+      "traitName": "Pastel Bars",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Sunset Fade.PNG",
+      "traitName": "Sunset Fade",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Ocean Slate.PNG",
+      "traitName": "Ocean Slate",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Jungle Rush.PNG",
+      "traitName": "Jungle Rush",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Sky Blue.PNG",
+      "traitName": "Sky Blue",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Caramel Clay.PNG",
+      "traitName": "Caramel Clay",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Deep Current.PNG",
+      "traitName": "Deep Current",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BACKGROUNDS/Lava Pulse.PNG",
+      "traitName": "Lava Pulse",
+      "selected": false
+    }
+  ],
+  "behindback": [
+    {
+      "image": "assets/traits/BEHINDBACK/Surfboard.PNG",
+      "traitName": "Surfboard",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BEHINDBACK/Snowbaord.PNG",
+      "traitName": "Snowbaord",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BEHINDBACK/Skateboard.PNG",
+      "traitName": "Skateboard",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/BEHINDBACK/Guitar.PNG",
+      "traitName": "Guitar",
+      "selected": true
+    }
+  ],
+  "backgroundblur": [
+    {
+      "image": "assets/traits/BG BLUR/AA.PNG",
+      "traitName": "AA",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BG BLUR/AAA.PNG",
+      "traitName": "AAA",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BG BLUR/4.PNG",
+      "traitName": "4",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BG BLUR/2.PNG",
+      "traitName": "2",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BG BLUR/3.PNG",
+      "traitName": "3",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/BG BLUR/1.PNG",
+      "traitName": "1",
+      "selected": false
+    }
+  ],
+  "ball2": [
+    {
+      "image": "assets/traits/CLOSED H ITEM/Ging.PNG",
+      "traitName": "Ging",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Plunger.PNG",
+      "traitName": "Plunger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Balloon Dog.PNG",
+      "traitName": "Balloon Dog",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Toothbrush.PNG",
+      "traitName": "Toothbrush",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Microphone.PNG",
+      "traitName": "Microphone",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Double Scooped Icecream.PNG",
+      "traitName": "Double Scooped Icecream",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Police Baton.PNG",
+      "traitName": "Police Baton",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Red Crayon.PNG",
+      "traitName": "Red Crayon",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Wooden Baseball Bat.PNG",
+      "traitName": "Wooden Baseball Bat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Sword.PNG",
+      "traitName": "Sword",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Trident.PNG",
+      "traitName": "Trident",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Paintbrush.PNG",
+      "traitName": "Paintbrush",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Green Gem Staff.PNG",
+      "traitName": "Green Gem Staff",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Ice Sword.PNG",
+      "traitName": "Ice Sword",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Drumsticks.PNG",
+      "traitName": "Drumsticks",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Hockey Stick.PNG",
+      "traitName": "Hockey Stick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Firefighters Axe.PNG",
+      "traitName": "Firefighters Axe",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Pencil.PNG",
+      "traitName": "Pencil",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Golden Firefighters Axe.PNG",
+      "traitName": "Golden Firefighters Axe",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED H ITEM/Purple Gem Staff.PNG",
+      "traitName": "Purple Gem Staff",
+      "selected": true
+    }
+  ],
+  "hand2": [
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Brown.PNG",
+      "traitName": "Closed Hand - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Amethyst Shell.PNG",
+      "traitName": "Closed Hand - Amethyst Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Corrupted Aqua.PNG",
+      "traitName": "Closed Hand - Corrupted Aqua",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Undead.PNG",
+      "traitName": "Closed Hand - Undead",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Prism.PNG",
+      "traitName": "Closed Hand - Prism",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Dark.PNG",
+      "traitName": "Closed Hand - Dark",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Wrapped.PNG",
+      "traitName": "Closed Hand - Wrapped",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Stone.PNG",
+      "traitName": "Closed Hand - Stone",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Light.PNG",
+      "traitName": "Closed Hand - Light",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Tan.PNG",
+      "traitName": "Closed Hand - Tan",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Infernal.PNG",
+      "traitName": "Closed Hand - Infernal",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Groovy.PNG",
+      "traitName": "Closed Hand - Groovy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Static.PNG",
+      "traitName": "Closed Hand - Static",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/NO HAND.PNG",
+      "traitName": "NO HAND",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Liquid.PNG",
+      "traitName": "Closed Hand - Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Blazefire.PNG",
+      "traitName": "Closed Hand - Blazefire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Frostbite.PNG",
+      "traitName": "Closed Hand - Frostbite",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Open Skull.PNG",
+      "traitName": "Closed Hand - Open Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Flesh Wounds.PNG",
+      "traitName": "Closed Hand - Flesh Wounds",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Infected.PNG",
+      "traitName": "Closed Hand - Infected",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Corrupted Toxic.PNG",
+      "traitName": "Closed Hand - Corrupted Toxic",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Voidfire.PNG",
+      "traitName": "Closed Hand - Voidfire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Harlequin.PNG",
+      "traitName": "Closed Hand - Harlequin",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Ghost.PNG",
+      "traitName": "Closed Hand - Ghost",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Raw.PNG",
+      "traitName": "Closed Hand - Raw",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Toxic Shell.PNG",
+      "traitName": "Closed Hand - Toxic Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Patchwork.PNG",
+      "traitName": "Closed Hand - Patchwork",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Brain Bloom.PNG",
+      "traitName": "Closed Hand - Brain Bloom",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Electric Liquid.PNG",
+      "traitName": "Closed Hand - Electric Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Skull.PNG",
+      "traitName": "Closed Hand - Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Cosmic Liquid.PNG",
+      "traitName": "Closed Hand - Cosmic Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Violet Shell.PNG",
+      "traitName": "Closed Hand - Violet Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Aqua Liquid.PNG",
+      "traitName": "Closed Hand - Aqua Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Icefire.PNG",
+      "traitName": "Closed Hand - Icefire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Pixel Party.PNG",
+      "traitName": "Closed Hand - Pixel Party",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Gold.PNG",
+      "traitName": "Closed Hand - Gold",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Chrome.PNG",
+      "traitName": "Closed Hand - Chrome",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Stitched.PNG",
+      "traitName": "Closed Hand - Stitched",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Corrupted Lava.PNG",
+      "traitName": "Closed Hand - Corrupted Lava",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Crimson Shell.PNG",
+      "traitName": "Closed Hand - Crimson Shell",
+      "selected": true
+    }
+  ],
+  "clothing": [
+    {
+      "image": "assets/traits/CLOTHING/Green Barcode LO Tee.PNG",
+      "traitName": "Green Barcode LO Tee",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Purple Singlet.PNG",
+      "traitName": "Purple Singlet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Giraffe.PNG",
+      "traitName": "Hoodie Down - Giraffe",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black Stripes.PNG",
+      "traitName": "Black Stripes",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/MESSI.PNG",
+      "traitName": "MESSI",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies Red.PNG",
+      "traitName": "$Lollies Red",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - White Backpack.PNG",
+      "traitName": "Hoodie Down - White Backpack",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Colored Squiggles.PNG",
+      "traitName": "Colored Squiggles",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black Suit & Bow-Tie.PNG",
+      "traitName": "Black Suit & Bow-Tie",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Z.PNG",
+      "traitName": "Red Z",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Flanno.PNG",
+      "traitName": "Red Flanno",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Baseball Uniform.PNG",
+      "traitName": "Baseball Uniform",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Eye Green.PNG",
+      "traitName": "Eye Green",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Teal.PNG",
+      "traitName": "Hoodie Down - Teal",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Varsity Jacket Blue.PNG",
+      "traitName": "Varsity Jacket Blue",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Flash.PNG",
+      "traitName": "Flash",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Mobster.PNG",
+      "traitName": "Mobster",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black LO Barcode Tee.PNG",
+      "traitName": "Black LO Barcode Tee",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies Blue.PNG",
+      "traitName": "$Lollies Blue",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Punk.PNG",
+      "traitName": "Punk",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Light Grey.PNG",
+      "traitName": "Hoodie Down - Light Grey",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Smiley Gold Chain.PNG",
+      "traitName": "Smiley Gold Chain",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Piggy Tee.PNG",
+      "traitName": "Piggy Tee",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Purple Wiggle.PNG",
+      "traitName": "Purple Wiggle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Black.PNG",
+      "traitName": "Hoodie Down - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Fire Tee.PNG",
+      "traitName": "Fire Tee",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Charcoal Skull.PNG",
+      "traitName": "Charcoal Skull",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Blue Layered Hoodie.PNG",
+      "traitName": "Blue Layered Hoodie",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Tie-Dye Singlet.PNG",
+      "traitName": "Tie-Dye Singlet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Samurai.PNG",
+      "traitName": "Samurai",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Cowboy.PNG",
+      "traitName": "Cowboy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Blue.PNG",
+      "traitName": "Hoodie Down - Blue",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Wizard.PNG",
+      "traitName": "Wizard",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Pink.PNG",
+      "traitName": "Hoodie Down - Pink",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Golden.PNG",
+      "traitName": "Hoodie Down - Golden",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Warrior.PNG",
+      "traitName": "Warrior",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black Flanno.PNG",
+      "traitName": "Black Flanno",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Orange & Charcoal.PNG",
+      "traitName": "Orange & Charcoal",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Police Officer.PNG",
+      "traitName": "Police Officer",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies Purple.PNG",
+      "traitName": "$Lollies Purple",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Yellow Wiggle.PNG",
+      "traitName": "Yellow Wiggle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black Singlet(1).PNG",
+      "traitName": "Black Singlet(1)",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Saiyan Suit.PNG",
+      "traitName": "Saiyan Suit",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down & Leather Jacket.PNG",
+      "traitName": "Hoodie Down & Leather Jacket",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Yellow.PNG",
+      "traitName": "Hoodie Down - Yellow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Blue Wiggle.PNG",
+      "traitName": "Blue Wiggle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Doctor.PNG",
+      "traitName": "Doctor",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/LO Barcode Tee -  White.PNG",
+      "traitName": "LO Barcode Tee - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Lumberjack.PNG",
+      "traitName": "Lumberjack",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/White Singlet.PNG",
+      "traitName": "White Singlet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Grey Singlet.PNG",
+      "traitName": "Grey Singlet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Where_s Wally.PNG",
+      "traitName": "Where s Wally",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - LO Tie Dye.png",
+      "traitName": "Hoodie Down - LO Tie Dye",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Skull Tee.PNG",
+      "traitName": "Skull Tee",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Captain.PNG",
+      "traitName": "Captain",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Blue XX Logo.PNG",
+      "traitName": "Blue XX Logo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/110.PNG",
+      "traitName": "110",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Blue Tuxedo.PNG",
+      "traitName": "Blue Tuxedo",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Purple Triangles.PNG",
+      "traitName": "Purple Triangles",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Pink Singlet.PNG",
+      "traitName": "Pink Singlet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Denim Jacket.PNG",
+      "traitName": "Denim Jacket",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Toga.PNG",
+      "traitName": "Toga",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Pullover.png",
+      "traitName": "Pullover",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Knight.PNG",
+      "traitName": "Knight",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Camo.PNG",
+      "traitName": "Hoodie Down - Camo",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Snow Jacket.PNG",
+      "traitName": "Snow Jacket",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Heart Blouse.PNG",
+      "traitName": "Heart Blouse",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Blue Flanno.PNG",
+      "traitName": "Blue Flanno",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/White Singlet(1).PNG",
+      "traitName": "White Singlet(1)",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Galactic Hoodie.PNG",
+      "traitName": "Galactic Hoodie",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Red.PNG",
+      "traitName": "Hoodie Down - Red",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Dark Green Singlet.PNG",
+      "traitName": "Dark Green Singlet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Pilot Uniform.PNG",
+      "traitName": "Pilot Uniform",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Brown Fur Coat.PNG",
+      "traitName": "Brown Fur Coat",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Sprinkles Button-Up.PNG",
+      "traitName": "Sprinkles Button-Up",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Nerdy in Book.PNG",
+      "traitName": "Nerdy in Book",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Sporty Skull Jacket.PNG",
+      "traitName": "Sporty Skull Jacket",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/WGMI.PNG",
+      "traitName": "WGMI",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Orange.PNG",
+      "traitName": "Hoodie Down - Orange",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Skeleton Tee.PNG",
+      "traitName": "Skeleton Tee",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Gangsta.PNG",
+      "traitName": "Gangsta",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Green Singlet.PNG",
+      "traitName": "Green Singlet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Dare Devil Jacket.PNG",
+      "traitName": "Dare Devil Jacket",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Maroon Singlet.PNG",
+      "traitName": "Maroon Singlet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Country & Western Black.PNG",
+      "traitName": "Country & Western Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Skull Tee.PNG",
+      "traitName": "Red Skull Tee",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black & White Stripes.PNG",
+      "traitName": "Black & White Stripes",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Varsity Jacket Red.PNG",
+      "traitName": "Varsity Jacket Red",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Country & Western Light Blue.PNG",
+      "traitName": "Country & Western Light Blue",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Grey.PNG",
+      "traitName": "Hoodie Down - Grey",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Mime.PNG",
+      "traitName": "Mime",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Tuxedo Tee.PNG",
+      "traitName": "Tuxedo Tee",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - LO Inspired.PNG",
+      "traitName": "Hoodie Down - LO Inspired",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies Cyan.PNG",
+      "traitName": "$Lollies Cyan",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies White.PNG",
+      "traitName": "$Lollies White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/$lollies Charcoal.PNG",
+      "traitName": "$lollies Charcoal",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Freddy.PNG",
+      "traitName": "Freddy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies Green.PNG",
+      "traitName": "$Lollies Green",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Wiggle.PNG",
+      "traitName": "Red Wiggle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Bandana Scarf.PNG",
+      "traitName": "Red Bandana Scarf",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Taco Tee.PNG",
+      "traitName": "Taco Tee",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Green.PNG",
+      "traitName": "Hoodie Down - Green",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Charcoal Tee.PNG",
+      "traitName": "Charcoal Tee",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Kings Robe.PNG",
+      "traitName": "Kings Robe",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Snow Jacket(1).PNG",
+      "traitName": "Snow Jacket(1)",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black Bandana Scarf.PNG",
+      "traitName": "Black Bandana Scarf",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Biker Vest.PNG",
+      "traitName": "Biker Vest",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Tie-Dye Star.PNG",
+      "traitName": "Tie-Dye Star",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Scout.PNG",
+      "traitName": "Scout",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Fireman.PNG",
+      "traitName": "Fireman",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Charcoal Backpack.PNG",
+      "traitName": "Hoodie Down - Charcoal Backpack",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Leopard.PNG",
+      "traitName": "Hoodie Down - Leopard",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Security.PNG",
+      "traitName": "Security",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Blue Camo.PNG",
+      "traitName": "Hoodie Down - Blue Camo",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Dotted Button-Up.PNG",
+      "traitName": "Red Dotted Button-Up",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Hoodie Down - Purple.PNG",
+      "traitName": "Hoodie Down - Purple",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Frost Layered Hoodie.PNG",
+      "traitName": "Frost Layered Hoodie",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Cowgirl.PNG",
+      "traitName": "Cowgirl",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Stripes & Overalls.PNG",
+      "traitName": "Stripes & Overalls",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Nerdy.PNG",
+      "traitName": "Nerdy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Laz Suit.PNG",
+      "traitName": "Laz Suit",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Red Singlet.PNG",
+      "traitName": "Red Singlet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/$Lollies Yellow.PNG",
+      "traitName": "$Lollies Yellow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Snow King.PNG",
+      "traitName": "Snow King",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/CLOTHING/Black Singlet.PNG",
+      "traitName": "Black Singlet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Army Uniform.PNG",
+      "traitName": "Army Uniform",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Skeleton Light Tee.PNG",
+      "traitName": "Skeleton Light Tee",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/CLOTHING/Dark Layered Hoodie.PNG",
+      "traitName": "Dark Layered Hoodie",
+      "selected": true
+    }
+  ],
+  "eyes": [
+    {
+      "image": "assets/traits/EYES/Sus.PNG",
+      "traitName": "Sus",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Robo Judgy.PNG",
+      "traitName": "Robo Judgy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Huh_.PNG",
+      "traitName": "Bruised Huh",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Judgy.PNG",
+      "traitName": "X Judgy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Exhausted.PNG",
+      "traitName": "Bruised Exhausted",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Robo Zoned Out.PNG",
+      "traitName": "Robo Zoned Out",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Judgy.PNG",
+      "traitName": "Judgy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Cheeky Wink.PNG",
+      "traitName": "Cheeky Wink",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised.PNG",
+      "traitName": "Bruised",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Zoned Out.PNG",
+      "traitName": "Zoned Out",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Huh_.PNG",
+      "traitName": "Huh",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Robo Mad.PNG",
+      "traitName": "Robo Mad",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Mad.PNG",
+      "traitName": "X Mad",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Judgy.PNG",
+      "traitName": "Bruised Judgy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Mad.PNG",
+      "traitName": "Mad",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Classic.PNG",
+      "traitName": "Classic",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Robo Half Awake.PNG",
+      "traitName": "Robo Half Awake",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Exhausted.PNG",
+      "traitName": "X Exhausted",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Half Awake.PNG",
+      "traitName": "X Half Awake",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Exhausted.PNG",
+      "traitName": "Exhausted",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Derpy Wink.PNG",
+      "traitName": "Bruised Derpy Wink",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Derpy Wink.PNG",
+      "traitName": "Derpy Wink",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Robo Classic.PNG",
+      "traitName": "Robo Classic",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Half Awake.PNG",
+      "traitName": "Bruised Half Awake",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Classic.PNG",
+      "traitName": "X Classic",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Mad.PNG",
+      "traitName": "Bruised Mad",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Robo Exhausted.PNG",
+      "traitName": "Robo Exhausted",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Zoned Out.PNG",
+      "traitName": "Bruised Zoned Out",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Half Awake.PNG",
+      "traitName": "Half Awake",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Zoned Out.PNG",
+      "traitName": "X Zoned Out",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/X Huh_.PNG",
+      "traitName": "X Huh",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/EYES/Bruised Sus.PNG",
+      "traitName": "Bruised Sus",
+      "selected": true
+    }
+  ],
+  "accessories": [
+    {
+      "image": "assets/traits/GLASSES/Scream Mask.PNG",
+      "traitName": "Scream Mask",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/Blue Round Glasses.PNG",
+      "traitName": "Blue Round Glasses",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/Eye Tattoo.PNG",
+      "traitName": "Eye Tattoo",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Reading Glasses.PNG",
+      "traitName": "Reading Glasses",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/3D Glasses.png",
+      "traitName": "3D Glasses",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/DripX.PNG",
+      "traitName": "DripX",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Star Glasses.PNG",
+      "traitName": "Star Glasses",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Aviator.PNG",
+      "traitName": "Aviator",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Spiderman Mask.PNG",
+      "traitName": "Spiderman Mask",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Aviator Goggles.PNG",
+      "traitName": "Aviator Goggles",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/VR Headset.PNG",
+      "traitName": "VR Headset",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Jason Mask.PNG",
+      "traitName": "Jason Mask",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Love Glasses.PNG",
+      "traitName": "Love Glasses",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Game Day.PNG",
+      "traitName": "Game Day",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Round Glasses.PNG",
+      "traitName": "Round Glasses",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Round Tinted.PNG",
+      "traitName": "Round Tinted",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/Trippy Swirl.PNG",
+      "traitName": "Trippy Swirl",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Cucumber.PNG",
+      "traitName": "Cucumber",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Robo Visor.PNG",
+      "traitName": "Robo Visor",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Black Shades.PNG",
+      "traitName": "Black Shades",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Anon Mask.PNG",
+      "traitName": "Anon Mask",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Mogs.PNG",
+      "traitName": "Mogs",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Monocle.PNG",
+      "traitName": "Monocle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Eyepatch.PNG",
+      "traitName": "Eyepatch",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Blue Light Glasses.PNG",
+      "traitName": "Blue Light Glasses",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/Thug Life.PNG",
+      "traitName": "Thug Life",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Trident Mask.PNG",
+      "traitName": "Trident Mask",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/GLASSES/Nerd Glasses.PNG",
+      "traitName": "Nerd Glasses",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Shutter Glasses.PNG",
+      "traitName": "Shutter Glasses",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/GLASSES/Vision Visor.PNG",
+      "traitName": "Vision Visor",
+      "selected": true
+    }
+  ],
+  "hair": [
+    {
+      "image": "assets/traits/HAIR/Afro - Blonde.PNG",
+      "traitName": "Afro - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Flame Hair - White.PNG",
+      "traitName": "Flame Hair - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Palm Hair - White.PNG",
+      "traitName": "Palm Hair - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Flow - Brown.PNG",
+      "traitName": "Side Flow - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Afro - Ginger.PNG",
+      "traitName": "Afro - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Spiky - Black.PNG",
+      "traitName": "Spiky - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Slick Back - Black.PNG",
+      "traitName": "Slick Back - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Palm Hair - Brown.PNG",
+      "traitName": "Palm Hair - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Flow  - White.PNG",
+      "traitName": "Side Flow - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Flame Hair - Brown.PNG",
+      "traitName": "Flame Hair - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Flow - Blonde.PNG",
+      "traitName": "Side Flow - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Palm Hair - Ginger.PNG",
+      "traitName": "Palm Hair - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Emo Sweep - Ginger.PNG",
+      "traitName": "Emo Sweep - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Mohawk Ginger.PNG",
+      "traitName": "Mohawk Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Mohawk Blonde.PNG",
+      "traitName": "Mohawk Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Emo Sweep  - White.PNG",
+      "traitName": "Emo Sweep - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Emo Sweep - Blonde.PNG",
+      "traitName": "Emo Sweep - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Palm Hair - Blonde.PNG",
+      "traitName": "Palm Hair - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Flow - Ginger.PNG",
+      "traitName": "Side Flow - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Shaved.PNG",
+      "traitName": "Shaved",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Afro - Black.PNG",
+      "traitName": "Afro - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Textured Sweep - White.PNG",
+      "traitName": "Textured Sweep - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Sweep - Brown.PNG",
+      "traitName": "Side Sweep - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails - White.PNG",
+      "traitName": "Pigtails - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Messy - Brown.PNG",
+      "traitName": "Messy - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Layered Back Flow - Black.PNG",
+      "traitName": "Layered Back Flow - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Messy - Blonde.PNG",
+      "traitName": "Messy - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Feathered Flow - White.PNG",
+      "traitName": "Feathered Flow - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Fade - White.PNG",
+      "traitName": "Fade - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Emo Sweep - Black.PNG",
+      "traitName": "Emo Sweep - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Back Flow - White.PNG",
+      "traitName": "Back Flow - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Back Flow - Blonde.PNG",
+      "traitName": "Back Flow - Blonde",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Fade - Ginger.PNG",
+      "traitName": "Fade - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Feathered Flow - Brown.PNG",
+      "traitName": "Feathered Flow - Brown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Side Sweep - Blonde.PNG",
+      "traitName": "Side Sweep - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Back Flow - Brown.PNG",
+      "traitName": "Back Flow - Brown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails & Bow - Blonde.PNG",
+      "traitName": "Pigtails & Bow - Blonde",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Fade - Brown.PNG",
+      "traitName": "Fade - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails - Brown.PNG",
+      "traitName": "Pigtails - Brown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Side Sweep - White.PNG",
+      "traitName": "Side Sweep - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails & Bow - Ginger.PNG",
+      "traitName": "Pigtails & Bow - Ginger",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Textured Sweep - Brown.PNG",
+      "traitName": "Textured Sweep - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Sweep - Ginger.PNG",
+      "traitName": "Side Sweep - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails & Bow - Black.PNG",
+      "traitName": "Pigtails & Bow - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Fade - Blonde.PNG",
+      "traitName": "Fade - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Messy - White.PNG",
+      "traitName": "Messy - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Mohawk - Black.PNG",
+      "traitName": "Mohawk - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Back Flow - Ginger.PNG",
+      "traitName": "Back Flow - Ginger",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Slick Back - Blonde.PNG",
+      "traitName": "Slick Back - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Afro - Brown.PNG",
+      "traitName": "Afro - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Messy  - Ginger.PNG",
+      "traitName": "Messy - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Spiky - Ginger.PNG",
+      "traitName": "Spiky - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Flame Hair - Black.PNG",
+      "traitName": "Flame Hair - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Spiky - Blonde.PNG",
+      "traitName": "Spiky - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Spiky - Brown.PNG",
+      "traitName": "Spiky - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Palm Hair - Black.PNG",
+      "traitName": "Palm Hair - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Slick Back - Brown.PNG",
+      "traitName": "Slick Back - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Slick Back - Ginger.PNG",
+      "traitName": "Slick Back - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Feathered Flow - Ginger.PNG",
+      "traitName": "Feathered Flow - Ginger",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Slick Back - White.PNG",
+      "traitName": "Slick Back - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Spiky - White.PNG",
+      "traitName": "Spiky - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Textured Sweep - Ginger.PNG",
+      "traitName": "Textured Sweep - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Flame Hair - Ginger.PNG",
+      "traitName": "Flame Hair - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Flow - Black.PNG",
+      "traitName": "Side Flow - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Flame Hair - Blonde.PNG",
+      "traitName": "Flame Hair - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Textured Sweep - Blonde.PNG",
+      "traitName": "Textured Sweep - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Feathered Flow - Blonde.PNG",
+      "traitName": "Feathered Flow - Blonde",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Afro - White.PNG",
+      "traitName": "Afro - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Textured Sweep - Black.PNG",
+      "traitName": "Textured Sweep - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Layered Back Flow - Blonde.PNG",
+      "traitName": "Layered Back Flow - Blonde",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails - Black.PNG",
+      "traitName": "Pigtails - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Layered Back Flow - White.PNG",
+      "traitName": "Layered Back Flow - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Mohawk - Brown.PNG",
+      "traitName": "Mohawk - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails & Bow - Brown.PNG",
+      "traitName": "Pigtails & Bow - Brown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Feathered Flow - Black.PNG",
+      "traitName": "Feathered Flow - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Fade - Black.PNG",
+      "traitName": "Fade - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Layered Back Flow - Ginger.PNG",
+      "traitName": "Layered Back Flow - Ginger",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Back Flow - Black.PNG",
+      "traitName": "Back Flow - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails - Blonde.PNG",
+      "traitName": "Pigtails - Blonde",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Emo Sweep - Brown.PNG",
+      "traitName": "Emo Sweep - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Bald.PNG",
+      "traitName": "Bald",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Side Sweep - Black.PNG",
+      "traitName": "Side Sweep - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails & Bow - White.PNG",
+      "traitName": "Pigtails & Bow - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Mohawk - White.PNG",
+      "traitName": "Mohawk - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HAIR/Pigtails - Ginger.PNG",
+      "traitName": "Pigtails - Ginger",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Layered Back Flow - Brown.PNG",
+      "traitName": "Layered Back Flow - Brown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HAIR/Messy - Black.PNG",
+      "traitName": "Messy - Black",
+      "selected": true
+    }
+  ],
+  "hat": [
+    {
+      "image": "assets/traits/HATS/Taco Hat.PNG",
+      "traitName": "Taco Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Black Balaclava.PNG",
+      "traitName": "Black Balaclava",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Polar Ice Cap.PNG",
+      "traitName": "Polar Ice Cap",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Mushroom.PNG",
+      "traitName": "Mushroom",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Headphones.PNG",
+      "traitName": "Headphones",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Fishermans Cap.PNG",
+      "traitName": "Fishermans Cap",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Backwards Hat - Blonde.PNG",
+      "traitName": "Backwards Hat - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/LO 5 Panel Hat.PNG",
+      "traitName": "LO 5 Panel Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Cowboy Hat - Brown.PNG",
+      "traitName": "Cowboy Hat - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - Brown & Maroon.PNG",
+      "traitName": "Pom Pom Beanie - Brown & Maroon",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Green Balaclava.PNG",
+      "traitName": "Green Balaclava",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Wooden Train Tracks.PNG",
+      "traitName": "Wooden Train Tracks",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bandana - Red.PNG",
+      "traitName": "Bandana - Red",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Backwards Hat - Ginger.PNG",
+      "traitName": "Backwards Hat - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Hat - LO Smile.PNG",
+      "traitName": "Hat - LO Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Beanie - Maroon.PNG",
+      "traitName": "Beanie - Maroon",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Hat - 404 Club.PNG",
+      "traitName": "Hat - 404 Club",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bucket Hat - Blue.PNG",
+      "traitName": "Bucket Hat - Blue",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Hat - Golden.PNG",
+      "traitName": "Hat - Golden",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - Black & Grey.PNG",
+      "traitName": "Pom Pom Beanie - Black & Grey",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Cowboy Hat - White.PNG",
+      "traitName": "Cowboy Hat - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Skull & Horns.PNG",
+      "traitName": "Skull & Horns",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - Orange & Yellow.PNG",
+      "traitName": "Pom Pom Beanie - Orange & Yellow",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/66.PNG",
+      "traitName": "66",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/LOYC Flip-Bream - Mutant.PNG",
+      "traitName": "LOYC Flip-Bream - Mutant",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - Grey.PNG",
+      "traitName": "Pom Pom Beanie - Grey",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Baseball Helmet - White.PNG",
+      "traitName": "Baseball Helmet - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pepe.PNG",
+      "traitName": "Pepe",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Fishbowl.PNG",
+      "traitName": "Fishbowl",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Wizard.PNG",
+      "traitName": "Wizard",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Crayon Crown.PNG",
+      "traitName": "Crayon Crown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Beanie - White.PNG",
+      "traitName": "Beanie - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Police Officer.PNG",
+      "traitName": "Police Officer",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Octopus.PNG",
+      "traitName": "Octopus",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Backwards Hat - Brown.PNG",
+      "traitName": "Backwards Hat - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - White.PNG",
+      "traitName": "Pom Pom Beanie - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Goo Crown - Green.PNG",
+      "traitName": "Goo Crown - Green",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Flame Crown.PNG",
+      "traitName": "Flame Crown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Firefighter(1).PNG",
+      "traitName": "Firefighter(1)",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Backwards Hat - White.PNG",
+      "traitName": "Backwards Hat - White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Arrow.PNG",
+      "traitName": "Arrow",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Baseball Helmet - Red.PNG",
+      "traitName": "Baseball Helmet - Red",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Biker Helmet.PNG",
+      "traitName": "Biker Helmet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Cowboy Hat - Ginger.png",
+      "traitName": "Cowboy Hat - Ginger",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Hat - LO Barcode.PNG",
+      "traitName": "Hat - LO Barcode",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Volcano.PNG",
+      "traitName": "Volcano",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Dragon Cap.PNG",
+      "traitName": "Dragon Cap",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/White Balaclava.PNG",
+      "traitName": "White Balaclava",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bandana - Black.PNG",
+      "traitName": "Bandana - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Halo.PNG",
+      "traitName": "Halo",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Duck Hat.PNG",
+      "traitName": "Duck Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Sailor Hat.PNG",
+      "traitName": "Sailor Hat",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Black Crown.PNG",
+      "traitName": "Black Crown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Golden Crown.PNG",
+      "traitName": "Golden Crown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Cowboy Hat - Blonde.PNG",
+      "traitName": "Cowboy Hat - Blonde",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Beanie - Brown.PNG",
+      "traitName": "Beanie - Brown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Red Balaclava.PNG",
+      "traitName": "Red Balaclava",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Olive Crown.PNG",
+      "traitName": "Olive Crown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bucket Hat - Tan.PNG",
+      "traitName": "Bucket Hat - Tan",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Watermelon.PNG",
+      "traitName": "Watermelon",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Dead Gremlin.PNG",
+      "traitName": "Dead Gremlin",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Samurai Helmet - Red.PNG",
+      "traitName": "Samurai Helmet - Red",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Party Hat.PNG",
+      "traitName": "Party Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Golden Skull & Horns.PNG",
+      "traitName": "Golden Skull & Horns",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/LO Spinner Hat.PNG",
+      "traitName": "LO Spinner Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pirate Hat & Patch.PNG",
+      "traitName": "Pirate Hat & Patch",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Paper Boat.PNG",
+      "traitName": "Paper Boat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Spartan.PNG",
+      "traitName": "Spartan",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Hat - Little Ollie Logo.PNG",
+      "traitName": "Hat - Little Ollie Logo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Goo Crown - Purple.PNG",
+      "traitName": "Goo Crown - Purple",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pork Pie.PNG",
+      "traitName": "Pork Pie",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Paper Plane.PNG",
+      "traitName": "Paper Plane",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Ninja.PNG",
+      "traitName": "Ninja",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Grid Iron Helmet.png",
+      "traitName": "Grid Iron Helmet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bandana - Blue.PNG",
+      "traitName": "Bandana - Blue",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Lollie Water Drinking Hat.PNG",
+      "traitName": "Lollie Water Drinking Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Painters Hat.PNG",
+      "traitName": "Painters Hat",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Cowboy Hat - Black.PNG",
+      "traitName": "Cowboy Hat - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bullseye Apple.PNG",
+      "traitName": "Bullseye Apple",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Purple Goo.PNG",
+      "traitName": "Purple Goo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/REMOVE.png",
+      "traitName": "REMOVE",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Firefighter.PNG",
+      "traitName": "Firefighter",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pirate Hat.PNG",
+      "traitName": "Pirate Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Army Helmet.PNG",
+      "traitName": "Army Helmet",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Green Goo.PNG",
+      "traitName": "Green Goo",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Umbrella Cap.PNG",
+      "traitName": "Umbrella Cap",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - Maroon.PNG",
+      "traitName": "Pom Pom Beanie - Maroon",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Alien Blob.PNG",
+      "traitName": "Alien Blob",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Princess Crown.PNG",
+      "traitName": "Princess Crown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Captain Hat.PNG",
+      "traitName": "Captain Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Samurai Helmet - Sunset .PNG",
+      "traitName": "Samurai Helmet - Sunset",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Viking Helmet.PNG",
+      "traitName": "Viking Helmet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Knight Helmet.PNG",
+      "traitName": "Knight Helmet",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/American Top Hat.PNG",
+      "traitName": "American Top Hat",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Black Crown & Afro.PNG",
+      "traitName": "Black Crown & Afro",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Hat - LO 007.PNG",
+      "traitName": "Hat - LO 007",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Crocodile Cap.PNG",
+      "traitName": "Crocodile Cap",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Octopus Skull.PNG",
+      "traitName": "Octopus Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Baseball Helmet - Blue.PNG",
+      "traitName": "Baseball Helmet - Blue",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Tribe Chief Mask.PNG",
+      "traitName": "Tribe Chief Mask",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Construction Helmet - Orange.PNG",
+      "traitName": "Construction Helmet - Orange",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Ice Hockey Helmet - Yellow.PNG",
+      "traitName": "Ice Hockey Helmet - Yellow",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/LOYC Flip-Bream.PNG",
+      "traitName": "LOYC Flip-Bream",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Ice Hockey Helmet - Red.PNG",
+      "traitName": "Ice Hockey Helmet - Red",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Backwards Hat - Black.PNG",
+      "traitName": "Backwards Hat - Black",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/TopHat.PNG",
+      "traitName": "TopHat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Knight Helmet & Mask.PNG",
+      "traitName": "Knight Helmet & Mask",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Banana Peel.PNG",
+      "traitName": "Banana Peel",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bucket Hat - Red.PNG",
+      "traitName": "Bucket Hat - Red",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Scouts Hat.PNG",
+      "traitName": "Scouts Hat",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Pom Pom Beanie - Maroon & White .PNG",
+      "traitName": "Pom Pom Beanie - Maroon & White",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bucket Hat - Grey.PNG",
+      "traitName": "Bucket Hat - Grey",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Hat - LO Lightning.PNG",
+      "traitName": "Hat - LO Lightning",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Lightbulb.PNG",
+      "traitName": "Lightbulb",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/French Beret.PNG",
+      "traitName": "French Beret",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Construction Helmet - White.PNG",
+      "traitName": "Construction Helmet - White",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Zombie Brain.PNG",
+      "traitName": "Zombie Brain",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/HATS/Bucket Hat - Black.PNG",
+      "traitName": "Bucket Hat - Black",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HATS/Rainbow.PNG",
+      "traitName": "Rainbow",
+      "selected": false
+    }
+  ],
+  "hoodies": [
+    {
+      "image": "assets/traits/HOODIES/8.PNG",
+      "traitName": "8",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/9.PNG",
+      "traitName": "9",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/14.PNG",
+      "traitName": "14",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/12.PNG",
+      "traitName": "12",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/13.PNG",
+      "traitName": "13",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/11.PNG",
+      "traitName": "11",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/10.PNG",
+      "traitName": "10",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/LO Hoodie.png",
+      "traitName": "LO Hoodie",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/4.PNG",
+      "traitName": "4",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/5.PNG",
+      "traitName": "5",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/7.PNG",
+      "traitName": "7",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/6.PNG",
+      "traitName": "6",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/2.PNG",
+      "traitName": "2",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/3.PNG",
+      "traitName": "3",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/HOODIES/1.PNG",
+      "traitName": "1",
+      "selected": false
+    }
+  ],
+  "mouth": [
+    {
+      "image": "assets/traits/MOUTH/Female Missing Teeth.PNG",
+      "traitName": "Female Missing Teeth",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Angry.PNG",
+      "traitName": "Brown Beard - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Happy.PNG",
+      "traitName": "Happy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Smile.PNG",
+      "traitName": "Black Beard - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Angry.PNG",
+      "traitName": "Ginger Goatee - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Frown.PNG",
+      "traitName": "Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Missing Teeth.PNG",
+      "traitName": "Stubble - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Frown.PNG",
+      "traitName": "White Beard - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Whistle.PNG",
+      "traitName": "Brown Beard - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Angry.PNG",
+      "traitName": "White Goatee - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Smile.PNG",
+      "traitName": "Blonde Beard - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Ginger Beard - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Gritted Teeth.PNG",
+      "traitName": "Black Goatee - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Shocked.PNG",
+      "traitName": "Stubble - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Gritted Teeth.PNG",
+      "traitName": "Ginger Goatee - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Ginger Goatee - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Whistle.PNG",
+      "traitName": "Female Whistle",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Whistle.PNG",
+      "traitName": "Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Missing Teeth.PNG",
+      "traitName": "White Beard - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Shocked.PNG",
+      "traitName": "Black Beard - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Smile.PNG",
+      "traitName": "Stubble - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Frown.PNG",
+      "traitName": "Blonde Goatee - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Gritted Teeth.PNG",
+      "traitName": "Ginger Beard - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Blonde Goatee - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Whistle.PNG",
+      "traitName": "Ginger Beard - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Missing Teeth.PNG",
+      "traitName": "Blonde Goatee - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Angry.PNG",
+      "traitName": "Black Goatee - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Smile.PNG",
+      "traitName": "Black Goatee - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Gritted Teeth & Toothpick.PNG",
+      "traitName": "White Beard - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Shocked.PNG",
+      "traitName": "Blonde Goatee - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Gritted Teeth.PNG",
+      "traitName": "Female Gritted Teeth",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Angry.PNG",
+      "traitName": "Stubble - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Gritted Teeth.PNG",
+      "traitName": "Stubble - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Whistle.PNG",
+      "traitName": "Blonde Beard - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Missing Teeth.PNG",
+      "traitName": "Ginger Goatee - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Smile.PNG",
+      "traitName": "White Goatee - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Lollipop.PNG",
+      "traitName": "Female Lollipop",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Gritted Teeth.PNG",
+      "traitName": "White Beard - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Angry.PNG",
+      "traitName": "Blonde Beard - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Drooling.PNG",
+      "traitName": "Drooling",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Smile.PNG",
+      "traitName": "Ginger Goatee - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Frown.PNG",
+      "traitName": "Female Frown",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Missing Teeth.PNG",
+      "traitName": "Black Goatee - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Whistle.PNG",
+      "traitName": "Black Goatee - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Lollipop.PNG",
+      "traitName": "Stubble - Lollipop",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Mustache.PNG",
+      "traitName": "Black Mustache",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Whistle.PNG",
+      "traitName": "White Goatee - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Angry.PNG",
+      "traitName": "Black Beard - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Frown.PNG",
+      "traitName": "Ginger Beard - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Happy.PNG",
+      "traitName": "Female Happy",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Whistle.PNG",
+      "traitName": "Ginger Goatee - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Shocked.PNG",
+      "traitName": "Brown Goatee - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Missing Teeth.PNG",
+      "traitName": "Ginger Beard - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Smile.PNG",
+      "traitName": "Brown Beard - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Frown.PNG",
+      "traitName": "Brown Goatee - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Whistle.PNG",
+      "traitName": "White Beard - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Gritted Teeth.PNG",
+      "traitName": "Blonde Goatee - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Brown Goatee - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Drooling.PNG",
+      "traitName": "Stubble - Drooling",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Shocked.PNG",
+      "traitName": "Black Goatee - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Black Goatee - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Frown.PNG",
+      "traitName": "White Goatee - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Lollipop.PNG",
+      "traitName": "Lollipop",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Angry.PNG",
+      "traitName": "Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Frown.PNG",
+      "traitName": "Ginger Goatee - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Drooling.PNG",
+      "traitName": "Female Drooling",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Angry.PNG",
+      "traitName": "White Beard - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Missing Teeth.PNG",
+      "traitName": "Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Missing Teeth.PNG",
+      "traitName": "Black Beard - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Smile.PNG",
+      "traitName": "Female Smile",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Shocked.PNG",
+      "traitName": "White Beard - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Goatee - Shocked.PNG",
+      "traitName": "Ginger Goatee - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Smile.PNG",
+      "traitName": "Ginger Beard - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Whistle.PNG",
+      "traitName": "Brown Goatee - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Gritted Teeth & Toothpick.PNG",
+      "traitName": "Female Gritted Teeth & Toothpick",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Gritted Teeth.PNG",
+      "traitName": "White Goatee - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Frown.PNG",
+      "traitName": "Brown Beard - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Shocked.PNG",
+      "traitName": "White Goatee - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Goatee - Frown.PNG",
+      "traitName": "Black Goatee - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Gritted Teeth.PNG",
+      "traitName": "Brown Goatee - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Mustache.PNG",
+      "traitName": "Blonde Mustache",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Blonde Beard - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Angry.PNG",
+      "traitName": "Blonde Goatee - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Smile(1).PNG",
+      "traitName": "Stubble - Smile(1)",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Whistle.PNG",
+      "traitName": "Blonde Goatee - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Shocked.PNG",
+      "traitName": "Blonde Beard - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Gritted Teeth.PNG",
+      "traitName": "Blonde Beard - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Gritted Teeth.PNG",
+      "traitName": "Brown Beard - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Shocked.PNG",
+      "traitName": "Female Shocked",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Shocked.PNG",
+      "traitName": "Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Whistle.png",
+      "traitName": "Black Beard - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Brown Beard - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Mustache.PNG",
+      "traitName": "Brown Mustache",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Gritted Teeth.PNG",
+      "traitName": "Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Gritted Teeth.PNG",
+      "traitName": "Black Beard - Gritted Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Whistle.PNG",
+      "traitName": "Stubble - Whistle",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Goatee - Smile.PNG",
+      "traitName": "Blonde Goatee - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Frown.PNG",
+      "traitName": "Stubble - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Missing Teeth.PNG",
+      "traitName": "White Goatee - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Goatee - Gritted Teeth & Toothpick.PNG",
+      "traitName": "White Goatee - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Bubblegum.PNG",
+      "traitName": "Bubblegum",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Gritted Teeth & Toothpick.PNG",
+      "traitName": "Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Mustache.PNG",
+      "traitName": "White Mustache",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Shocked.PNG",
+      "traitName": "Ginger Beard - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Angry.PNG",
+      "traitName": "Brown Goatee - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Frown.PNG",
+      "traitName": "Black Beard - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Black Beard - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Black Beard - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Goatee - Missing Teeth.PNG",
+      "traitName": "Brown Goatee - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Beard - Angry.PNG",
+      "traitName": "Ginger Beard - Angry",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Stubble - Gritted Teeth & Toothpick.PNG",
+      "traitName": "Stubble - Gritted Teeth & Toothpick",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Shocked.PNG",
+      "traitName": "Brown Beard - Shocked",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Smile.PNG",
+      "traitName": "Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/White Beard - Smile.PNG",
+      "traitName": "White Beard - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Ginger Mustache.PNG",
+      "traitName": "Ginger Mustache",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown Beard - Missing Teeth.PNG",
+      "traitName": "Brown Beard - Missing Teeth",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Female Angry.PNG",
+      "traitName": "Female Angry",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/MOUTH/Brown  Goatee - Smile.PNG",
+      "traitName": "Brown Goatee - Smile",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Frown.PNG",
+      "traitName": "Blonde Beard - Frown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/MOUTH/Blonde Beard - Missing Teeth.PNG",
+      "traitName": "Blonde Beard - Missing Teeth",
+      "selected": true
+    }
+  ],
+  "ball": [
+    {
+      "image": "assets/traits/OPEN H ITEMS/Bomb.png",
+      "traitName": "Bomb",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Stress Ball.png",
+      "traitName": "Stress Ball",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Snow Globe.png",
+      "traitName": "Snow Globe",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Poke-Ball.png",
+      "traitName": "Poke-Ball",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Yo-Yo.png",
+      "traitName": "Yo-Yo",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Rock.png",
+      "traitName": "Rock",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Snowball.png",
+      "traitName": "Snowball",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Apple.png",
+      "traitName": "Apple",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Cricket Ball.png",
+      "traitName": "Cricket Ball",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Baseball.png",
+      "traitName": "Baseball",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Magic 8 Ball.png",
+      "traitName": "Magic 8 Ball",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Water Balloon.png",
+      "traitName": "Water Balloon",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Genie Juice.png",
+      "traitName": "Genie Juice",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Tamagotchi.png",
+      "traitName": "Tamagotchi",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/Camera.png",
+      "traitName": "Camera",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/iloveimg-compressed/AA.png",
+      "traitName": "AA",
+      "selected": false
+    },
+    {
+      "image": "assets/traits/OPEN H ITEMS/iloveimg-compressed/AAA.png",
+      "traitName": "AAA",
+      "selected": false
+    }
+  ],
+  "hand": [
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Brown.PNG",
+      "traitName": "Open Hand - Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Cosmic Liquid.PNG",
+      "traitName": "Open Hand - Cosmic Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Patchwork.PNG",
+      "traitName": "Open Hand - Patchwork",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Wrapped.PNG",
+      "traitName": "Open Hand - Wrapped",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Undead.PNG",
+      "traitName": "Open Hand - Undead",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Harlequin.PNG",
+      "traitName": "Open Hand - Harlequin",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Prism.PNG",
+      "traitName": "Open Hand - Prism",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Blazefire.PNG",
+      "traitName": "Open Hand - Blazefire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Flesh Wounds.PNG",
+      "traitName": "Open Hand - Flesh Wounds",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Crimson Shell.PNG",
+      "traitName": "Open Hand - Crimson Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Frostbite.PNG",
+      "traitName": "Open Hand - Frostbite",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Tan.PNG",
+      "traitName": "Open Hand - Tan",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Groovy.PNG",
+      "traitName": "Open Hand - Groovy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Static.PNG",
+      "traitName": "Open Hand - Static",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Liquid.PNG",
+      "traitName": "Open Hand - Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Stone.PNG",
+      "traitName": "Open Hand - Stone",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Light.PNG",
+      "traitName": "Open Hand - Light",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Corrupted Lava.PNG",
+      "traitName": "Open Hand - Corrupted Lava",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/NO HAND.png",
+      "traitName": "NO HAND",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Infernal.PNG",
+      "traitName": "Open Hand - Infernal",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Violet Shell.PNG",
+      "traitName": "Open Hand - Violet Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Gold.PNG",
+      "traitName": "Open Hand - Gold",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Amethyst Shell.PNG",
+      "traitName": "Open Hand - Amethyst Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Corrupted Aqua.PNG",
+      "traitName": "Open Hand - Corrupted Aqua",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Voidfire.PNG",
+      "traitName": "Open Hand - Voidfire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Raw.PNG",
+      "traitName": "Open Hand - Raw",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Infected.PNG",
+      "traitName": "Open Hand - Infected",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Electric Liquid.PNG",
+      "traitName": "Open Hand - Electric Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Ghost.PNG",
+      "traitName": "Open Hand - Ghost",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Dark.PNG",
+      "traitName": "Open Hand - Dark",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Brain Bloom.PNG",
+      "traitName": "Open Hand - Brain Bloom",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Toxic Shell.PNG",
+      "traitName": "Open Hand - Toxic Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Corrupted Toxic.PNG",
+      "traitName": "Open Hand - Corrupted Toxic",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Skull.PNG",
+      "traitName": "Open Hand - Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Pixel Party.PNG",
+      "traitName": "Open Hand - Pixel Party",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Aqua Liquid.PNG",
+      "traitName": "Open Hand - Aqua Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Chrome.PNG",
+      "traitName": "Open Hand - Chrome",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Open Skull.PNG",
+      "traitName": "Open Hand - Open Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Icefire.PNG",
+      "traitName": "Open Hand - Icefire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/OPEN HAND/Open Hand - Stitched.PNG",
+      "traitName": "Open Hand - Stitched",
+      "selected": true
+    }
+  ],
+  "skin": [
+    {
+      "image": "assets/traits/SKIN/Groovy.PNG",
+      "traitName": "Groovy",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Static.PNG",
+      "traitName": "Static",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Liquid.PNG",
+      "traitName": "Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Violet Shell.PNG",
+      "traitName": "Violet Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Amethyst Shell.PNG",
+      "traitName": "Amethyst Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Corrupted Aqua.PNG",
+      "traitName": "Corrupted Aqua",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Skull.PNG",
+      "traitName": "Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Corrupted Toxic.PNG",
+      "traitName": "Corrupted Toxic",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Icefire.PNG",
+      "traitName": "Icefire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Dark.PNG",
+      "traitName": "Dark",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Infernal.PNG",
+      "traitName": "Infernal",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Electric Liquid.PNG",
+      "traitName": "Electric Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Raw.PNG",
+      "traitName": "Raw",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Flesh Wounds.PNG",
+      "traitName": "Flesh Wounds",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Undead.PNG",
+      "traitName": "Undead",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Ghost.PNG",
+      "traitName": "Ghost",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Light.PNG",
+      "traitName": "Light",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Stone.PNG",
+      "traitName": "Stone",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Tan.PNG",
+      "traitName": "Tan",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Chrome.PNG",
+      "traitName": "Chrome",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Crimson Shell.PNG",
+      "traitName": "Crimson Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Brain Bloom.PNG",
+      "traitName": "Brain Bloom",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Toxic Shell.PNG",
+      "traitName": "Toxic Shell",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Cosmic Liquid.PNG",
+      "traitName": "Cosmic Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Stitched.PNG",
+      "traitName": "Stitched",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Frostbite.PNG",
+      "traitName": "Frostbite",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Open Skull.PNG",
+      "traitName": "Open Skull",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Voidfire.PNG",
+      "traitName": "Voidfire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Wrapped.PNG",
+      "traitName": "Wrapped",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Blazefire.PNG",
+      "traitName": "Blazefire",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Infected.PNG",
+      "traitName": "Infected",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Harlequin.PNG",
+      "traitName": "Harlequin",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Brown.PNG",
+      "traitName": "Brown",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Aqua Liquid.PNG",
+      "traitName": "Aqua Liquid",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Prism.PNG",
+      "traitName": "Prism",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Patchwork.PNG",
+      "traitName": "Patchwork",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Pixel Party.PNG",
+      "traitName": "Pixel Party",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Corrupted Lava.PNG",
+      "traitName": "Corrupted Lava",
+      "selected": true
+    },
+    {
+      "image": "assets/traits/SKIN/Gold.PNG",
+      "traitName": "Gold",
+      "selected": true
+    }
+  ]
+}

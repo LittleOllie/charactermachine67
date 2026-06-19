@@ -12,6 +12,7 @@ window.__loGenderSwitchInProgress = false;
 window.__loManifestPromise = null;
 window.__loBootstrapPromise = null;
 var LO_CREATOR_COMPAT_JSON = 'data/LOCompleteV5.json';
+var LO_DEFAULT_TRAIT_SELECTION_JSON = 'data/default-trait-selection.json';
 window.__loTraitsReady = false;
 // Must be declared before manifest preload / setGender — a later `var TRAIT_DATA = {}` would wipe loaded data.
 var TRAIT_DATA = {}; // synced from LOTraitRegistry after manifest loads
@@ -128,12 +129,13 @@ function initCharacterCreator() {
     }),
     loadCreatorCompatData()
   ]).then(function () {
+    TRAIT_DATA = window.LOTraitRegistry.TRAIT_DATA;
+    __creatorInitialized = true;
+    window.__loTraitsReady = true;
+    initTraitCulling();
+    return loApplySavedTraitSelectionOrDefaults();
+  }).then(function () {
     try {
-      TRAIT_DATA = window.LOTraitRegistry.TRAIT_DATA;
-      __creatorInitialized = true;
-      window.__loTraitsReady = true;
-      initTraitCulling();
-      loApplySavedTraitSelectionOrDefaults();
       initCharacterCanvasClicks();
       applyGenderRules();
       attachGenderAwareTraitClickGuard();
@@ -1098,14 +1100,61 @@ function loHasSavedTraitSelection(cfg) {
   });
 }
 
-/** Restore saved include/exclude from Collection Setup, or hoodies/bg-blur defaults on first run. */
+/** Restore saved include/exclude from Collection Setup, bundled default selection, or hoodies/bg-blur defaults. */
+function loFindLocalTraitForImport(slot, importedTrait) {
+  var want = importedTrait.image || importedTrait.path || '';
+  if (!want || !TRAIT_DATA[slot]) return null;
+  var wantLower = String(want).toLowerCase();
+  return TRAIT_DATA[slot].find(function (t) {
+    if (!t) return false;
+    var p = (t.path || t.image || '').toLowerCase();
+    if (p === wantLower) return true;
+    if (window.LOTraitRegistry && LOTraitRegistry.getTraitByPath(want) === t) return true;
+    return false;
+  }) || null;
+}
+
+function loApplyTraitSelectionFromObject(importedData) {
+  if (!importedData || typeof importedData !== 'object') return 0;
+  loSyncTraitDataFromRegistry();
+  var matched = 0;
+  Object.keys(importedData).forEach(function (slot) {
+    if (!TRAIT_DATA[slot] || !Array.isArray(importedData[slot])) return;
+    importedData[slot].forEach(function (importedTrait) {
+      var localTrait = loFindLocalTraitForImport(slot, importedTrait);
+      if (localTrait) {
+        localTrait.selected = !!importedTrait.selected;
+        matched++;
+      }
+    });
+  });
+  if (matched && typeof loRefreshAllCreatorTraitUi === 'function') loRefreshAllCreatorTraitUi();
+  return matched;
+}
+
+function loLoadDefaultTraitSelection() {
+  return fetch(LO_DEFAULT_TRAIT_SELECTION_JSON + '?v=' + Date.now()).then(function (res) {
+    if (!res.ok) return null;
+    return res.json();
+  }).catch(function () {
+    return null;
+  });
+}
+
 function loApplySavedTraitSelectionOrDefaults() {
   var cfg = loLoadCollectionBuilderConfigRaw();
   if (loHasSavedTraitSelection(cfg)) {
     loApplyCollectionExclusionsToCreator(cfg);
-  } else {
-    applyStartupDeselectedSlots();
+    return Promise.resolve();
   }
+  return loLoadDefaultTraitSelection().then(function (data) {
+    if (data && data.excludedTraitIdsBySlot && typeof data.excludedTraitIdsBySlot === 'object') {
+      loApplyCollectionExclusionsToCreator(data);
+      return;
+    }
+    if (data && loApplyTraitSelectionFromObject(data)) return;
+    applyStartupDeselectedSlots();
+  });
 }
 
 /** Push Collection Setup include/exclude state onto Character Creator data + tiles. */
@@ -3070,30 +3119,7 @@ function importSelectionState(file) {
         return;
       }
 
-      function findLocalTrait(slot, importedTrait) {
-        var want = importedTrait.image || importedTrait.path || '';
-        if (!want || !TRAIT_DATA[slot]) return null;
-        var wantLower = String(want).toLowerCase();
-        return TRAIT_DATA[slot].find(function (t) {
-          if (!t) return false;
-          var p = (t.path || t.image || '').toLowerCase();
-          if (p === wantLower) return true;
-          if (window.LOTraitRegistry && LOTraitRegistry.getTraitByPath(want) === t) return true;
-          return false;
-        }) || null;
-      }
-
-      var matched = 0;
-      Object.keys(importedData).forEach(function (slot) {
-        if (!TRAIT_DATA[slot] || !Array.isArray(importedData[slot])) return;
-        importedData[slot].forEach(function (importedTrait) {
-          var localTrait = findLocalTrait(slot, importedTrait);
-          if (localTrait) {
-            localTrait.selected = !!importedTrait.selected;
-            matched++;
-          }
-        });
-      });
+      var matched = loApplyTraitSelectionFromObject(importedData);
 
       if (!matched) {
         if (typeof alert === 'function') alert('No matching traits found in this file. Check that paths match the current trait library.');
@@ -3103,8 +3129,6 @@ function importSelectionState(file) {
       if (typeof loSyncCreatorSelectionToCollectionBuilder === 'function') {
         loSyncCreatorSelectionToCollectionBuilder({ reason: 'import_trait_selection' });
       }
-      if (typeof loRefreshAllCreatorTraitUi === 'function') loRefreshAllCreatorTraitUi();
-      else refreshTraitUI();
       if (typeof alert === 'function') alert('Selection loaded successfully (' + matched + ' traits matched).');
 
     } catch (err) {
