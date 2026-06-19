@@ -1,0 +1,984 @@
+body {
+    font-family: 'Fredoka One', cursive;
+    background-image: linear-gradient(to right, var(--lo-cyan), var(--lo-blue));
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    text-transform: uppercase;
+}
+
+body.gender-female {
+    /* subtle pink tint for female mode */
+    background-image: linear-gradient(to right, #ffd1e6, #66a6ff);
+}
+
+/* =========================
+   GENDER SWITCH TRANSITION
+   ========================= */
+#transitionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.5s ease;
+    z-index: 9999;
+}
+#transitionOverlay.active {
+    opacity: 1;
+    transform: scale(3) rotate(720deg);
+}
+
+/* =========================
+   GENDER GATE (FIRST SCREEN)
+   ========================= */
+.gender-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Blue (left) → Pink (right) */
+    background: linear-gradient(90deg, rgba(77, 166, 255, 0.96) 0%, rgba(255, 158, 214, 0.94) 100%);
+    font-family: 'Fredoka One', cursive;
+    padding: 24px;
+}
+.gender-gate.female { background: inherit; }
+.gender-gate .gate-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto 10px auto;
+    flex-wrap: wrap;
+}
+.gender-gate .gate-brand img {
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.12));
+}
+.gender-gate .gate-brand img.logo-lo {
+    height: 90px;
+    opacity: 0.95;
+}
+.gender-gate .gate-logo {
+    width: min(520px, 86vw);
+    height: auto;
+    display: block;
+    margin: 0 auto 12px auto;
+    object-fit: contain;
+}
+.gender-gate .panel {
+    width: min(720px, 92vw);
+    background: rgba(255,255,255,0.95);
+    border-radius: 22px;
+    padding: 28px 24px;
+    box-shadow: 0 14px 50px rgba(0,0,0,0.22);
+    text-align: center;
+}
+.gender-gate h2 {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+    color: #2c3e50;
+}
+.gender-gate .hint {
+    margin: 0 0 18px 0;
+    font-size: 13px;
+    color: #555;
+}
+.gender-gate .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+.gender-gate button {
+    border: none;
+    border-radius: 18px;
+    padding: 22px 16px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #fff;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+}
+.gender-gate button:hover { filter: brightness(1.04); }
+.gender-gate .male { background: linear-gradient(to right, #00bcd4, #3498db); }
+.gender-gate .female { background: linear-gradient(to right, #e91e63, #9b59b6); }
+@media (max-width: 520px) {
+    .gender-gate .buttons { grid-template-columns: 1fr; }
+}
+
+/* Disable trait tiles (female rules, etc.) */
+.trait-thumb-wrap.trait-disabled {
+    opacity: 0.25;
+    filter: grayscale(0.8);
+    pointer-events: none;
+}
+.trait-thumb-wrap.trait-disabled .trait-checkbox {
+    opacity: 0.5;
+}
+
+#pageHeader {
+    text-align: center;
+    padding: 6px 20px 8px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+#headerImage {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+}
+#headerLOImage {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+}
+#pageHeader .tagline {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+    width: 100%;
+    flex-basis: 100%;
+}
+#mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    max-width: 1200px;
+    margin-top: 0;
+    padding-top: 0;
+}
+#creatorRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+#topRow {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1120px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+#traitSelection {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, auto) auto auto;
+    gap: 4px 6px;
+    justify-items: stretch;
+    align-content: start;
+    padding: 6px 10px;
+    background: linear-gradient(to bottom, #89f7fe, #66a6ff);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: min(90vw, 700px);
+    min-width: 200px;
+    box-sizing: border-box;
+}
+.category-button {
+    margin: 0;
+    padding: 10px 10px;
+    font-size: 11px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #3498db;
+    white-space: nowrap;
+    min-height: 42px;
+    line-height: 1.1;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+.category-button:hover {
+    opacity: 0.9;
+}
+/* Pair colors - matching colors for related traits */
+.category-button.pair-skin {
+    background-color: #e74c3c;
+}
+.category-button.pair-skin:hover {
+    background-color: #c0392b;
+}
+.category-button.pair-clothing {
+    background-color: #27ae60;
+}
+.category-button.pair-clothing:hover {
+    background-color: #229954;
+}
+.category-button.pair-background {
+    background-color: #34495e;
+}
+.category-button.pair-background:hover {
+    background-color: #2c3e50;
+}
+.category-button.pair-eyes {
+    background-color: #00bcd4;
+}
+.category-button.pair-eyes:hover {
+    background-color: #00acc1;
+}
+.category-button.pair-behind {
+    background-color: #e91e63;
+}
+.category-button.pair-behind:hover {
+    background-color: #c2185b;
+}
+.category-button.pair-hair {
+    background-color: #f39c12;
+}
+.category-button.pair-hair:hover {
+    background-color: #e67e22;
+}
+.category-button.pair-hand1 {
+    background-color: #9b59b6;
+}
+.category-button.pair-hand1:hover {
+    background-color: #8e44ad;
+}
+.category-button.pair-hand2 {
+    background-color: #1abc9c;
+}
+.category-button.pair-hand2:hover {
+    background-color: #16a085;
+}
+.category-button.active-tab {
+    background-color: #ffd93d;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.category-button.active-tab:hover {
+    opacity: 0.95;
+}
+#randomButton.randomize-button {
+    grid-row: 5;
+    grid-column: 1 / -1;
+    background-color: #d35400;
+    color: #fff;
+    padding: 12px 12px;
+    min-height: 2.8em;
+    font-size: 12px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+#randomButton.randomize-button:hover {
+    background-color: #a04000;
+    opacity: 1;
+}
+#exportTraitListBtn.export-trait-button {
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+#exportTraitListBtn.export-trait-button:hover {
+    background-color: #1a252f;
+    opacity: 1;
+}
+#exportSelectionBtn {
+    background-color: #16a085;
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    min-height: 42px;
+}
+#exportSelectionBtn:hover {
+    background-color: #138d75;
+    opacity: 1;
+}
+#importSelectionBtn {
+    background-color: #16a085;
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+}
+
+#jsonSelectionBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+    padding: 4px 0 0;
+    box-sizing: border-box;
+}
+.gender-gate .buttons button:disabled {
+    opacity: 0.45;
+    cursor: wait;
+}
+#importSelectionBtn:hover {
+    background-color: #138d75;
+    opacity: 1;
+}
+#importSelectionBtn input[type="file"] {
+    display: none;
+}
+
+#characterDisplayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    flex: 0 0 auto;
+}
+.underCharacterRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: min(90vw, 900px);
+    margin-top: 4px;
+}
+.character-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.character-actions button {
+    margin: 0;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 20px;
+}
+.view-trait-names-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #2c3e50;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    align-self: center;
+    flex: 0 0 auto;
+    max-width: 100%;
+    line-height: 1.25;
+}
+.view-trait-names-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+.trait-selection-names-dialog {
+    width: min(560px, 94vw);
+    max-height: min(82vh, 720px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.trait-selection-names-dialog h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #2c3e50;
+    text-align: center;
+    line-height: 1.3;
+}
+#onCharacterListItems {
+    list-style: none;
+    margin: 0;
+    padding: 0 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 120px;
+    max-height: min(58vh, 520px);
+}
+#onCharacterListItems li {
+    display: grid;
+    grid-template-columns: minmax(110px, 38%) 1fr;
+    gap: 10px 14px;
+    align-items: start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(102, 166, 255, 0.12);
+    cursor: pointer;
+    transition: background 0.15s;
+    text-align: left;
+}
+#onCharacterListItems li:hover {
+    background: rgba(102, 166, 255, 0.28);
+}
+#onCharacterListItems li.is-empty .trait-value {
+    color: #888;
+    font-style: italic;
+    font-weight: 500;
+}
+#onCharacterListItems li .trait-name {
+    font-weight: 800;
+    color: #333;
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: normal;
+    word-break: break-word;
+}
+#onCharacterListItems li .trait-value {
+    color: #1a5276;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+}
+/* create a predictable square that scales */
+#characterDisplay {
+  position: relative;
+  width: min(90vw, 700px);     /* scale down on small screens, cap on desktop */
+  aspect-ratio: 1 / 1;         /* stay square instead of hard-coding height */
+  height: auto;                 /* aspect-ratio will handle height */
+  border: 0;
+  background:#fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* layered images fill the square without distortion */
+#characterDisplay {
+  position: relative;
+}
+#characterDisplay img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* prevents stretching on iPhone */
+}
+#characterDisplay .creatorBlockedOverlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(231, 76, 60, 0.14);
+}
+#characterDisplay .creatorBlockedOverlay.is-visible {
+  display: flex;
+}
+#characterDisplay .creatorBlockedOverlay .creatorBlockedX {
+  font-size: min(36vw, 200px);
+  font-weight: 900;
+  line-height: 1;
+  color: #e74c3c;
+  text-shadow:
+    0 0 0 5px #fff,
+    0 0 0 9px rgba(231, 76, 60, 0.45),
+    0 6px 18px rgba(0, 0, 0, 0.35);
+  font-family: inherit;
+}
+.trait-thumb-wrap.highlight-trait {
+  animation: highlightPulseRed 2s ease-in-out;
+  border: 3px solid #ff0000 !important;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6) !important;
+  z-index: 10;
+  position: relative;
+  box-sizing: border-box;
+  margin: 5px !important;
+}
+.trait-thumb-wrap.highlight-trait img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+@keyframes highlightPulseRed {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8);
+    transform: scale(1.05);
+  }
+}
+
+#traitPictures {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 700px;
+    min-width: 400px;
+    background: linear-gradient(to bottom, #89f7fe, #66a6ff);
+    padding: 0px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 0;
+    overflow-y: auto;
+}
+.trait-category {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+}
+.trait-category.active {
+    display: flex;
+}
+.trait-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    margin: 10px 0;
+    background: linear-gradient(to bottom, #89f7fe, #66a6ff);
+    padding: 10px;
+    border-radius: 8px;
+}
+.trait-thumb-wrap {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.trait-thumb-wrap img {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    display: block;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+.trait-thumb-wrap img:hover {
+    border: 2px solid #666;
+}
+.trait-thumb-wrap .trait-checkbox {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0;
+    accent-color: #3498db;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.trait-options img {
+    margin: 5px;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+.trait-options img:hover {
+    border: 2px solid #666;
+}
+/* Trait culling: inactive traits show red X overlay (thumbnail stays full color) */
+.trait-thumb-wrap:has(img.trait-deselected)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    /* X centered at 50%: two diagonals through the middle */
+    background: linear-gradient(135deg, transparent 45%, #c00 47%, #c00 53%, transparent 55%),
+                linear-gradient(45deg, transparent 45%, #c00 47%, #c00 53%, transparent 55%);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 1;
+    box-sizing: border-box;
+}
+.category-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.3);
+    border-radius: 8px 8px 0 0;
+}
+.category-header .category-title {
+    font-size: 16px;
+    margin: 0;
+    flex: 1 1 auto;
+}
+.category-header .category-count {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-right: 4px;
+}
+.category-header .select-all-btns {
+    display: flex;
+    gap: 6px;
+}
+.category-header .select-all-btns button {
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.category-header .select-all-btns button:hover {
+    background-color: #2980b9;
+}
+button {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 30px;
+    border-radius: 30px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #e67e22;
+}
+.category-header .category-title {
+    font-weight: 700;
+}
+#saveButton {
+    margin-top: 20px;
+}
+.load-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.load-modal.show {
+    display: flex;
+}
+#tmBlockedSwapModal {
+    z-index: 3700;
+}
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: rgba(102, 166, 255, 0.95);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    color: #fff;
+}
+.preloader.hidden {
+    display: none;
+}
+.preloader-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.preloader h3 {
+    margin: 0;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+}
+.preloader-logo {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    animation: spinAround 3s linear infinite;
+    pointer-events: none;
+}
+@keyframes spinAround {
+    0% {
+        transform: rotate(0deg) translateX(120px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(120px) rotate(-360deg);
+    }
+}
+.preloader-progress {
+    width: 300px;
+    max-width: 80%;
+    height: 30px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+.preloader-bar {
+    height: 100%;
+    background: linear-gradient(to right, #89f7fe, #66a6ff);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 15px;
+}
+.preloader-text {
+    font-size: 14px;
+    opacity: 0.9;
+}
+.load-modal-dialog {
+    background: #fff;
+    padding: 20px 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    min-width: 280px;
+    font-family: 'Fredoka One', cursive;
+}
+.load-modal-dialog h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #333;
+}
+.load-modal-dialog select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+.load-modal-dialog .modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.load-modal-dialog .modal-buttons button {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin: 0;
+}
+.load-modal-dialog input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.collection-modal-hint {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: #555;
+}
+.character-actions #generateCollectionBtn {
+    margin: 0;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    background-color: #e67e22;
+    color: #fff;
+}
+.character-actions #generateCollectionBtn:hover {
+    opacity: 0.92;
+}
+.character-actions #generateCollectionBtn:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+/* Off-screen stack for fast collection generation (does not touch main canvas).
+   Do not use opacity:0 — browsers may skip image decode so canvas drawImage stays blank. */
+#characterDisplayOffscreenWrap {
+    position: fixed;
+    left: -10000px;
+    top: 0;
+    width: 512px;
+    height: 512px;
+    overflow: hidden;
+    pointer-events: none;
+    /* Do not use visibility:hidden or opacity:0 — browsers skip decode → blank grid previews */
+}
+#characterDisplayOffscreen {
+    position: relative;
+    width: 512px;
+    height: 512px;
+    background: #fff;
+}
+#characterDisplayOffscreen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.collection-progress-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2500;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+}
+.collection-progress-overlay.show {
+    display: flex;
+}
+.collection-progress-overlay .inner {
+    background: rgba(102, 166, 255, 0.95);
+    padding: 28px 36px;
+    border-radius: 16px;
+    max-width: 90vw;
+}
+@media (max-width: 900px) {
+    #creatorRow {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #traitPictures {
+        width: 100%;
+        min-width: 0;
+        max-width: 400px;
+    }
+    #topRow {
+        flex-direction: column;
+        align-items: center;
+    }
+    .view-trait-names-btn {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+@media (max-width: 768px) {
+    #mainContent {
+        flex-direction: column;
+        align-items: center;
+    }
+    #creatorRow {
+        flex-direction: column;
+        align-items: center;
+    }
+    #traitPictures {
+        width: 90%;
+        margin-top: 20px;
+    }
+    #characterDisplayContainer {
+        margin: 0;
+        width: 90%;
+    }
+    #characterDisplay {
+        width: 100%;
+        height: auto;
+    }
+}
+@media (max-width: 480px) {
+    .category-button {
+        font-size: 11px;
+        padding: 10px 10px;
+        min-height: 42px;
+    }
+    #characterDisplay {
+        width: 300px;
+        height: 300px;
+    }
+    #traitPictures {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+    #headerImage, #headerLOImage {
+        height: 120px;
+    }
+    #pageHeader {
+        flex-wrap: wrap;
+    }
+    #pageHeader .tagline {
+        font-size: 1rem;
+        width: 100%;
+    }
+}
+@media print {
+    body {
+        font-family: 'Fredoka One', cursive;
+        background: #fff;
+    }
+    #pageHeader {
+        padding: 0 0 12px;
+        margin-bottom: 12px;
+        border-bottom: 3px solid #66a6ff;
+    }
+    #headerImage {
+        height: 120px;
+    }
+    #topRow, #traitSelection, .character-actions, .category-header .select-all-btns {
+        display: none !important;
+    }
+}
+

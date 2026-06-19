@@ -1,4 +1,52 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""One-time extractor: builds CharacterMachine67 from LO Creator Suite index.html."""
+from pathlib import Path
+import shutil
+import re
+
+ROOT = Path(__file__).resolve().parent.parent.parent  # LOCC2-main
+OUT = Path(__file__).resolve().parent.parent       # CharacterMachine67
+INDEX = ROOT / "index.html"
+
+def extract_lines(path: Path, start: int, end: int) -> str:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    return "\n".join(lines[start - 1 : end]) + "\n"
+
+def main():
+    css = extract_lines(INDEX, 63, 74) + "\n" + extract_lines(INDEX, 2423, 3393)
+    js = extract_lines(INDEX, 6276, 10341)
+    js = js.replace(
+        "var LO_CREATOR_COMPAT_JSON = 'LOCompleteV5.json';",
+        "var LO_CREATOR_COMPAT_JSON = 'data/LOCompleteV5.json';",
+    )
+    js = js.replace(
+        "  http://localhost:8080\n\n' +\n    'Collages and exports work there.';",
+        "  http://localhost:8080/CharacterMachine67\n\n' +\n    'Collages and exports work there.';",
+    )
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "css").mkdir(exist_ok=True)
+    (OUT / "js").mkdir(exist_ok=True)
+    (OUT / "data").mkdir(exist_ok=True)
+    (OUT / "branding").mkdir(exist_ok=True)
+
+    (OUT / "css" / "creator.css").write_text(css, encoding="utf-8")
+    (OUT / "js" / "creator.js").write_text(js, encoding="utf-8")
+
+    src_reg = ROOT / "traits-registry.js"
+    if src_reg.is_file():
+        shutil.copy2(src_reg, OUT / "js" / "traits-registry.js")
+
+    compat = ROOT / "LOCompleteV5.json"
+    if compat.is_file():
+        shutil.copy2(compat, OUT / "data" / "LOCompleteV5.json")
+
+    for name in ("LO.png", "websitelogo3.png", "header.png"):
+        p = ROOT / name
+        if p.is_file():
+            shutil.copy2(p, OUT / "branding" / name)
+
+    html = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -213,3 +261,70 @@ if (typeof window.toggleGender !== 'function') {
 <script src="js/cm67-init.js"></script>
 </body>
 </html>
+"""
+    (OUT / "index.html").write_text(html, encoding="utf-8")
+
+    init_js = """/* CharacterMachine67 — standalone bootstrap (does not modify Creator Suite). */
+(function () {
+  function showMainAfterGender() {
+    var main = document.getElementById('mainContent');
+    if (main && window.selectedGender) main.style.display = 'block';
+  }
+
+  var origSwitch = window.switchGender;
+  if (typeof origSwitch === 'function') {
+    window.switchGender = function (newGender, opts) {
+      origSwitch(newGender, opts);
+      showMainAfterGender();
+    };
+  }
+
+  var origSet = window.setGender;
+  window.setGender = function (g) {
+    if (typeof origSet === 'function') origSet(g);
+    showMainAfterGender();
+  };
+
+  function wireGenderButtons() {
+    var maleBtn = document.getElementById('chooseMaleBtn');
+    var femaleBtn = document.getElementById('chooseFemaleBtn');
+    if (maleBtn && !maleBtn.__cm67Wired) {
+      maleBtn.__cm67Wired = true;
+      maleBtn.addEventListener('click', function () { window.setGender('male'); });
+    }
+    if (femaleBtn && !femaleBtn.__cm67Wired) {
+      femaleBtn.__cm67Wired = true;
+      femaleBtn.addEventListener('click', function () { window.setGender('female'); });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireGenderButtons);
+  } else {
+    wireGenderButtons();
+  }
+
+  if (window.LOTraitRegistry) {
+    window.LOTraitRegistry.MANIFEST_URL = 'assets/traits-manifest.json';
+  }
+})();
+"""
+    (OUT / "js" / "cm67-init.js").write_text(init_js, encoding="utf-8")
+
+    link_sh = """#!/bin/bash
+# Link trait assets from parent LOCC2 project (run from CharacterMachine67 folder).
+set -e
+DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$DIR"
+if [ -L assets ]; then rm assets; fi
+if [ -d assets ]; then echo "assets/ folder already exists — remove or rename it first."; exit 1; fi
+ln -s ../assets assets
+echo "Linked assets -> ../assets"
+"""
+    (OUT / "link-assets.sh").write_text(link_sh, encoding="utf-8")
+    (OUT / "link-assets.sh").chmod(0o755)
+
+    print("Built CharacterMachine67 at", OUT)
+
+if __name__ == "__main__":
+    main()
