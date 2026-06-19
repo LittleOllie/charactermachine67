@@ -33,7 +33,9 @@ def main():
     (OUT / "css" / "creator.css").write_text(css, encoding="utf-8")
     (OUT / "js" / "creator.js").write_text(js, encoding="utf-8")
 
-    src_reg = ROOT / "traits-registry.js"
+    src_reg = ROOT / "traits-registry1.js"
+    if not src_reg.is_file():
+        src_reg = ROOT / "traits-registry.js"
     if src_reg.is_file():
         shutil.copy2(src_reg, OUT / "js" / "traits-registry.js")
 

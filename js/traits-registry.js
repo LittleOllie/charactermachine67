@@ -72,8 +72,20 @@
     return normalizeMatchText(name);
   }
 
+  /** Known filename typos — hand variant must still pair with the skin name. */
+  var VARIANT_KEY_ALIASES = {
+    'CRIMOSN SHELL': 'CRIMSON SHELL'
+  };
+
+  function canonicalVariantKey(key) {
+    var k = normalizeMatchText(key);
+    return VARIANT_KEY_ALIASES[k] || k;
+  }
+
   function variantNamesMatch(handPart, skinKey) {
     if (!handPart || !skinKey) return false;
+    handPart = canonicalVariantKey(handPart);
+    skinKey = canonicalVariantKey(skinKey);
     if (handPart === skinKey) return true;
     if (handPart.indexOf(skinKey) >= 0 || skinKey.indexOf(handPart) >= 0) return true;
     return false;
@@ -87,6 +99,30 @@
     t.selected = t.slot !== 'hoodies' && t.slot !== 'backgroundblur';
     if (t.isRemove) t.isBlank = true;
     return t;
+  }
+
+  /** Encode each path segment so &, $, spaces, etc. load reliably on all hosts. */
+  function encodeAssetPath(path) {
+    if (!path) return '';
+    return String(path).trim().split('/').map(function (seg) {
+      return seg ? encodeURIComponent(seg) : seg;
+    }).join('/');
+  }
+
+  function traitImageUrl(traitOrPath) {
+    var path = typeof traitOrPath === 'string'
+      ? traitOrPath
+      : (traitOrPath && (traitOrPath.path || traitOrPath.image)) || '';
+    if (!path) return '';
+    path = String(path).trim().split('#')[0].split('?')[0];
+    var bust = '';
+    if (typeof traitOrPath === 'object' && traitOrPath && traitOrPath.fileMtime) {
+      bust = '?v=' + traitOrPath.fileMtime;
+    } else {
+      var t = getTraitByPath(path);
+      if (t && t.fileMtime) bust = '?v=' + t.fileMtime;
+    }
+    return encodeAssetPath(path) + bust;
   }
 
   function buildRegistryFromManifest(manifest) {
@@ -123,7 +159,11 @@
 
   function getTraitByPath(path) {
     if (!path) return null;
-    return TRAIT_BY_PATH[path] || TRAIT_BY_PATH[path.toLowerCase()] || null;
+    var clean = String(path).trim().split('#')[0].split('?')[0];
+    var marker = 'assets/traits/';
+    var idx = clean.indexOf(marker);
+    if (idx >= 0) clean = clean.slice(idx);
+    return TRAIT_BY_PATH[clean] || TRAIT_BY_PATH[clean.toLowerCase()] || null;
   }
 
   function isBlankTrait(traitOrPath) {
@@ -213,8 +253,18 @@
     img.dataset.traitName = trait.traitName;
     img.dataset.selected = sel ? 'true' : 'false';
     if (!sel) img.classList.add('trait-deselected');
-    img.src = encodeURI(trait.path);
+    img.src = traitImageUrl(trait);
+    img.addEventListener('error', function onTraitImgErr() {
+      img.removeEventListener('error', onTraitImgErr);
+      var fallback = encodeURI(trait.path);
+      if (fallback && img.src.indexOf(fallback) < 0) img.src = fallback + (trait.fileMtime ? ('?v=' + trait.fileMtime) : '');
+    });
     wrap.appendChild(img);
+    var label = document.createElement('span');
+    label.className = 'trait-thumb-label';
+    label.textContent = trait.traitName || '';
+    label.setAttribute('aria-hidden', 'true');
+    wrap.appendChild(label);
     var cb = document.createElement('input');
     cb.type = 'checkbox';
     cb.className = 'trait-checkbox';
@@ -243,7 +293,7 @@
     img.dataset.src = '';
     img.dataset.traitName = 'Remove';
     img.dataset.selected = 'true';
-    img.src = encodeURI(removePath || 'assets/traits/HATS/REMOVE.png');
+    img.src = encodeAssetPath(removePath || 'assets/traits/HATS/REMOVE.png');
     wrap.appendChild(img);
     var cb = document.createElement('input');
     cb.type = 'checkbox';
@@ -314,6 +364,8 @@
     buildRegistryFromManifest: buildRegistryFromManifest,
     formatTraitDisplayName: formatTraitDisplayName,
     getTraitByPath: getTraitByPath,
+    traitImageUrl: traitImageUrl,
+    encodeAssetPath: encodeAssetPath,
     isBlankTrait: isBlankTrait,
     traitMatchesSkin: traitMatchesSkin,
     getCompatibleTraits: getCompatibleTraits,

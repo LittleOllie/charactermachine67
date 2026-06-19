@@ -72,7 +72,7 @@ if (typeof window.toggleGender !== 'function') {
       <button class="category-button pair-hand2" data-category-id="ball2Category" data-label="BALLS 2" onclick="showCategory('ball2Category')">BALLS 2 (0)</button>
       <button id="randomButton" class="category-button randomize-button" onclick="randomizeCharacter()">RANDOMIZE</button>
     </div>
-    <button type="button" id="viewTraitNamesBtn" class="view-trait-names-btn" onclick="openTraitSelectionNamesModal()">VIEW TRAIT SELECTION NAMES</button>
+    <button type="button" id="viewTraitNamesBtn" class="view-trait-names-btn" onclick="openTraitSelectionNamesModal()">WHAT'S ON THIS CHARACTER</button>
   </div>
 
   <div id="creatorRow">
@@ -115,6 +115,10 @@ if (typeof window.toggleGender !== 'function') {
           <img id="off_ball2" alt="">
           <img id="off_hand2" alt="">
         </div>
+      </div>
+      <div id="onCharacterPanel" class="on-character-panel" aria-label="What's on this character">
+        <h4 class="on-character-title">WHAT'S ON THIS CHARACTER</h4>
+        <ul id="onCharacterListItems"></ul>
       </div>
       <div class="underCharacterRow">
         <div class="character-actions">
@@ -159,8 +163,8 @@ if (typeof window.toggleGender !== 'function') {
 
 <div id="traitSelectionNamesModal" class="load-modal" aria-hidden="true" onclick="if (event.target === this) closeTraitSelectionNamesModal();">
   <div class="load-modal-dialog trait-selection-names-dialog" role="dialog" aria-labelledby="traitSelectionNamesTitle">
-    <h4 id="traitSelectionNamesTitle">TRAIT SELECTION ON THIS CHARACTER</h4>
-    <ul id="onCharacterListItems"></ul>
+    <h4 id="traitSelectionNamesTitle">WHAT'S ON THIS CHARACTER</h4>
+    <ul id="onCharacterModalListItems"></ul>
     <div class="modal-buttons" style="margin-top:12px;flex-shrink:0;">
       <button type="button" onclick="closeTraitSelectionNamesModal()">CLOSE</button>
     </div>

@@ -2316,6 +2316,13 @@ function selectTrait(category, filename, skipSkinSync, skipHairHatSync) {
     el.src = (window.LOTraitRegistry && typeof LOTraitRegistry.traitImageUrl === 'function')
       ? LOTraitRegistry.traitImageUrl(filename)
       : encodeURI(filename);
+    if (window.LOTraitRegistry && typeof LOTraitRegistry.getTraitByPath === 'function') {
+      var trMeta = LOTraitRegistry.getTraitByPath(filename);
+      if (trMeta && trMeta.traitName) {
+        el.title = trMeta.traitName;
+        el.alt = trMeta.traitName;
+      }
+    }
   } else {
     el.style.visibility = 'hidden';
     el.removeAttribute('src');
@@ -2493,8 +2500,7 @@ function getTraitPathFromDisplayImg(img) {
 
 var displaySlotOrder = ['background', 'backgroundblur', 'behindback', 'skin', 'eyes', 'clothing', 'mouth', 'hair', 'accessories', 'hat', 'hoodies', 'goo', 'ball', 'hand', 'ball2', 'hand2'];
 
-function updateOnCharacterList() {
-  var container = document.getElementById('onCharacterListItems');
+function renderOnCharacterList(container) {
   if (!container) return;
   if (!document.getElementById('characterDisplay')) return;
   container.innerHTML = '';
@@ -2518,6 +2524,13 @@ function updateOnCharacterList() {
     });
     container.appendChild(li);
   });
+}
+
+function updateOnCharacterList() {
+  [
+    document.getElementById('onCharacterListItems'),
+    document.getElementById('onCharacterModalListItems')
+  ].forEach(renderOnCharacterList);
 }
 
 function openTraitSelectionNamesModal() {
@@ -2585,6 +2598,9 @@ function initTraitCulling() {
         img.dataset.traitName = t.traitName || img.dataset.traitName || '';
         img.title = t.traitName || img.title;
         img.alt = t.traitName || img.alt;
+        if (window.LOTraitRegistry && typeof LOTraitRegistry.traitImageUrl === 'function') {
+          img.src = LOTraitRegistry.traitImageUrl(t);
+        }
       }
       var wrap = img.closest('.trait-thumb-wrap');
       if (wrap) {
