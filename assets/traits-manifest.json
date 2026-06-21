@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-21T12:21:05.701393Z",
+  "generatedAt": "2026-06-21T13:54:25.988576Z",
   "basePath": "assets/traits",
   "traits": [
     {
@@ -2224,7 +2224,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779313010
+      "fileMtime": 1782050065
     },
     {
       "category": "CLOSED HAND",
@@ -9881,7 +9881,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779313688
+      "fileMtime": 1782050065
     },
     {
       "category": "OPEN HAND",
@@ -10245,7 +10245,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779309396
+      "fileMtime": 1782050065
     },
     {
       "category": "SKIN",
