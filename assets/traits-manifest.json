@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-16T14:50:20.757000Z",
+  "generatedAt": "2026-06-21T12:21:05.701393Z",
   "basePath": "assets/traits",
   "traits": [
     {
@@ -4786,6 +4786,19 @@
       "gender": "Unisex",
       "isRemove": false,
       "fileMtime": 1779389396
+    },
+    {
+      "category": "GLASSES",
+      "slot": "accessories",
+      "file": "Buttons.png",
+      "path": "assets/traits/GLASSES/Buttons.png",
+      "traitName": "Buttons",
+      "normalizedName": "buttons",
+      "variantGroup": null,
+      "skinTone": null,
+      "gender": "Unisex",
+      "isRemove": false,
+      "fileMtime": 1782044465
     },
     {
       "category": "GLASSES",
@@ -10687,7 +10700,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779309406
+      "fileMtime": 1782041858
     },
     {
       "category": "SKIN",
