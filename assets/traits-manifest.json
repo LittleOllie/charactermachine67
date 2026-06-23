@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-21T13:54:25.988576Z",
+  "generatedAt": "2026-06-23T12:45:11.267914Z",
   "basePath": "assets/traits",
   "traits": [
     {
@@ -2342,6 +2342,19 @@
       "gender": "Unisex",
       "isRemove": false,
       "fileMtime": 1779312748
+    },
+    {
+      "category": "CLOSED HAND",
+      "slot": "hand2",
+      "file": "Closed Hand - Bubblegum.PNG",
+      "path": "assets/traits/CLOSED HAND/Closed Hand - Bubblegum.PNG",
+      "traitName": "Closed Hand - Bubblegum",
+      "normalizedName": "closed-hand-bubblegum",
+      "variantGroup": null,
+      "skinTone": null,
+      "gender": "Unisex",
+      "isRemove": false,
+      "fileMtime": 1782218711
     },
     {
       "category": "CLOSED HAND",
@@ -9782,6 +9795,19 @@
     {
       "category": "OPEN HAND",
       "slot": "hand",
+      "file": "Open Hand - Bubblegum.PNG",
+      "path": "assets/traits/OPEN HAND/Open Hand - Bubblegum.PNG",
+      "traitName": "Open Hand - Bubblegum",
+      "normalizedName": "open-hand-bubblegum",
+      "variantGroup": null,
+      "skinTone": null,
+      "gender": "Unisex",
+      "isRemove": false,
+      "fileMtime": 1782218711
+    },
+    {
+      "category": "OPEN HAND",
+      "slot": "hand",
       "file": "Open Hand - Harlequin.PNG",
       "path": "assets/traits/OPEN HAND/Open Hand - Harlequin.PNG",
       "traitName": "Open Hand - Harlequin",
@@ -10636,6 +10662,19 @@
       "gender": "Unisex",
       "isRemove": false,
       "fileMtime": 1779309118
+    },
+    {
+      "category": "SKIN",
+      "slot": "skin",
+      "file": "Bubblegum.PNG",
+      "path": "assets/traits/SKIN/Bubblegum.PNG",
+      "traitName": "Bubblegum",
+      "normalizedName": "bubblegum",
+      "variantGroup": null,
+      "skinTone": null,
+      "gender": "Unisex",
+      "isRemove": false,
+      "fileMtime": 1782218711
     },
     {
       "category": "SKIN",
