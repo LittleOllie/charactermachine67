@@ -2142,19 +2142,43 @@ function loCalculateAutoExpectedDistribution(entries, slotTarget, opts) {
   });
 
   var activeTiers = tierOrder.filter(function (t) { return byTier[t] && byTier[t].length; });
-  var tierShareItems = activeTiers.map(function (t) {
+  var standardTiers = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
+  var tierShareItems = standardTiers.map(function (t) {
     return { key: t, share: tierPcts[t] != null ? tierPcts[t] : loGetTierRarityPct(t) };
   });
-  var tierPools = loAllocateByShares(slotTarget, tierShareItems);
+  if (byTier.Custom && byTier.Custom.length) {
+    tierShareItems.push({ key: 'Custom', share: tierPcts.Custom != null ? tierPcts.Custom : loGetTierRarityPct('Custom') });
+  }
+  var fullTierPools = loAllocateByShares(slotTarget, tierShareItems);
 
+  var totalAssigned = 0;
   activeTiers.forEach(function (tier) {
-    var pool = tierPools[tier] || 0;
+    var pool = fullTierPools[tier] || 0;
     var traits = byTier[tier];
     var splits = loSplitEvenly(pool, traits.length);
     traits.forEach(function (it, idx) {
       expected[it.id] = splits[idx] || 0;
+      totalAssigned += expected[it.id];
     });
   });
+
+  var leftover = slotTarget - totalAssigned;
+  if (leftover > 0 && byTier.Common && byTier.Common.length) {
+    var extra = loSplitEvenly(leftover, byTier.Common.length);
+    byTier.Common.forEach(function (it, idx) {
+      expected[it.id] = (expected[it.id] || 0) + (extra[idx] || 0);
+      totalAssigned += extra[idx] || 0;
+    });
+  } else if (leftover > 0) {
+    var spread = active.slice().sort(function (a, b) {
+      return loGetTierRarityPct(a.tier) - loGetTierRarityPct(b.tier);
+    });
+    for (var li = 0; li < leftover && spread.length; li++) {
+      var pick = spread[li % spread.length];
+      expected[pick.id] = (expected[pick.id] || 0) + 1;
+      totalAssigned++;
+    }
+  }
 
   if (minOne && slotTarget >= active.length) {
     active.forEach(function (it) {
@@ -2189,27 +2213,14 @@ function loCalculateAutoExpectedDistribution(entries, slotTarget, opts) {
       expected[reducible[0]]--;
       total--;
     }
-    while (total < slotTarget) {
-      var addable = ids.filter(function (id) {
-        var cap = maxFor(id);
-        return cap == null || (expected[id] || 0) < cap;
-      }).sort(function (a, b) {
-        var ta = loGetTierRarityPct(tierOf(a));
-        var tb = loGetTierRarityPct(tierOf(b));
-        if (tb !== ta) return tb - ta;
-        return (expected[a] || 0) - (expected[b] || 0);
-      });
-      if (!addable.length) break;
-      expected[addable[0]] = (expected[addable[0]] || 0) + 1;
-      total++;
-    }
+    // Do not inflate lower tiers when higher-tier buckets are empty — leftover is handled above.
   }
 
   return expected;
 }
 window.loCalculateAutoExpectedDistribution = loCalculateAutoExpectedDistribution;
 
-window.LO_ALWAYS_ON_CATEGORIES = ['background', 'skin', 'eyes', 'mouth', 'clothing'];
+window.LO_ALWAYS_ON_CATEGORIES = ['background', 'skin', 'eyes', 'mouth'];
 
 function loGetCategoryAppearanceConfig() {
   var defaults = window.LO_CATEGORY_APPEARANCE_DEFAULTS || {};
@@ -2939,15 +2950,18 @@ function randomizeCharacter() {
   if (mouthList.length) selectTrait('mouth', loTraitPath(pickRandomTraitFromList(mouthList)));
   else selectTrait('mouth', '');
 
-  var clothingList = getSelectedTraits('clothing');
-  if (clothingList.length) selectTrait('clothing', loTraitPath(pickRandomTraitFromList(clothingList)));
-  else selectTrait('clothing', '');
-
-  // ---- HAIR / HEADWEAR (65% hair / 35% headwear; mutually exclusive slot) ---- //
   var appearOpts = {
     rng: loGetGenRng(),
     quota: (window.__loGenAppearancePolicy && window.__loGenAppearancePolicy.quota) ? window.__loGenAppearancePolicy.quota : null
   };
+
+  selectTrait('clothing', '');
+  var clothingList = getSelectedTraits('clothing');
+  if (loShouldIncludeCategory('clothing', appearOpts) && clothingList.length) {
+    selectTrait('clothing', loTraitPath(pickRandomTraitFromList(clothingList)));
+  }
+
+  // ---- HAIR / HEADWEAR (65% hair / 35% headwear; mutually exclusive slot) ---- //
   var hairList = getSelectedTraits('hair');
   var hatList = getSelectedTraits('hat');
   var mulletHairList = creatorFilterMulletHairList(hairList);

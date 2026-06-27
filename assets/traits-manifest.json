@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-23T12:45:11.267914Z",
+  "generatedAt": "2026-06-27T14:43:36.967409Z",
   "basePath": "assets/traits",
   "traits": [
     {
@@ -4291,7 +4291,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779401500
+      "fileMtime": 1782571416
     },
     {
       "category": "EYES",
@@ -4343,7 +4343,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779401506
+      "fileMtime": 1782571416
     },
     {
       "category": "EYES",
@@ -4421,7 +4421,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779401494
+      "fileMtime": 1782571416
     },
     {
       "category": "EYES",
@@ -4486,7 +4486,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779401514
+      "fileMtime": 1782571416
     },
     {
       "category": "EYES",
@@ -4564,7 +4564,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779401490
+      "fileMtime": 1782571416
     },
     {
       "category": "EYES",
@@ -4616,7 +4616,7 @@
       "skinTone": null,
       "gender": "Unisex",
       "isRemove": false,
-      "fileMtime": 1779401520
+      "fileMtime": 1782571416
     },
     {
       "category": "EYES",
@@ -6502,6 +6502,19 @@
       "gender": "Unisex",
       "isRemove": false,
       "fileMtime": 1779318246
+    },
+    {
+      "category": "HATS",
+      "slot": "hat",
+      "file": "Pacman Halo.png",
+      "path": "assets/traits/HATS/Pacman Halo.png",
+      "traitName": "Pacman Halo",
+      "normalizedName": "pacman-halo",
+      "variantGroup": null,
+      "skinTone": null,
+      "gender": "Unisex",
+      "isRemove": false,
+      "fileMtime": 1782571416
     },
     {
       "category": "HATS",
