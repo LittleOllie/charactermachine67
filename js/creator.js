@@ -965,6 +965,102 @@ function enforceCreatorHairHatMutualExclusion(category, filename) {
   reconcileCreatorHairHatState();
 }
 
+/** Clothing XOR hoodie — hoodies are outerwear that must render above headwear. */
+function enforceCreatorClothingHoodieMutualExclusion(category, filename) {
+  if (window.__loGenCollectionOffscreen) return;
+  filename = resolveCreatorTraitPath(filename);
+  if (!filename) return;
+  if (category === 'clothing') {
+    selectTrait('hoodies', '', true, true);
+  } else if (category === 'hoodies') {
+    selectTrait('clothing', '', true, true);
+  }
+}
+
+function creatorHatTraitNameFromPath(path) {
+  if (!path) return '';
+  if (window.LOTraitRegistry && LOTraitRegistry.getTraitByPath) {
+    var t = LOTraitRegistry.getTraitByPath(path);
+    if (t && t.traitName) return t.traitName;
+  }
+  var file = String(path).split('/').pop() || '';
+  return file.replace(/\.(png|PNG)$/i, '').trim();
+}
+
+function creatorHatIsBackwardsHat(name) {
+  return String(name || '').indexOf('Backwards Hat - ') === 0;
+}
+
+function creatorHatIsHoodieOnlyBeanie(pathOrName) {
+  var name = pathOrName && String(pathOrName).indexOf('/') >= 0
+    ? creatorHatTraitNameFromPath(pathOrName)
+    : String(pathOrName || '');
+  return name === 'Beanie - White' || name === 'Beanie - Black';
+}
+
+function creatorHatCompatibleWithHoodie(pathOrName) {
+  if (!pathOrName) return false;
+  var name = String(pathOrName).indexOf('/') >= 0
+    ? creatorHatTraitNameFromPath(pathOrName)
+    : String(pathOrName || '');
+  if (creatorHatIsHoodieOnlyBeanie(name)) return true;
+  return creatorHatIsBackwardsHat(name);
+}
+
+function creatorHasHoodieSelected() {
+  var path = creatorGetSlotPath('hoodies');
+  if (!path) return false;
+  if (window.LOTraitRegistry && LOTraitRegistry.isBlankTrait(path)) return false;
+  return true;
+}
+
+function filterCreatorHatsForHoodieState(hatList, hasHoodie) {
+  return (hatList || []).filter(function (t) {
+    var p = loTraitPath(t);
+    if (!p) return false;
+    if (hasHoodie) return creatorHatCompatibleWithHoodie(p);
+    return !creatorHatIsHoodieOnlyBeanie(p);
+  });
+}
+
+/** Hoodies: no hair; only Backwards Hats + Beanie (Black/White) under the hoodie. */
+function enforceCreatorHoodieHatRules(category, filename) {
+  if (window.__loGenCollectionOffscreen) return;
+  filename = resolveCreatorTraitPath(filename);
+  if (category === 'hoodies' && filename) {
+    selectTrait('hair', '', true, true);
+    var hatPath = creatorGetSlotPath('hat');
+    if (hatPath && !creatorHatCompatibleWithHoodie(hatPath)) {
+      selectTrait('hat', '', true, true);
+    }
+    if (creatorTraitIsHeadphones(creatorGetSlotPath('goo'))) {
+      selectTrait('goo', '', true, true);
+    }
+    if (creatorTraitIsHeadphones(creatorGetSlotPath('accessories'))) {
+      selectTrait('accessories', '', true, true);
+    }
+  } else if (category === 'hoodies' && !filename) {
+    var wornHat = creatorGetSlotPath('hat');
+    if (creatorHatIsHoodieOnlyBeanie(wornHat)) {
+      selectTrait('hat', '', true, true);
+    }
+  } else if (category === 'hair' && filename && creatorHasHoodieSelected()) {
+    selectTrait('hair', '', true, true);
+  } else if ((category === 'goo' || category === 'accessories') && filename &&
+      creatorHasHoodieSelected() && creatorTraitIsHeadphones(filename)) {
+    selectTrait(category, '', true, true);
+  } else if (category === 'hat' && filename && !creatorHatCompatibleWithHoodie(filename) && creatorHasHoodieSelected()) {
+    selectTrait('hat', '', true, true);
+  } else if (category === 'hat' && filename && creatorHatIsHoodieOnlyBeanie(filename) && !creatorHasHoodieSelected()) {
+    selectTrait('hat', '', true, true);
+  }
+}
+
+window.creatorHasHoodieSelected = creatorHasHoodieSelected;
+window.creatorHatCompatibleWithHoodie = creatorHatCompatibleWithHoodie;
+window.creatorHatIsHoodieOnlyBeanie = creatorHatIsHoodieOnlyBeanie;
+window.filterCreatorHatsForHoodieState = filterCreatorHatsForHoodieState;
+
 function findCreatorCompatEntry(section, primaryId, secondaryId) {
   if (!section || !primaryId || !secondaryId) return null;
   if (section[primaryId] && section[primaryId][secondaryId]) {
@@ -1370,6 +1466,7 @@ var CREATOR_ABOVE_HEAD_SLOTS = ['goo'];
 var CREATOR_STACK_SLOTS = ['hair', 'accessories', 'hat'];
 var CREATOR_Z_BASE = 10;
 var CREATOR_Z_STACK = 72;
+var CREATOR_Z_HOODIE = 90;
 var CREATOR_Z_ABOVE_HEAD = 100;
 var CREATOR_Z_HAND = 120;
 
@@ -1431,6 +1528,13 @@ function ensureCreatorAboveHeadOnTop() {
   ensureCreatorGooLayer();
 }
 
+/** Hoodies sit above hair/headwear stack but below goo and hands. */
+function ensureCreatorHoodieLayer() {
+  var el = creatorSlotEl('hoodies');
+  if (!el || !isCreatorSlotVisible(el)) return;
+  el.style.zIndex = String(CREATOR_Z_HOODIE);
+}
+
 /** Hands + held items always on the very top. */
 function ensureCreatorHandsOnTop() {
   var prefix = window.__loGenCollectionOffscreen ? 'off_' : '';
@@ -1443,6 +1547,7 @@ function ensureCreatorHandsOnTop() {
 
 function ensureCreatorTopLayers() {
   ensureCreatorAccessoriesLayer();
+  ensureCreatorHoodieLayer();
   ensureCreatorAboveHeadOnTop();
   ensureCreatorHandsOnTop();
 }
@@ -1483,6 +1588,8 @@ function computeCreatorLayerZMapForTraits(traits) {
       zMap[slot] = CREATOR_Z_ABOVE_HEAD + CREATOR_ABOVE_HEAD_SLOTS.indexOf(slot) * 2;
     } else if (CREATOR_STACK_SLOTS.indexOf(slot) >= 0) {
       zMap[slot] = CREATOR_Z_STACK + CREATOR_STACK_SLOTS.indexOf(slot) * 2;
+    } else if (slot === 'hoodies') {
+      zMap[slot] = CREATOR_Z_HOODIE;
     } else {
       zMap[slot] = CREATOR_Z_BASE + idx * 2;
     }
@@ -1560,6 +1667,8 @@ function creatorResetDisplayZIndex() {
       el.style.zIndex = String(CREATOR_Z_ABOVE_HEAD + CREATOR_ABOVE_HEAD_SLOTS.indexOf(slot) * 2);
     } else if (CREATOR_STACK_SLOTS.indexOf(slot) >= 0) {
       el.style.zIndex = String(CREATOR_Z_STACK + CREATOR_STACK_SLOTS.indexOf(slot) * 2);
+    } else if (slot === 'hoodies') {
+      el.style.zIndex = String(CREATOR_Z_HOODIE);
     } else {
       el.style.zIndex = String(CREATOR_Z_BASE + idx * 2);
     }
@@ -1829,21 +1938,38 @@ function loPickItemTrait(pool, skinTrait) {
   return pickRandomTraitFromList(compatible);
 }
 
+function loSetCreatorDisplayImgSrc(el, filename) {
+  if (!el) return;
+  if (filename) {
+    el.style.visibility = 'visible';
+    var url = (window.LOTraitRegistry && typeof LOTraitRegistry.traitImageUrl === 'function')
+      ? LOTraitRegistry.traitImageUrl(filename)
+      : encodeURI(filename);
+    el.onerror = function loCreatorDisplayImgErr() {
+      el.onerror = null;
+      var clean = String(filename).trim().split('#')[0].split('?')[0];
+      var isFile = window.location && window.location.protocol === 'file:';
+      var fb = (window.LOTraitRegistry && typeof LOTraitRegistry.encodeAssetPath === 'function')
+        ? LOTraitRegistry.encodeAssetPath(clean)
+        : encodeURI(clean);
+      if (!isFile) fb += '?t=' + Date.now();
+      if (el.src !== fb) el.src = fb;
+    };
+    el.src = url;
+  } else {
+    el.onerror = null;
+    el.style.visibility = 'hidden';
+    el.removeAttribute('src');
+    el.src = '';
+  }
+}
+
 function loSetHandItemSlotDirect(slot, filename) {
   filename = resolveCreatorTraitPath(filename);
   var id = window.__loGenCollectionOffscreen ? 'off_' + slot : slot;
   var el = document.getElementById(id);
   if (!el) return;
-  if (filename) {
-    el.style.visibility = 'visible';
-    el.src = (window.LOTraitRegistry && typeof LOTraitRegistry.traitImageUrl === 'function')
-      ? LOTraitRegistry.traitImageUrl(filename)
-      : encodeURI(filename);
-  } else {
-    el.style.visibility = 'hidden';
-    el.removeAttribute('src');
-    el.src = '';
-  }
+  loSetCreatorDisplayImgSrc(el, filename || '');
 }
 
 function loApplyHandItemPair(gripKey, handTrait, itemTrait) {
@@ -2365,6 +2491,17 @@ function selectTrait(category, filename, skipSkinSync, skipHairHatSync) {
       return;
     }
   }
+  if (!window.__loGenCollectionOffscreen && category === 'hat' && filename) {
+    if (creatorHasHoodieSelected() && !creatorHatCompatibleWithHoodie(filename)) return;
+    if (!creatorHasHoodieSelected() && creatorHatIsHoodieOnlyBeanie(filename)) return;
+  }
+  if (!window.__loGenCollectionOffscreen && category === 'hair' && filename && creatorHasHoodieSelected()) {
+    return;
+  }
+  if (!window.__loGenCollectionOffscreen && (category === 'goo' || category === 'accessories') &&
+      filename && creatorHasHoodieSelected() && creatorTraitIsHeadphones(filename)) {
+    return;
+  }
   var id = category;
   if (window.__loGenCollectionOffscreen) {
     id = 'off_' + category;
@@ -2372,10 +2509,7 @@ function selectTrait(category, filename, skipSkinSync, skipHairHatSync) {
   var el = document.getElementById(id);
   if (!el) return;
   if (filename) {
-    el.style.visibility = 'visible';
-    el.src = (window.LOTraitRegistry && typeof LOTraitRegistry.traitImageUrl === 'function')
-      ? LOTraitRegistry.traitImageUrl(filename)
-      : encodeURI(filename);
+    loSetCreatorDisplayImgSrc(el, filename);
     if (window.LOTraitRegistry && typeof LOTraitRegistry.getTraitByPath === 'function') {
       var trMeta = LOTraitRegistry.getTraitByPath(filename);
       if (trMeta && trMeta.traitName) {
@@ -2384,9 +2518,7 @@ function selectTrait(category, filename, skipSkinSync, skipHairHatSync) {
       }
     }
   } else {
-    el.style.visibility = 'hidden';
-    el.removeAttribute('src');
-    el.src = '';
+    loSetCreatorDisplayImgSrc(el, '');
   }
   if (!skipSkinSync && category === 'skin' && filename) {
     syncHandsToCurrentSkin();
@@ -2399,6 +2531,8 @@ function selectTrait(category, filename, skipSkinSync, skipHairHatSync) {
     } else if (category === 'hair' || category === 'hat') {
       reconcileCreatorHairHatState();
     }
+    enforceCreatorClothingHoodieMutualExclusion(category, filename);
+    enforceCreatorHoodieHatRules(category, filename);
   }
   if (!window.__loGenCollectionOffscreen) {
     if (category === 'hair' || category === 'hat') {
@@ -2410,6 +2544,13 @@ function selectTrait(category, filename, skipSkinSync, skipHairHatSync) {
       }
     } else if (category === 'accessories') {
       applyCreatorCompatLayers();
+    } else if (category === 'clothing' || category === 'hoodies') {
+      ensureCreatorHoodieLayer();
+      enforceCreatorHoodieHatRules(category, filename);
+      ensureCreatorHandsOnTop();
+    } else if (category === 'hat') {
+      ensureCreatorHoodieLayer();
+      ensureCreatorHandsOnTop();
     } else if (category === 'goo' || category === 'mouth') {
       ensureCreatorTopLayers();
     } else {
@@ -2650,10 +2791,14 @@ function initTraitCulling() {
     var list = TRAIT_DATA[slot] || [];
     catEl.querySelectorAll('.trait-options img').forEach(function (img) {
       var path = img.dataset.src || getTraitPathFromDisplayImg(img) || '';
+      var imgSlot = img.dataset.slot || slot;
       var t = (window.LOTraitRegistry && LOTraitRegistry.getTraitByPath(path)) ||
+        (TRAIT_DATA[imgSlot] || []).find(function (x) { return x.path === path || x.image === path; }) ||
         list.find(function (x) { return x.path === path || x.image === path; });
       if (t) {
-        img.dataset.slot = slot;
+        if (!(slot === 'clothing' && imgSlot === 'hoodies')) {
+          img.dataset.slot = slot;
+        }
         img.dataset.src = t.path || t.image || path;
         img.dataset.traitName = t.traitName || img.dataset.traitName || '';
         img.title = t.traitName || img.title;
@@ -2672,17 +2817,17 @@ function initTraitCulling() {
             t.selected = cb.checked;
             updateCategoryCounter(categoryId);
             if (typeof loSyncCreatorTraitToCollectionBuilder === 'function') {
-              loSyncCreatorTraitToCollectionBuilder(slot, t);
+              loSyncCreatorTraitToCollectionBuilder(imgSlot, t);
             }
             if (!cb.checked) {
-              var live = document.getElementById(slot);
+              var live = document.getElementById(imgSlot);
               var livePath = live ? getTraitPathFromDisplayImg(live) : '';
               var traitPath = t.path || t.image || path;
               if (livePath && traitPath && livePath.toLowerCase() === traitPath.toLowerCase()) {
-                selectTrait(slot, '', true);
+                selectTrait(imgSlot, '', true);
               }
             }
-            if (slot === 'hair' || slot === 'accessories' || slot === 'hat') {
+            if (imgSlot === 'hair' || imgSlot === 'accessories' || imgSlot === 'hat') {
               applyCreatorCompatLayers();
             }
           });
@@ -2711,12 +2856,21 @@ function initTraitCulling() {
     if (e.target.closest('.trait-checkbox')) return;
     var img = e.target.closest('.trait-options img');
     if (img && img.dataset.slot) {
+      e.preventDefault();
+      e.stopPropagation();
       var wrap = img.closest('.trait-thumb-wrap');
       if (wrap && wrap.classList.contains('trait-disabled')) return;
       var slot = img.dataset.slot;
       var path = img.dataset.src || '';
-      var trait = findTraitInSlotByPath(slot, path);
+      var trait = findTraitInSlotByPath(slot, path) || (slot === 'clothing' ? findTraitInSlotByPath('hoodies', path) : null);
       if (trait && trait.selected === false) return;
+      if (slot === 'hat' && path) {
+        if (creatorHasHoodieSelected() && !creatorHatCompatibleWithHoodie(path)) return;
+        if (!creatorHasHoodieSelected() && creatorHatIsHoodieOnlyBeanie(path)) return;
+      }
+      if (slot === 'hair' && path && creatorHasHoodieSelected()) return;
+      if ((slot === 'goo' || slot === 'accessories') && path &&
+          creatorHasHoodieSelected() && creatorTraitIsHeadphones(path)) return;
       if (creatorIsBlockedCombo(creatorPathsAfterSelect(slot, path))) return;
       selectTrait(slot, path);
     }
@@ -2955,18 +3109,31 @@ function randomizeCharacter() {
     quota: (window.__loGenAppearancePolicy && window.__loGenAppearancePolicy.quota) ? window.__loGenAppearancePolicy.quota : null
   };
 
+  // ---- CLOTHING / HOODIE (mutually exclusive; hoodie renders above headwear) ---- //
   selectTrait('clothing', '');
+  selectTrait('hoodies', '');
   var clothingList = getSelectedTraits('clothing');
-  if (loShouldIncludeCategory('clothing', appearOpts) && clothingList.length) {
-    selectTrait('clothing', loTraitPath(pickRandomTraitFromList(clothingList)));
+  var hoodiesList = getSelectedTraits('hoodies');
+  if (loShouldIncludeCategory('hoodies', appearOpts) && hoodiesList.length) {
+    selectTrait('hoodies', loTraitPath(pickRandomTraitFromList(hoodiesList)), true, true);
+  } else if (loShouldIncludeCategory('clothing', appearOpts) && clothingList.length) {
+    selectTrait('clothing', loTraitPath(pickRandomTraitFromList(clothingList)), true, true);
   }
 
   // ---- HAIR / HEADWEAR (65% hair / 35% headwear; mutually exclusive slot) ---- //
   var hairList = getSelectedTraits('hair');
   var hatList = getSelectedTraits('hat');
+  var hasHoodie = creatorHasHoodieSelected();
+  hatList = filterCreatorHatsForHoodieState(hatList, hasHoodie);
   var mulletHairList = creatorFilterMulletHairList(hairList);
   selectTrait('hair', '', true, true);
   selectTrait('hat', '', true, true);
+
+  if (hasHoodie) {
+    if (hatList.length > 0) {
+      selectTrait('hat', loTraitPath(pickRandomTraitFromList(hatList)), true, true);
+    }
+  } else {
   var headChoice = loRollHairOrHeadwear(appearOpts.rng, appearOpts);
 
   if (window.selectedGender !== 'female') {
@@ -3000,12 +3167,17 @@ function randomizeCharacter() {
     }
     if (typeof window.__loFemaleEnforceHair === 'function') window.__loFemaleEnforceHair();
   }
+  }
   reconcileCreatorHairHatState();
 
   // ---- OPTIONAL TRAITS (category appearance rate, then rarity within category) ---- //
   var accList = getSelectedTraits('accessories');
   var randHairPath = creatorGetSlotPath('hair');
   var randHatPath = creatorGetSlotPath('hat');
+  var randHasHoodie = creatorHasHoodieSelected();
+  if (randHasHoodie) {
+    accList = accList.filter(function (t) { return !creatorTraitIsHeadphones(loTraitPath(t)); });
+  }
   selectTrait('accessories', '');
   if (loShouldIncludeCategory('accessories', appearOpts) && accList.length) {
     var pickedGlasses = creatorPickRandomGlasses(accList, randHairPath, randHatPath);
@@ -3016,12 +3188,10 @@ function randomizeCharacter() {
   if (loShouldIncludeCategory('behindback', appearOpts) && behindList.length) {
     selectTrait('behindback', loTraitPath(pickRandomTraitFromList(behindList)));
   }
-  var hoodiesList = getSelectedTraits('hoodies');
-  selectTrait('hoodies', '');
-  if (loShouldIncludeCategory('hoodies', appearOpts) && hoodiesList.length) {
-    selectTrait('hoodies', loTraitPath(pickRandomTraitFromList(hoodiesList)));
-  }
   var gooList = getSelectedTraits('goo');
+  if (randHasHoodie) {
+    gooList = gooList.filter(function (t) { return !creatorTraitIsHeadphones(loTraitPath(t)); });
+  }
   selectTrait('goo', '');
   if (loShouldIncludeCategory('goo', appearOpts) && gooList.length) {
     selectTrait('goo', loTraitPath(pickRandomTraitFromList(gooList)));

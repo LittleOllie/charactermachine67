@@ -18,182 +18,6 @@
   },
   "data": {
     "hats_vs_glasses": {
-      "66": {
-        "star-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:38:24.436Z"
-        },
-        "spiderman-mask": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T13:54:24.784Z"
-        },
-        "aviator-goggles": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T13:58:59.759Z"
-        },
-        "vr-headset": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:05:00.541Z"
-        },
-        "nerd-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:10:26.585Z"
-        },
-        "shutter-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:13:46.448Z"
-        },
-        "dripx": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:17:38.182Z"
-        },
-        "vision-visor": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:19:47.997Z"
-        },
-        "scream-mask": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:24:11.263Z"
-        },
-        "blue-round-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:27:14.087Z"
-        },
-        "eye-tattoo": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:29:45.692Z"
-        },
-        "reading-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:31:11.275Z"
-        },
-        "aviator": {
-          "status": "blocked",
-          "layerMode": "glasses_above_hat",
-          "notes": "",
-          "reviewedAt": "2026-05-30T14:23:42.170Z"
-        },
-        "mogs": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:46:31.049Z"
-        },
-        "monocle": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-30T15:25:25.279Z"
-        },
-        "eyepatch": {
-          "status": "blocked",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:53:01.153Z"
-        },
-        "blue-light-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:56:00.556Z"
-        },
-        "thug-life": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T14:58:50.518Z"
-        },
-        "trident-mask": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T15:02:17.772Z"
-        },
-        "game-day": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T15:08:28.331Z"
-        },
-        "love-glasses": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T15:10:18.293Z"
-        },
-        "trippy-swirl": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-28T15:12:55.907Z"
-        },
-        "cucumber": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-30T14:51:23.333Z"
-        },
-        "jason-mask": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-29T12:29:34.106Z"
-        },
-        "anon-mask": {
-          "status": "allowed",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-29T12:31:50.037Z"
-        },
-        "black-shades": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-29T12:38:09.441Z"
-        },
-        "robo-visor": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-29T12:41:16.340Z"
-        },
-        "round-tinted": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-29T12:51:13.038Z"
-        },
-        "round-glasses": {
-          "status": "swap",
-          "layerMode": "hat_above_glasses",
-          "notes": "",
-          "reviewedAt": "2026-05-29T12:54:30.899Z"
-        }
-      },
       "taco-hat": {
         "scream-mask": {
           "status": "blocked",
@@ -19728,6 +19552,182 @@
           "layerMode": "hat_above_glasses",
           "notes": "",
           "reviewedAt": "2026-05-29T12:55:00.324Z"
+        }
+      },
+      "goat-horn-mask": {
+        "star-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:38:24.436Z"
+        },
+        "spiderman-mask": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T13:54:24.784Z"
+        },
+        "aviator-goggles": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T13:58:59.759Z"
+        },
+        "vr-headset": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:05:00.541Z"
+        },
+        "nerd-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:10:26.585Z"
+        },
+        "shutter-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:13:46.448Z"
+        },
+        "dripx": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:17:38.182Z"
+        },
+        "vision-visor": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:19:47.997Z"
+        },
+        "scream-mask": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:24:11.263Z"
+        },
+        "blue-round-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:27:14.087Z"
+        },
+        "eye-tattoo": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:29:45.692Z"
+        },
+        "reading-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:31:11.275Z"
+        },
+        "aviator": {
+          "status": "blocked",
+          "layerMode": "glasses_above_hat",
+          "notes": "",
+          "reviewedAt": "2026-05-30T14:23:42.170Z"
+        },
+        "mogs": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:46:31.049Z"
+        },
+        "monocle": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-30T15:25:25.279Z"
+        },
+        "eyepatch": {
+          "status": "blocked",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:53:01.153Z"
+        },
+        "blue-light-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:56:00.556Z"
+        },
+        "thug-life": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T14:58:50.518Z"
+        },
+        "trident-mask": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T15:02:17.772Z"
+        },
+        "game-day": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T15:08:28.331Z"
+        },
+        "love-glasses": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T15:10:18.293Z"
+        },
+        "trippy-swirl": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-28T15:12:55.907Z"
+        },
+        "cucumber": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-30T14:51:23.333Z"
+        },
+        "jason-mask": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-29T12:29:34.106Z"
+        },
+        "anon-mask": {
+          "status": "allowed",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-29T12:31:50.037Z"
+        },
+        "black-shades": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-29T12:38:09.441Z"
+        },
+        "robo-visor": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-29T12:41:16.340Z"
+        },
+        "round-tinted": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-29T12:51:13.038Z"
+        },
+        "round-glasses": {
+          "status": "swap",
+          "layerMode": "hat_above_glasses",
+          "notes": "",
+          "reviewedAt": "2026-05-29T12:54:30.899Z"
         }
       }
     },

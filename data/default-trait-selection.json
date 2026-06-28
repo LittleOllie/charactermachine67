@@ -821,8 +821,8 @@
       "selected": true
     },
     {
-      "image": "assets/traits/CLOSED HAND/Closed Hand - Undead.PNG",
-      "traitName": "Closed Hand - Undead",
+      "image": "assets/traits/CLOSED HAND/Closed Hand - Zombie.PNG",
+      "traitName": "Closed Hand - Zombie",
       "selected": true
     },
     {
@@ -2516,8 +2516,8 @@
       "selected": true
     },
     {
-      "image": "assets/traits/HATS/66.PNG",
-      "traitName": "66",
+      "image": "assets/traits/HATS/Goat Horn Mask.PNG",
+      "traitName": "Goat Horn Mask",
       "selected": false
     },
     {
@@ -2616,7 +2616,7 @@
       "selected": true
     },
     {
-      "image": "assets/traits/HATS/Cowboy Hat - Ginger.png",
+      "image": "assets/traits/HATS/Cowboy Hat - Ginger.PNG",
       "traitName": "Cowboy Hat - Ginger",
       "selected": true
     },
@@ -2766,7 +2766,7 @@
       "selected": false
     },
     {
-      "image": "assets/traits/HATS/Grid Iron Helmet.png",
+      "image": "assets/traits/HATS/Grid Iron Helmet.PNG",
       "traitName": "Grid Iron Helmet",
       "selected": true
     },
@@ -2851,7 +2851,7 @@
       "selected": true
     },
     {
-      "image": "assets/traits/HATS/Samurai Helmet - Sunset .PNG",
+      "image": "assets/traits/HATS/Samurai Helmet - Sunset.PNG",
       "traitName": "Samurai Helmet - Sunset",
       "selected": false
     },
@@ -2951,7 +2951,7 @@
       "selected": true
     },
     {
-      "image": "assets/traits/HATS/Pom Pom Beanie - Maroon & White .PNG",
+      "image": "assets/traits/HATS/Pom Pom Beanie - Maroon & White.PNG",
       "traitName": "Pom Pom Beanie - Maroon & White",
       "selected": true
     },
@@ -2998,79 +2998,34 @@
   ],
   "hoodies": [
     {
-      "image": "assets/traits/HOODIES/8.PNG",
-      "traitName": "8",
-      "selected": false
+      "image": "assets/traits/HOODIES/Black Hoodie.PNG",
+      "traitName": "Black Hoodie",
+      "selected": true
     },
     {
-      "image": "assets/traits/HOODIES/9.PNG",
-      "traitName": "9",
-      "selected": false
+      "image": "assets/traits/HOODIES/Blue Hoodie.PNG",
+      "traitName": "Blue Hoodie",
+      "selected": true
     },
     {
-      "image": "assets/traits/HOODIES/14.PNG",
-      "traitName": "14",
-      "selected": false
+      "image": "assets/traits/HOODIES/Golden Hoodie.PNG",
+      "traitName": "Golden Hoodie",
+      "selected": true
     },
     {
-      "image": "assets/traits/HOODIES/12.PNG",
-      "traitName": "12",
-      "selected": false
+      "image": "assets/traits/HOODIES/Green Hoodie.PNG",
+      "traitName": "Green Hoodie",
+      "selected": true
     },
     {
-      "image": "assets/traits/HOODIES/13.PNG",
-      "traitName": "13",
-      "selected": false
+      "image": "assets/traits/HOODIES/Tie-Dye Hoodie.PNG",
+      "traitName": "Tie-Dye Hoodie",
+      "selected": true
     },
     {
-      "image": "assets/traits/HOODIES/11.PNG",
-      "traitName": "11",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/10.PNG",
-      "traitName": "10",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/LO Hoodie.png",
-      "traitName": "LO Hoodie",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/4.PNG",
-      "traitName": "4",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/5.PNG",
-      "traitName": "5",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/7.PNG",
-      "traitName": "7",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/6.PNG",
-      "traitName": "6",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/2.PNG",
-      "traitName": "2",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/3.PNG",
-      "traitName": "3",
-      "selected": false
-    },
-    {
-      "image": "assets/traits/HOODIES/1.PNG",
-      "traitName": "1",
-      "selected": false
+      "image": "assets/traits/HOODIES/White Hoodie.PNG",
+      "traitName": "White Hoodie",
+      "selected": true
     }
   ],
   "mouth": [
@@ -3779,8 +3734,8 @@
       "selected": true
     },
     {
-      "image": "assets/traits/OPEN HAND/Open Hand - Undead.PNG",
-      "traitName": "Open Hand - Undead",
+      "image": "assets/traits/OPEN HAND/Open Hand - Zombie.PNG",
+      "traitName": "Open Hand - Zombie",
       "selected": true
     },
     {
@@ -4031,8 +3986,8 @@
       "selected": true
     },
     {
-      "image": "assets/traits/SKIN/Undead.PNG",
-      "traitName": "Undead",
+      "image": "assets/traits/SKIN/Zombie.PNG",
+      "traitName": "Zombie",
       "selected": true
     },
     {

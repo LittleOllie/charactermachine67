@@ -8,6 +8,7 @@
   var TRAIT_DEBUG = false;
   var MANIFEST_URL = 'assets/traits-manifest.json';
   var REMOVE_THUMB = 'assets/traits/HATS/REMOVE.png';
+  var MANIFEST_CACHE_REV = '';
 
   var SKIN_KEYWORDS = ['TAN', 'LIGHT', 'DARK', 'BROWN', 'PALE', 'BLACK', 'GINGER', 'BLONDE', 'WHITE', 'CHROME'];
 
@@ -109,20 +110,35 @@
     }).join('/');
   }
 
+  /** file:// pages cannot load images when ?query cache-bust is appended (breaks only updated traits). */
+  function loIsFileProtocol() {
+    try {
+      return typeof location !== 'undefined' && location.protocol === 'file:';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function traitImageCacheBust(traitOrPath, path) {
+    if (loIsFileProtocol()) return '';
+    var parts = [];
+    if (typeof traitOrPath === 'object' && traitOrPath && traitOrPath.fileMtime) {
+      parts.push('v=' + traitOrPath.fileMtime);
+    } else {
+      var t = getTraitByPath(path);
+      if (t && t.fileMtime) parts.push('v=' + t.fileMtime);
+    }
+    if (MANIFEST_CACHE_REV) parts.push('r=' + encodeURIComponent(MANIFEST_CACHE_REV));
+    return parts.length ? '?' + parts.join('&') : '';
+  }
+
   function traitImageUrl(traitOrPath) {
     var path = typeof traitOrPath === 'string'
       ? traitOrPath
       : (traitOrPath && (traitOrPath.path || traitOrPath.image)) || '';
     if (!path) return '';
     path = String(path).trim().split('#')[0].split('?')[0];
-    var bust = '';
-    if (typeof traitOrPath === 'object' && traitOrPath && traitOrPath.fileMtime) {
-      bust = '?v=' + traitOrPath.fileMtime;
-    } else {
-      var t = getTraitByPath(path);
-      if (t && t.fileMtime) bust = '?v=' + t.fileMtime;
-    }
-    return encodeAssetPath(path) + bust;
+    return encodeAssetPath(path) + traitImageCacheBust(traitOrPath, path);
   }
 
   function buildRegistryFromManifest(manifest) {
@@ -145,10 +161,11 @@
   function loadTraitManifest(url) {
     var manifestPath = url || MANIFEST_URL;
     var bust = manifestPath + (manifestPath.indexOf('?') >= 0 ? '&' : '?') + 'v=' + Date.now();
-    return fetch(bust).then(function (res) {
+    return fetch(bust, { cache: 'no-store' }).then(function (res) {
       if (!res.ok) throw new Error('Failed to load trait manifest: ' + res.status);
       return res.json();
     }).then(function (manifest) {
+      MANIFEST_CACHE_REV = (manifest && manifest.generatedAt) ? String(manifest.generatedAt) : String(Date.now());
       buildRegistryFromManifest(manifest);
       return manifest;
     }).catch(function (err) {
@@ -246,6 +263,7 @@
     var img = document.createElement('img');
     img.loading = 'lazy';
     img.decoding = 'async';
+    img.draggable = false;
     img.alt = trait.traitName;
     img.title = trait.traitName;
     img.dataset.slot = slot;
@@ -256,8 +274,9 @@
     img.src = traitImageUrl(trait);
     img.addEventListener('error', function onTraitImgErr() {
       img.removeEventListener('error', onTraitImgErr);
-      var fallback = encodeURI(trait.path);
-      if (fallback && img.src.indexOf(fallback) < 0) img.src = fallback + (trait.fileMtime ? ('?v=' + trait.fileMtime) : '');
+      var fallback = encodeAssetPath(trait.path);
+      if (!fallback || img.src.indexOf(fallback) >= 0) return;
+      img.src = loIsFileProtocol() ? fallback : (fallback + '?t=' + Date.now());
     });
     wrap.appendChild(img);
     var label = document.createElement('span');
@@ -304,6 +323,37 @@
     return wrap;
   }
 
+  function appendClothingHoodieSection(opts, onDone) {
+    var hoodieList = (TRAIT_DATA.hoodies || []).slice().filter(function (trait) {
+      return trait && !trait.isRemove;
+    });
+    hoodieList.sort(function (a, b) {
+      return (a.traitName || '').localeCompare(b.traitName || '', undefined, { sensitivity: 'base' });
+    });
+    if (!hoodieList.length) {
+      if (typeof onDone === 'function') onDone();
+      return;
+    }
+    var divider = document.createElement('div');
+    divider.className = 'trait-slot-divider';
+    divider.textContent = 'Hoodies (wear over headwear)';
+    opts.appendChild(divider);
+    var hoodieIndex = 0;
+    var chunkSize = 36;
+    function appendHoodieChunk() {
+      var end = Math.min(hoodieIndex + chunkSize, hoodieList.length);
+      for (; hoodieIndex < end; hoodieIndex++) {
+        opts.appendChild(buildTraitThumbnail(hoodieList[hoodieIndex], 'hoodies'));
+      }
+      if (hoodieIndex < hoodieList.length) {
+        setTimeout(appendHoodieChunk, 0);
+      } else if (typeof onDone === 'function') {
+        onDone();
+      }
+    }
+    appendHoodieChunk();
+  }
+
   function populateTraitCategory(categoryId, slot, options, onDone) {
     var cat = document.getElementById(categoryId);
     if (!cat) {
@@ -334,6 +384,8 @@
       }
       if (index < list.length) {
         setTimeout(appendChunk, 0);
+      } else if (slot === 'clothing') {
+        appendClothingHoodieSection(opts, onDone);
       } else if (typeof onDone === 'function') {
         onDone();
       }
