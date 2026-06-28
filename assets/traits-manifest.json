@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-27T14:43:36.967409Z",
+  "generatedAt": "2026-06-28T01:27:06.196266Z",
   "basePath": "assets/traits",
   "traits": [
     {
@@ -15,6 +15,19 @@
       "gender": "Unisex",
       "isRemove": false,
       "fileMtime": 1779314910
+    },
+    {
+      "category": "ABOVE HEAD",
+      "slot": "goo",
+      "file": "Pacman Halo.png",
+      "path": "assets/traits/ABOVE HEAD/Pacman Halo.png",
+      "traitName": "Pacman Halo",
+      "normalizedName": "pacman-halo",
+      "variantGroup": null,
+      "skinTone": null,
+      "gender": "Unisex",
+      "isRemove": false,
+      "fileMtime": 1782571416
     },
     {
       "category": "ABOVE HEAD",
@@ -6502,19 +6515,6 @@
       "gender": "Unisex",
       "isRemove": false,
       "fileMtime": 1779318246
-    },
-    {
-      "category": "HATS",
-      "slot": "hat",
-      "file": "Pacman Halo.png",
-      "path": "assets/traits/HATS/Pacman Halo.png",
-      "traitName": "Pacman Halo",
-      "normalizedName": "pacman-halo",
-      "variantGroup": null,
-      "skinTone": null,
-      "gender": "Unisex",
-      "isRemove": false,
-      "fileMtime": 1782571416
     },
     {
       "category": "HATS",
