@@ -129,13 +129,12 @@ function initCharacterCreator() {
     }),
     loadCreatorCompatData()
   ]).then(function () {
-    TRAIT_DATA = window.LOTraitRegistry.TRAIT_DATA;
-    __creatorInitialized = true;
-    window.__loTraitsReady = true;
-    initTraitCulling();
-    return loApplySavedTraitSelectionOrDefaults();
-  }).then(function () {
     try {
+      TRAIT_DATA = window.LOTraitRegistry.TRAIT_DATA;
+      __creatorInitialized = true;
+      window.__loTraitsReady = true;
+      initTraitCulling();
+      loApplySavedTraitSelectionOrDefaults();
       initCharacterCanvasClicks();
       applyGenderRules();
       attachGenderAwareTraitClickGuard();
@@ -1253,6 +1252,7 @@ function loApplySavedTraitSelectionOrDefaults() {
   });
 }
 
+
 /** Push Collection Setup include/exclude state onto Character Creator data + tiles. */
 function loApplyCollectionExclusionsToCreator(cfg) {
   loSyncTraitDataFromRegistry();
@@ -1969,7 +1969,18 @@ function loSetHandItemSlotDirect(slot, filename) {
   var id = window.__loGenCollectionOffscreen ? 'off_' + slot : slot;
   var el = document.getElementById(id);
   if (!el) return;
-  loSetCreatorDisplayImgSrc(el, filename || '');
+  if (filename) {
+    loSetCreatorDisplayImgSrc(el, filename);
+    if (window.LOTraitRegistry && typeof LOTraitRegistry.getTraitByPath === 'function') {
+      var trMeta = LOTraitRegistry.getTraitByPath(filename);
+      if (trMeta && trMeta.traitName) {
+        el.title = trMeta.traitName;
+        el.alt = trMeta.traitName;
+      }
+    }
+  } else {
+    loSetCreatorDisplayImgSrc(el, '');
+  }
 }
 
 function loApplyHandItemPair(gripKey, handTrait, itemTrait) {
@@ -2459,7 +2470,7 @@ function loRollHairOrHeadwear(rng, opts) {
 
 function loTrackCategoryStatsFromTraits(traits, stats) {
   stats = stats || {};
-  ['accessories', 'goo', 'behindback', 'backgroundblur', 'hoodies'].forEach(function (slot) {
+  ['accessories', 'goo', 'behindback', 'backgroundblur', 'hoodies', 'clothing'].forEach(function (slot) {
     if (!stats[slot]) stats[slot] = { with: 0, without: 0 };
     if (traits && traits[slot]) stats[slot].with++;
     else stats[slot].without++;
@@ -2701,7 +2712,8 @@ function getTraitPathFromDisplayImg(img) {
 
 var displaySlotOrder = ['background', 'backgroundblur', 'behindback', 'skin', 'eyes', 'clothing', 'mouth', 'hair', 'accessories', 'hat', 'hoodies', 'goo', 'ball', 'hand', 'ball2', 'hand2'];
 
-function renderOnCharacterList(container) {
+function updateOnCharacterList() {
+  var container = document.getElementById('onCharacterListItems');
   if (!container) return;
   if (!document.getElementById('characterDisplay')) return;
   container.innerHTML = '';
@@ -2725,13 +2737,6 @@ function renderOnCharacterList(container) {
     });
     container.appendChild(li);
   });
-}
-
-function updateOnCharacterList() {
-  [
-    document.getElementById('onCharacterListItems'),
-    document.getElementById('onCharacterModalListItems')
-  ].forEach(renderOnCharacterList);
 }
 
 function openTraitSelectionNamesModal() {
@@ -2856,8 +2861,6 @@ function initTraitCulling() {
     if (e.target.closest('.trait-checkbox')) return;
     var img = e.target.closest('.trait-options img');
     if (img && img.dataset.slot) {
-      e.preventDefault();
-      e.stopPropagation();
       var wrap = img.closest('.trait-thumb-wrap');
       if (wrap && wrap.classList.contains('trait-disabled')) return;
       var slot = img.dataset.slot;
@@ -3130,6 +3133,7 @@ function randomizeCharacter() {
   selectTrait('hat', '', true, true);
 
   if (hasHoodie) {
+    // Hoodies never pair with hair — only optional compatible hats (under the hoodie).
     if (hatList.length > 0) {
       selectTrait('hat', loTraitPath(pickRandomTraitFromList(hatList)), true, true);
     }
@@ -3303,7 +3307,30 @@ function importSelectionState(file) {
         return;
       }
 
-      var matched = loApplyTraitSelectionFromObject(importedData);
+      function findLocalTrait(slot, importedTrait) {
+        var want = importedTrait.image || importedTrait.path || '';
+        if (!want || !TRAIT_DATA[slot]) return null;
+        var wantLower = String(want).toLowerCase();
+        return TRAIT_DATA[slot].find(function (t) {
+          if (!t) return false;
+          var p = (t.path || t.image || '').toLowerCase();
+          if (p === wantLower) return true;
+          if (window.LOTraitRegistry && LOTraitRegistry.getTraitByPath(want) === t) return true;
+          return false;
+        }) || null;
+      }
+
+      var matched = 0;
+      Object.keys(importedData).forEach(function (slot) {
+        if (!TRAIT_DATA[slot] || !Array.isArray(importedData[slot])) return;
+        importedData[slot].forEach(function (importedTrait) {
+          var localTrait = findLocalTrait(slot, importedTrait);
+          if (localTrait) {
+            localTrait.selected = !!importedTrait.selected;
+            matched++;
+          }
+        });
+      });
 
       if (!matched) {
         if (typeof alert === 'function') alert('No matching traits found in this file. Check that paths match the current trait library.');
@@ -3313,6 +3340,8 @@ function importSelectionState(file) {
       if (typeof loSyncCreatorSelectionToCollectionBuilder === 'function') {
         loSyncCreatorSelectionToCollectionBuilder({ reason: 'import_trait_selection' });
       }
+      if (typeof loRefreshAllCreatorTraitUi === 'function') loRefreshAllCreatorTraitUi();
+      else refreshTraitUI();
       if (typeof alert === 'function') alert('Selection loaded successfully (' + matched + ' traits matched).');
 
     } catch (err) {
@@ -3796,495 +3825,3 @@ function loLocalServerHelpMessage() {
     'Collages and exports work there.';
 }
 
-/* =========================
-   DOWNLOAD (COLOR + B&W LINE ART)
-   ========================= */
-(function initDownloads(){
-  var stage = document.getElementById('characterDisplay');
-  var btnColor = document.getElementById('downloadColor');
-  var btnBW    = document.getElementById('downloadBW');
-  var btnExportImage = document.getElementById('exportImageBtn');
-
-  if (!stage) return; // in case HTML not present yet
-
-  function getLayers() {
-    // Use DOM order = stacking order
-    return Array.prototype.slice.call(stage.querySelectorAll('img')).filter(function (img) {
-      return img && img.src && img.complete;
-    });
-  }
-
-  function renderComposite(toBW) {
-    if (typeof toBW === 'undefined') toBW = false;
-    var OUTPUT_SIZE = 2048; // 3072/4096 for print quality
-    var canvas = document.createElement('canvas');
-    canvas.width = OUTPUT_SIZE;
-    canvas.height = OUTPUT_SIZE;
-    var ctx = canvas.getContext('2d');
-
-    // Always start with white page for print
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // In B&W we skip heavy backgrounds so page stays white
-    var skipInBW = { background: true, backgroundblur: true };
-
-    // Draw visible layers
-    getLayers().forEach(function (img) {
-      if (toBW && skipInBW[img.id]) return;
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    });
-
-    if (!toBW) return canvas;
-
-// ==== Preserve original black pixels; make everything else white ====
-var src = ctx.getImageData(0, 0, canvas.width, canvas.height);
-var d = src.data;
-var w = src.width, h = src.height;
-
-// Tweakable knobs:
-// - BLACK_MAX: how dark a pixel must be to be considered black (higher catches dark greys)
-// - CHROMA_MAX: how “neutral” (low chroma) it must be (prevents dark colored fills becoming black)
-var BLACK_MAX  = 70;  // try 60–100 depending on how dark your ink is
-var CHROMA_MAX = 18;  // lower = stricter; try 10–25
-
-for (var i = 0; i < d.length; i += 4) {
-  var r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
-
-  // Transparent -> white paper
-  if (a < 10) {
-    d[i] = d[i+1] = d[i+2] = 255; d[i+3] = 255;
-    continue;
-  }
-
-  // “Near-black & neutral” test
-  var maxRGB = Math.max(r,g,b);
-  var minRGB = Math.min(r,g,b);
-  var chroma = maxRGB - minRGB;   // how colored it is
-  var isNearBlack = (maxRGB <= BLACK_MAX) && (chroma <= CHROMA_MAX);
-
-  if (isNearBlack) {
-    // keep outlines as solid black
-    d[i] = d[i+1] = d[i+2] = 0; d[i+3] = 255;
-  } else {
-    // everything else becomes white paper
-    d[i] = d[i+1] = d[i+2] = 255; d[i+3] = 255;
-  }
-}
-
-// Optional: thicken lines slightly (cheap dilation)
-var thicken = true;
-if (thicken) {
-  var copy = new Uint8ClampedArray(d);
-  function idx(x, y) { return (y*w + x)*4; }
-  for (var y = 1; y < h - 1; y++) {
-    for (var x = 1; x < w - 1; x++) {
-      var p = idx(x,y);
-      if (copy[p] === 255) { // white
-        if (
-          copy[idx(x-1,y)]===0 || copy[idx(x+1,y)]===0 ||
-          copy[idx(x,y-1)]===0 || copy[idx(x,y+1)]===0
-        ) {
-          d[p] = d[p+1] = d[p+2] = 0; // make adjacent to black => black
-        }
-      }
-    }
-  }
-}
-
-ctx.putImageData(src, 0, 0);
-return canvas;
-
-  }
-
-  function downloadCanvas(canvas, filename, mimeType, quality) {
-    try {
-      var a = document.createElement('a');
-      a.download = filename;
-      if (mimeType === 'image/jpeg' && quality != null) {
-        a.href = canvas.toDataURL('image/jpeg', quality);
-      } else {
-        a.href = canvas.toDataURL('image/png');
-      }
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    } catch (e) {
-      if (e && e.name === 'SecurityError') {
-        if (typeof alert === 'function') alert(loLocalServerHelpMessage());
-      } else {
-        throw e;
-      }
-    }
-  }
-
-  if (btnColor) {
-    btnColor.addEventListener('click', function () {
-      var c = renderComposite(false);
-      downloadCanvas(c, 'LittleOllie_Colour.png');
-    });
-  }
-  if (btnBW) {
-    btnBW.addEventListener('click', function () {
-      var c = renderComposite(true);
-      downloadCanvas(c, 'LittleOllie_ColouringPage.png');
-    });
-  }
-  if (btnExportImage) {
-    btnExportImage.addEventListener('click', function () {
-      var c = renderComposite(false);
-      downloadCanvas(c, 'LittleOllie_Export.jpg', 'image/jpeg', 0.92);
-    });
-  }
-
-  window.__loRenderColorComposite = function () {
-    return renderComposite(false);
-  };
-
-  /* Small composite for collection grid (avoids 2048² per cell — faster, less memory) */
-  window.__loRenderColorCompositeAtSize = function (pixelSize, rootEl) {
-    pixelSize = Math.max(32, Math.floor(pixelSize || 256));
-    rootEl = rootEl || stage;
-    var layers = Array.from(rootEl.querySelectorAll('img')).filter(function (img) {
-      var attr = img.getAttribute('src');
-      if (attr === null || attr === '') return false;
-      if (img.style.visibility === 'hidden') return false;
-      if (!img.complete) return false;
-      if (img.naturalWidth < 1 && img.naturalHeight < 1) return false;
-      return true;
-    });
-    layers.sort(function (a, b) {
-      var za = parseInt(a.style.zIndex || '0', 10) || 0;
-      var zb = parseInt(b.style.zIndex || '0', 10) || 0;
-      return za - zb;
-    });
-    var canvas = document.createElement('canvas');
-    canvas.width = pixelSize;
-    canvas.height = pixelSize;
-    var ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = true;
-    if (ctx.imageSmoothingQuality !== undefined) ctx.imageSmoothingQuality = 'high';
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, pixelSize, pixelSize);
-    layers.forEach(function (img) {
-      try {
-        ctx.drawImage(img, 0, 0, pixelSize, pixelSize);
-      } catch (e) {}
-    });
-    return canvas;
-  };
-})();
-
-/* =========================
-   GENERATE COLLECTION (GRID SHEET)
-   ========================= */
-(function initCollectionGenerator() {
-  var offstage = document.getElementById('characterDisplayOffscreen');
-  var btn = document.getElementById('generateCollectionBtn');
-  var modal = document.getElementById('collectionModal');
-  var input = document.getElementById('collectionCountInput');
-  var btnCancel = document.getElementById('collectionModalCancel');
-  var btnGo = document.getElementById('collectionModalGo');
-  var progressEl = document.getElementById('collectionProgress');
-  var progressText = document.getElementById('collectionProgressText');
-
-  if (!offstage || !btn || !modal || !input || !btnCancel || !btnGo) return;
-
-  function openModal() {
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-
-  function closeModal() {
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden', 'true');
-  }
-
-  function showProgress(show) {
-    if (!progressEl) return;
-    if (show) {
-      progressEl.classList.add('show');
-      progressEl.setAttribute('aria-hidden', 'false');
-    } else {
-      progressEl.classList.remove('show');
-      progressEl.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  function collectionGridDimensions(n) {
-    var cols = Math.ceil(Math.sqrt(n));
-    var rows = Math.ceil(n / cols);
-    return { cols: cols, rows: rows };
-  }
-
-  function waitForOffscreenImages(timeoutMs) {
-    return new Promise(function (resolve) {
-      var deadline = Date.now() + (timeoutMs || 8000);
-      function stillLoading() {
-        var imgs = Array.from(offstage.querySelectorAll('img'));
-        for (var i = 0; i < imgs.length; i++) {
-          var img = imgs[i];
-          var src = img.getAttribute('src');
-          if (!src) continue;
-          if (!img.complete) return true;
-        }
-        return false;
-      }
-      function tick() {
-        if (!stillLoading() || Date.now() > deadline) {
-          resolve();
-          return;
-        }
-        setTimeout(tick, 16);
-      }
-      tick();
-    });
-  }
-
-  function decodeOffscreenImages() {
-    var imgs = Array.from(offstage.querySelectorAll('img')).filter(function (img) {
-      var src = img.getAttribute('src');
-      return src !== null && src !== '';
-    });
-    return Promise.all(
-      imgs.map(function (img) {
-        if (img.decode) {
-          return img.decode().catch(function () {});
-        }
-        return Promise.resolve();
-      })
-    );
-  }
-
-  function getOffscreenFingerprint() {
-    var parts = [];
-    offstage.querySelectorAll('img').forEach(function (img) {
-      parts.push(img.getAttribute('src') || '');
-    });
-    return parts.join('\x1f');
-  }
-
-  function runCollection(count) {
-    if (loIsFileProtocol()) {
-      if (typeof alert === 'function') alert(loLocalServerHelpMessage());
-      return;
-    }
-    var renderAt = window.__loRenderColorCompositeAtSize;
-    if (typeof renderAt !== 'function') {
-      if (typeof alert === 'function') alert('Export engine not ready. Refresh the page and try again.');
-      return;
-    }
-
-    var grid = collectionGridDimensions(count);
-    var cols = grid.cols;
-    var rows = grid.rows;
-    var maxSide = 8192;
-    var cell = Math.floor(maxSide / Math.max(cols, rows));
-    cell = Math.max(cell, 48);
-    var outW = cols * cell;
-    var outH = rows * cell;
-    if (outW > 8192 || outH > 8192) {
-      cell = Math.floor(Math.min(8192 / cols, 8192 / rows));
-      cell = Math.max(cell, 48);
-      outW = cols * cell;
-      outH = rows * cell;
-    }
-
-    var outCanvas = null;
-    var octx = null;
-    var i = 0;
-
-    function clearOffscreen() {
-      offstage.querySelectorAll('img').forEach(function (img) {
-        img.removeAttribute('src');
-      });
-    }
-
-    function syncMainDisplayFromOffscreen() {
-      window.__loGenCollectionOffscreen = false;
-      offstage.querySelectorAll('img').forEach(function (off) {
-        var id = off.id.replace(/^off_/, '');
-        if (!id) return;
-        var main = document.getElementById(id);
-        if (main) {
-          main.src = off.src || '';
-        }
-      });
-      if (typeof updateOnCharacterList === 'function') updateOnCharacterList();
-    }
-
-    function finishError(msg) {
-      window.__loGenCollectionOffscreen = false;
-      console.error(msg);
-      showProgress(false);
-      btn.disabled = false;
-      if (progressText) progressText.textContent = '0 / 0';
-      if (typeof alert === 'function' && msg) alert(msg);
-    }
-
-    function finishSuccess() {
-      var baseName = 'LittleOllie_Collection_' + count + '_' + cols + 'x' + rows;
-      var megaPixels = (outW * outH) / 1000000;
-
-      function deliver(blob, ext) {
-        syncMainDisplayFromOffscreen();
-        if (!blob || blob.size === 0) {
-          if (ext === 'png') {
-            outCanvas.toBlob(function (b2) {
-              deliver(b2, 'jpg');
-            }, 'image/jpeg', 0.88);
-            return;
-          }
-          if (typeof alert === 'function') alert('Export failed. Try a smaller count or lower resolution.');
-          showProgress(false);
-          btn.disabled = false;
-          if (progressText) progressText.textContent = '0 / 0';
-          return;
-        }
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.download = baseName + '.' + ext;
-        a.href = url;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(function () {
-          URL.revokeObjectURL(url);
-        }, 4000);
-        showProgress(false);
-        btn.disabled = false;
-        if (progressText) progressText.textContent = '0 / 0';
-      }
-
-      try {
-        if (megaPixels > 35) {
-          outCanvas.toBlob(function (blob) {
-            deliver(blob, 'jpg');
-          }, 'image/jpeg', 0.9);
-        } else {
-          outCanvas.toBlob(function (blob) {
-            if (!blob || blob.size === 0) {
-              outCanvas.toBlob(function (b2) {
-                deliver(b2, 'jpg');
-              }, 'image/jpeg', 0.88);
-            } else {
-              deliver(blob, 'png');
-            }
-          }, 'image/png');
-        }
-      } catch (e) {
-        syncMainDisplayFromOffscreen();
-        showProgress(false);
-        btn.disabled = false;
-        if (progressText) progressText.textContent = '0 / 0';
-        if (e && e.name === 'SecurityError' && typeof alert === 'function') {
-          alert(loLocalServerHelpMessage());
-        } else if (typeof alert === 'function') {
-          alert((e && e.message) ? e.message : String(e));
-        }
-      }
-    }
-
-    window.__loGenCollectionOffscreen = true;
-    clearOffscreen();
-
-    var usedFingerprints = new Set();
-
-    btn.disabled = true;
-    showProgress(true);
-    if (progressText) progressText.textContent = '0 / ' + count;
-
-    if (!outCanvas) {
-      outCanvas = document.createElement('canvas');
-      outCanvas.width = outW;
-      outCanvas.height = outH;
-      octx = outCanvas.getContext('2d');
-      octx.imageSmoothingEnabled = true;
-      if (octx.imageSmoothingQuality !== undefined) octx.imageSmoothingQuality = 'high';
-      octx.fillStyle = '#ffffff';
-      octx.fillRect(0, 0, outW, outH);
-    }
-
-    function waitDecodePaint() {
-      return waitForOffscreenImages(12000)
-        .then(decodeOffscreenImages)
-        .then(function () {
-          return new Promise(function (r) {
-            requestAnimationFrame(function () {
-              requestAnimationFrame(r);
-            });
-          });
-        });
-    }
-
-    function rollUntilUnique(attemptsLeft) {
-      randomizeCharacter();
-      return waitDecodePaint().then(function () {
-        var fp = getOffscreenFingerprint();
-        if (usedFingerprints.has(fp) && attemptsLeft > 1) {
-          return rollUntilUnique(attemptsLeft - 1);
-        }
-        usedFingerprints.add(fp);
-      });
-    }
-
-    function step() {
-      if (progressText) progressText.textContent = (i + 1) + ' / ' + count;
-
-      rollUntilUnique(72)
-        .then(function () {
-        try {
-          var cellCanvas = renderAt(cell, offstage);
-          var col = i % cols;
-          var row = Math.floor(i / cols);
-          octx.drawImage(
-            cellCanvas,
-            0, 0, cellCanvas.width, cellCanvas.height,
-            col * cell, row * cell, cell, cell
-          );
-        } catch (e) {
-          finishError('Error building collection: ' + (e.message || e));
-          return;
-        }
-
-        i++;
-        if (i >= count) {
-          finishSuccess();
-          return;
-        }
-        setTimeout(step, 0);
-      })
-        .catch(function (err) {
-          finishError(err && err.message ? err.message : String(err));
-        });
-    }
-
-    step();
-  }
-
-  btn.addEventListener('click', function () {
-    openModal();
-  });
-
-  btnCancel.addEventListener('click', function () {
-    closeModal();
-  });
-
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) closeModal();
-  });
-
-  btnGo.addEventListener('click', function () {
-    var n = parseInt(input.value, 10);
-    if (isNaN(n) || n < 1) {
-      if (typeof alert === 'function') alert('Enter a number at least 1.');
-      return;
-    }
-    if (n > 5000) {
-      if (typeof alert === 'function') alert('Maximum is 5000 characters. Use a smaller number.');
-      return;
-    }
-    closeModal();
-    runCollection(n);
-  });
-})();

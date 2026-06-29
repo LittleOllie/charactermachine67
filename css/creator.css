@@ -11,6 +11,25 @@ body {
     text-transform: uppercase;
 }
 
+    line-height: 1.3;
+}
+.statCard .v {
+    margin-top: 8px;
+    font-family: 'Nunito', sans-serif;
+    text-transform: none;
+    font-weight: 900;
+    color: var(--lo-ink);
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+@media (max-width: 980px) {
+    .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .projectStats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+    .roadmap { grid-template-columns: 1fr; }
+}
 body.gender-female {
     /* subtle pink tint for female mode */
     background-image: linear-gradient(to right, #ffd1e6, #66a6ff);
@@ -427,8 +446,7 @@ body.gender-female {
     text-align: center;
     line-height: 1.3;
 }
-#onCharacterListItems,
-#onCharacterModalListItems {
+#onCharacterListItems {
     list-style: none;
     margin: 0;
     padding: 0 4px 0 0;
@@ -440,8 +458,7 @@ body.gender-female {
     min-height: 120px;
     max-height: min(58vh, 520px);
 }
-#onCharacterListItems li,
-#onCharacterModalListItems li {
+#onCharacterListItems li {
     display: grid;
     grid-template-columns: minmax(110px, 38%) 1fr;
     gap: 10px 14px;
@@ -453,18 +470,15 @@ body.gender-female {
     transition: background 0.15s;
     text-align: left;
 }
-#onCharacterListItems li:hover,
-#onCharacterModalListItems li:hover {
+#onCharacterListItems li:hover {
     background: rgba(102, 166, 255, 0.28);
 }
-#onCharacterListItems li.is-empty .trait-value,
-#onCharacterModalListItems li.is-empty .trait-value {
+#onCharacterListItems li.is-empty .trait-value {
     color: #888;
     font-style: italic;
     font-weight: 500;
 }
-#onCharacterListItems li .trait-name,
-#onCharacterModalListItems li .trait-name {
+#onCharacterListItems li .trait-name {
     font-weight: 800;
     color: #333;
     font-size: 12px;
@@ -472,8 +486,7 @@ body.gender-female {
     white-space: normal;
     word-break: break-word;
 }
-#onCharacterListItems li .trait-value,
-#onCharacterModalListItems li .trait-value {
+#onCharacterListItems li .trait-value {
     color: #1a5276;
     font-size: 13px;
     font-weight: 700;
@@ -594,15 +607,14 @@ body.gender-female {
     margin: 5px;
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     box-sizing: border-box;
 }
 .trait-thumb-wrap img {
     margin: 0;
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
     border: 2px solid transparent;
     display: block;
@@ -639,27 +651,6 @@ body.gender-female {
 .trait-thumb-wrap:focus-within .trait-thumb-label {
     opacity: 1;
     visibility: visible;
-}
-.on-character-panel {
-    width: 100%;
-    max-width: 360px;
-    margin: 10px auto 0;
-    padding: 10px 12px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-    box-sizing: border-box;
-}
-.on-character-panel .on-character-title {
-    margin: 0 0 8px;
-    font-size: 13px;
-    font-weight: 800;
-    color: #2c3e50;
-    text-align: center;
-    letter-spacing: 0.02em;
-}
-.on-character-panel #onCharacterListItems {
-    max-height: 220px;
 }
 .trait-thumb-wrap .trait-checkbox {
     position: absolute;
@@ -991,64 +982,3 @@ button:hover {
         flex-direction: column;
         align-items: center;
     }
-    #creatorRow {
-        flex-direction: column;
-        align-items: center;
-    }
-    #traitPictures {
-        width: 90%;
-        margin-top: 20px;
-    }
-    #characterDisplayContainer {
-        margin: 0;
-        width: 90%;
-    }
-    #characterDisplay {
-        width: 100%;
-        height: auto;
-    }
-}
-@media (max-width: 480px) {
-    .category-button {
-        font-size: 11px;
-        padding: 10px 10px;
-        min-height: 42px;
-    }
-    #characterDisplay {
-        width: 300px;
-        height: 300px;
-    }
-    #traitPictures {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-    }
-    #headerImage, #headerLOImage {
-        height: 120px;
-    }
-    #pageHeader {
-        flex-wrap: wrap;
-    }
-    #pageHeader .tagline {
-        font-size: 1rem;
-        width: 100%;
-    }
-}
-@media print {
-    body {
-        font-family: 'Fredoka One', cursive;
-        background: #fff;
-    }
-    #pageHeader {
-        padding: 0 0 12px;
-        margin-bottom: 12px;
-        border-bottom: 3px solid #66a6ff;
-    }
-    #headerImage {
-        height: 120px;
-    }
-    #topRow, #traitSelection, .character-actions, .category-header .select-all-btns {
-        display: none !important;
-    }
-}
-

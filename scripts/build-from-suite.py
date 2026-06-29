@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
-"""One-time extractor: builds CharacterMachine67 from LO Creator Suite index.html."""
+"""Build CharacterMachine67 from LO Creator Suite (delegates to sync-from-suite.py)."""
 from pathlib import Path
-import shutil
-import re
+import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # LOCC2-main
 OUT = Path(__file__).resolve().parent.parent       # CharacterMachine67
-INDEX = ROOT / "index.html"
-
-def extract_lines(path: Path, start: int, end: int) -> str:
-    lines = path.read_text(encoding="utf-8").splitlines()
-    return "\n".join(lines[start - 1 : end]) + "\n"
+SYNC = Path(__file__).resolve().parent / "sync-from-suite.py"
 
 def main():
+    if SYNC.is_file():
+        subprocess.run([sys.executable, str(SYNC)], check=True)
+        return
+
+    # Legacy fallback if sync-from-suite.py is missing
+    from pathlib import Path as P
+    INDEX = ROOT / "index.html"
+
+    def extract_lines(path: P, start: int, end: int) -> str:
+        lines = path.read_text(encoding="utf-8").splitlines()
+        return "\n".join(lines[start - 1 : end]) + "\n"
+
     css = extract_lines(INDEX, 63, 74) + "\n" + extract_lines(INDEX, 2423, 3393)
-    js = extract_lines(INDEX, 6276, 10341)
+    js = extract_lines(INDEX, 6340, 10085)
     js = js.replace(
         "var LO_CREATOR_COMPAT_JSON = 'LOCompleteV5.json';",
         "var LO_CREATOR_COMPAT_JSON = 'data/LOCompleteV5.json';",
